@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  locationsapi:
+    image: ${DOCKER_REGISTRY}locationsapi
+    build:
+      context: .
+      dockerfile: ../LocationsApi/Dockerfile
+
+  carservicesapi:
+    image: ${DOCKER_REGISTRY}carservicesapi
+    build:
+      context: .
+      dockerfile: CarServicesApi/Dockerfile
+
+
+  schedulingapi:
+    image: ${DOCKER_REGISTRY}schedulingapi
+    build:
+      context: .
+      dockerfile: SchedulingApi/Dockerfile
+
+
+  paymentapi:
+    image: ${DOCKER_REGISTRY}paymentapi
+    build:
+      context: .
+      dockerfile: PaymentApi/Dockerfile
+
+
+  web:
+    image: ${DOCKER_REGISTRY}web
+    build:
+      context: .
+      dockerfile: Web/Dockerfile
+
+
+  identityapi:
+    image: ${DOCKER_REGISTRY}identityapi
+    build:
+      context: .
+      dockerfile: IdentityApi/Dockerfile
+
+
+  apitest:
+    image: ${DOCKER_REGISTRY}apitest
+    build:
+      context: .
+      dockerfile: ApiTest/Dockerfile
+
