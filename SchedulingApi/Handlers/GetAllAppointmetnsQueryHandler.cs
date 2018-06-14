@@ -1,5 +1,7 @@
-﻿using EventFlow.Queries;
+﻿using EventFlow.MongoDB.ReadStores;
+using EventFlow.Queries;
 using EventFlow.ReadStores.InMemory;
+using MongoDB.Driver;
 using SchedulingApi.Controllers;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +12,16 @@ namespace AppointmentApi
 {
     public class GetAllAppointmentsQueryHandler : IQueryHandler<GetAllAppointmentsQuery, IReadOnlyCollection<Appointment>>
     {
-        private readonly IInMemoryReadStore<AppointmentReadModel> readStore;
+        private readonly IMongoDbReadModelStore<AppointmentReadModel> readStore;
 
-        public GetAllAppointmentsQueryHandler(IInMemoryReadStore<AppointmentReadModel> readStore)
+        public GetAllAppointmentsQueryHandler(IMongoDbReadModelStore<AppointmentReadModel> readStore)
         {
             this.readStore = readStore;
         }
         public async Task<IReadOnlyCollection<Appointment>> ExecuteQueryAsync(GetAllAppointmentsQuery query, CancellationToken cancellationToken) {
-            var readModels = await readStore.FindAsync(appointmentReadModel => true, cancellationToken).ConfigureAwait(false);
-            return readModels.Select(appointmentReadModel => appointmentReadModel.ToAppointment()).ToList();
+
+            IAsyncCursor<AppointmentReadModel> readModels = await readStore.FindAsync(appointmentReadModel => true).ConfigureAwait(false);
+            return readModels.ToEnumerable().Select(appointmentReadModel => appointmentReadModel.ToAppointment()).ToList();
         }
     }
 }

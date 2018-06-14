@@ -1,16 +1,13 @@
 ﻿using EventFlow.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AppointmentApi.AppointmentModel.ValueObjects
 {
-    public class Location : ValueObject
+    [JsonConverter(typeof(SingleValueObjectConverter))]
+    public class Location : SingleValueObject<string>
     {
-        public Location()
+        public Location(string value) : base(value)
         {
-
         }
     }
 }

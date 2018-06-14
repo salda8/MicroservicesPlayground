@@ -1,5 +1,9 @@
 ﻿using AppointmentApi;
+using AppointmentApi.AppointmentModel.Commands;
+using AppointmentApi.AppointmentModel.Events;
+using AppointmentApi.AppointmentModel.ValueObjects;
 using EventFlow;
+using EventFlow.Aggregates.ExecutionResults;
 using EventFlow.Logs;
 using EventFlow.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +24,7 @@ namespace SchedulingApi.Controllers
         private readonly ICommandBus commandBus;
         private readonly IAppointmentService appointmentService;
 
-        public AppointmentController(IAppointmentService appointmentService, ICommandBus commandBus, ILog log, IQueryHandler<GetAllAppointmentsQuery, IReadOnlyCollection<Appointment>> getAllQueryHandler)
+        public AppointmentController(IAppointmentService appointmentService, ICommandBus commandBus, IQueryHandler<GetAllAppointmentsQuery, IReadOnlyCollection<Appointment>> getAllQueryHandler)
         {
             this.appointmentService = appointmentService;
             this.commandBus = commandBus;
@@ -37,20 +41,65 @@ namespace SchedulingApi.Controllers
             {
                 return Ok(appointments);
             }
-            
+
             return NotFound();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> OrderAppointment(AppointmentOrder appointment)
+        [HttpPost("{id}/location")]
+        public async Task<IActionResult> SetLocation([FromBody]Location location,[FromRoute] string id)
         {
-            var appointmentId = new AppointmentId(Guid.NewGuid().ToString());
             await this.commandBus
-                .PublishAsync(new AppointmentBookCommand(appointmentId, appointment), new System.Threading.CancellationToken())
+                .PublishAsync(new AppointmentSetLocationCommand(new AppointmentId(id), location), new System.Threading.CancellationToken())
+                .ConfigureAwait(false);
+            return Ok();
+        }
+
+        [HttpPost("{id}/schedule")]
+        public async Task<IActionResult> SetSchedule([FromBody]Schedule schedule, [FromRoute]string id)
+        {
+           
+            await this.commandBus
+                .PublishAsync(new AppointmentSetScheduleCommand(schedule, new AppointmentId(id)), new System.Threading.CancellationToken())
+                .ConfigureAwait(false);
+            return Ok();
+        }
+
+        [HttpGet("order")]
+        public async Task<IActionResult> OrderAppointment()
+        {
+            var appointmentId = AppointmentId.New;
+            
+
+            await this.commandBus
+                .PublishAsync(new AppointmentOrderCreateCommand(appointmentId), new System.Threading.CancellationToken())
                 .ConfigureAwait(false);
 
-            appointmentService.AddNewAppointment();
-            return Ok();
+           
+            return CreatedAtAction(nameof(OrderAppointment),new { id = appointmentId});
+
+            //save
+            //notify
+            //mng approve?
+            //send confirmation
+        }
+
+        [HttpPost("{id}")]
+        [ProducesResponseType(typeof(AppointmentReadModel), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> BookAppointment([FromRoute]string id)
+        {
+            var appointmentId = new AppointmentId(id);
+
+
+            IExecutionResult result = await this.commandBus
+                .PublishAsync(new AppointmentBookCommand(appointmentId), new System.Threading.CancellationToken())
+                .ConfigureAwait(false);
+            if (result.IsSuccess)
+            {
+                return CreatedAtAction(nameof(BookAppointment), new { id = appointmentId });
+            }
+
+            return Conflict(result.ToString());
+            
+          
 
             //save
             //notify
