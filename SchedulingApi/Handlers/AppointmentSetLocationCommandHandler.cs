@@ -13,4 +13,13 @@ namespace AppointmentApi.AppointmentModel.Commands
             return Task.FromResult(0);
         }
     }
+
+    public class AppointmentSetCarServiceCommandHandler : CommandHandler<AppointmentAggregate, AppointmentId, AppointmentSetCarServiceCommand>
+    {
+        public override Task ExecuteAsync(AppointmentAggregate aggregate, AppointmentSetCarServiceCommand command, CancellationToken cancellationToken)
+        {
+            aggregate.SetCarService(command.CarService);
+            return Task.FromResult(0);
+        }
+    }
 }

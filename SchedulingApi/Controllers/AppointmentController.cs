@@ -6,6 +6,7 @@ using EventFlow;
 using EventFlow.Aggregates.ExecutionResults;
 using EventFlow.Logs;
 using EventFlow.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace SchedulingApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
@@ -62,6 +64,17 @@ namespace SchedulingApi.Controllers
                 .ConfigureAwait(false);
             return Ok();
         }
+
+        [HttpPost("{id}/carservice")]
+        public async Task<IActionResult> SetCarService([FromBody]CarService carService, [FromRoute]string id)
+        {
+
+            await this.commandBus
+                .PublishAsync(new AppointmentSetCarServiceCommand(new AppointmentId(id), carService), new System.Threading.CancellationToken())
+                .ConfigureAwait(false);
+            return Ok();
+        }
+
 
         [HttpGet("order")]
         public async Task<IActionResult> OrderAppointment()

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
@@ -11,10 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-using Autofac.Extensions.DependencyInjection;
-using Autofac.Extensions;
-
-namespace PaymentApi
+namespace BasicIdentityServer
 {
     public class Program
     {
@@ -25,12 +19,6 @@ namespace PaymentApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureServices(services => services.AddAutofac())
-            .ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.SetMinimumLevel(LogLevel.Trace);
-            })
                 .UseStartup<Startup>();
     }
 }

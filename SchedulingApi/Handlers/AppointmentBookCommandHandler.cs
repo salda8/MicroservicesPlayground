@@ -1,32 +1,45 @@
 ﻿using AppointmentApi;
-using EventFlow;
-using EventFlow.Aggregates;
 using EventFlow.Commands;
-using EventFlow.Core;
-using Microsoft.AspNetCore.Mvc;
-using EventFlow.MongoDB;
-using System;
+using EventFlow.EventStores;
+using EventFlow.MongoDB.EventStore;
+using EventFlow.MongoDB.ReadStores;
+using EventFlow.Snapshots;
+using EventFlow.Subscribers;
 using System.Threading;
 using System.Threading.Tasks;
-using EventFlow.MongoDB.ReadStores;
 
 namespace SchedulingApi.Controllers
 {
-
     public class AppointmentBookCommandHandler : CommandHandler<AppointmentAggregate, AppointmentId, AppointmentBookCommand>
     {
-        private readonly IMongoDbInsertOnlyReadModelStore<AppointmentReadModel> mongoDbInsert;
+        private readonly IMongoDbInsertOnlyReadModelStore<AppointmentInsertReadModel> mongoDbInsert;
+        private readonly IDomainEventFactory eventFactory;
+        private readonly ISnapshotStore snapshotStore;
+        private readonly IEventStore eventStore;
+        private readonly IEventJsonSerializer jsonSerializer;
+        private readonly IMongoDbEventSequenceStore sequenceStore;
+        private readonly IDomainEventPublisher domainEventPublisher;
 
-        public AppointmentBookCommandHandler(IMongoDbInsertOnlyReadModelStore<AppointmentReadModel> mongoDbInsert)
+        public AppointmentBookCommandHandler(IMongoDbInsertOnlyReadModelStore<AppointmentInsertReadModel> mongoDbInsert, IDomainEventPublisher domainEventPublisher, IDomainEventFactory eventFactory, ISnapshotStore snapshotStore, IEventStore eventStore, IEventJsonSerializer jsonSerializer, IMongoDbEventSequenceStore sequenceStore)
         {
+            this.domainEventPublisher = domainEventPublisher;
+            this.sequenceStore = sequenceStore;
+            this.jsonSerializer = jsonSerializer;
+            this.eventStore = eventStore;
+            this.eventFactory = eventFactory;
+
             this.mongoDbInsert = mongoDbInsert;
+            this.snapshotStore = snapshotStore;
         }
 
         public override Task ExecuteAsync(AppointmentAggregate aggregate, AppointmentBookCommand command, CancellationToken cancellationToken)
         {
             var result = aggregate.BookAppointment(command.AggregateId.Value);
-            //mongoDbInsert.UpdateAsync()
-            return  Task.FromResult(result);
+            var commitedEvents = aggregate.CommitAsync(eventStore: eventStore, snapshotStore: snapshotStore, sourceId: command.SourceId, cancellationToken: cancellationToken).Result;
+
+            domainEventPublisher.PublishAsync(commitedEvents, cancellationToken);
+            // mongoDbInsert.UpdateAsync();
+            return Task.FromResult(result);
         }
     }
 }

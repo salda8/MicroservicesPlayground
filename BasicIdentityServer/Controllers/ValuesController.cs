@@ -2,20 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MicroservicesPlayground.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PaymentApi.Controllers
+namespace BasicIdentityServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : ControllerBase
+    public class HomeController : ControllerBase
     {
-
-        public PaymentController(IEventBus eventBus)
-        {
-
-        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
