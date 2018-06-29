@@ -1,8 +1,11 @@
-﻿using IdentityServer4;
+﻿using Identity.MongoDb;
+using IdentityServer4;
 using IdentityServer4.Models;
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 
-namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
+namespace BasicIdentityServer.Configuration
 {
     public class Config
     {
@@ -150,6 +153,20 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Configuration
             AllowedScopes = { "api1" }
         }
 };
+        }
+
+        internal static IEnumerable<MongoIdentityRole> GetRoles() {
+
+            var userRole = new MongoIdentityRole("user");
+            userRole.Claims.Add(new Identity.MongoDb.Models.MongoUserClaim(new System.Security.Claims.Claim(ClaimTypes.GroupSid, Guid.NewGuid().ToString())));
+            var roles=  new List<MongoIdentityRole>()
+            {
+               userRole,
+                new MongoIdentityRole("administrator"),
+                new MongoIdentityRole("customer")
+            };
+
+            return roles;
         }
     }
 }

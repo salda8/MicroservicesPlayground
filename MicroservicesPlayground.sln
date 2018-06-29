@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{50CFA2FE-75B3-46DB-8548-579CA115D9D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6EF8B235-066A-4338-81C1-1F5841CE9D0F}"
+	ProjectSection(SolutionItems) = preProject
+		..\eShop\src\Services\Identity\Identity.API\wwwroot\css\site.css = ..\eShop\src\Services\Identity\Identity.API\wwwroot\css\site.css
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{419B5D2C-E0B9-4AEE-8888-8308151A7427}"
 EndProject

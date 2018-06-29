@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BasicIdentityServer.Services;
-using Identity.Models;
+
 using Identity.MongoDb;
-using Identity.MongoDb.Sample;
+
 using IdentityServer4.MongoDB.Interfaces;
 using IdentityServer4.MongoDB.Mappers;
 using IdentityServer4.Services;
@@ -14,13 +14,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.eShopOnContainers.Services.Identity.API;
-using Microsoft.eShopOnContainers.Services.Identity.API.Configuration;
+using BasicIdentityServer;
+using BasicIdentityServer.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using BasicIdentityServer.Models;
+using Serilog;
+using System.IdentityModel.Tokens.Jwt;
+using IdentityServer4.Validation;
 
 namespace BasicIdentityServer
 {
@@ -40,7 +44,8 @@ namespace BasicIdentityServer
             //.AddDeveloperSigningCredential()
             //.AddInMemoryApiResources(Config.GetApis())
             //.AddInMemoryClients(Config.GetClients(new Dictionary<string, string>()));
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            services.AddIdentity<MongoIdentityUser>().AddClaimsPrincipalFactory<ClaimsPrincipalFactory>().AddDefaultTokenProviders();
             services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseSuccessEvents = true;
@@ -50,24 +55,55 @@ namespace BasicIdentityServer
                 .AddConfigurationStore(Configuration.GetSection("MongoDb"))
                 .AddOperationalStore(Configuration.GetSection("MongoDb"))
                 .AddDeveloperSigningCredential()
+                .AddResourceOwnerValidator<ResourceOwnedPasswordValidation>()
+                //.AddExtensionGrantValidator<>()
                 //.AddExtensionGrantValidator<ExtensionGrantValidator>()
                 //.AddExtensionGrantValidator<NoSubjectExtensionGrantValidator>()
                 .AddJwtBearerClientAuthentication()
-                .AddAppAuthRedirectUriValidator()
-                .AddTestUsers(TestUsers.Users);
+                .AddAppAuthRedirectUriValidator();
+                //.AddTestUsers(TestUsers.Users);
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDb"));
-            services.AddSingleton<IUserStore<ApplicationUser>>(provider =>
+            services.AddSingleton<IUserStore<MongoIdentityUser>>(provider =>
             {
                 var options = provider.GetService<IOptions<MongoDbSettings>>();
                 var client = new MongoClient(options.Value.ConnectionString);
                 var database = client.GetDatabase(options.Value.Database);
 
-                return new MongoUserStore<ApplicationUser>(database);
+                return new MongoUserStore<MongoIdentityUser>(database);
             });
+
+
+            var roleStore = CreateMongoRoleClaimStore(services);
+
+            services.AddSingleton<IRoleStore<MongoIdentityRole>>(roleStore);
+            services.AddSingleton<IRoleClaimStore<MongoIdentityRole>>(roleStore);
+            //services.AddSingleton<IRoleClaimStore<MongoIdentityRole>>(provider =>
+            //{
+            //    var options = provider.GetService<IOptions<MongoDbSettings>>();
+            //    var client = new MongoClient(options.Value.ConnectionString);
+            //    var database = client.GetDatabase(options.Value.Database);
+
+            //    return new MongoRoleClaimStore<MongoIdentityRole>(database);
+            //});
+
+            services.AddScoped<RoleManager<MongoIdentityRole>>();
+            services.AddScoped<IRoleConfigurationDbContext, RoleConfigurationDbContext>();
+           
+            //services.AddTransient<IRoleStore, RoleStore<>>
+            services.AddTransient<IRedirectService, RedirectService>();
             services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<ILoginService<MongoIdentityUser>, LoginService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 
+        }
+
+        public static MongoRoleClaimStore<MongoIdentityRole> CreateMongoRoleClaimStore(IServiceCollection services)
+        {
+            var options = services.BuildServiceProvider().GetService<IOptions<MongoDbSettings>>();
+            var client = new MongoClient(options.Value.ConnectionString);
+            var database = client.GetDatabase(options.Value.Database);
+            return new MongoRoleClaimStore<MongoIdentityRole>(database);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,16 +119,22 @@ namespace BasicIdentityServer
             }
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                EnsureSeedData(serviceScope.ServiceProvider.GetService<IConfigurationDbContext>(), app.ApplicationServices.GetService<IConfiguration>());
+                EnsureSeedData(serviceScope.ServiceProvider.GetService<IRoleConfigurationDbContext>(), app.ApplicationServices.GetService<IConfiguration>());
             }
-
+            app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseIdentityServerMongoDBTokenCleanup(applicationLifetime);
             app.UseHttpsRedirection();
-            app.UseMvc();
+            
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
 
-        private void EnsureSeedData(IConfigurationDbContext context, IConfiguration configuration)
+        private void EnsureSeedData(IRoleConfigurationDbContext context, IConfiguration configuration)
         {
             if (!context.Clients.Any())
             {
@@ -125,6 +167,16 @@ namespace BasicIdentityServer
                     context.AddApiResource(resource.ToEntity());
                 }
             }
+
+            if (!context.Roles.Any())
+            {
+                foreach (var resource in Config.GetRoles().ToList())
+                {
+                    context.AddRolesAsync(resource);
+                }
+            }
         }
     }
+
+    
 }

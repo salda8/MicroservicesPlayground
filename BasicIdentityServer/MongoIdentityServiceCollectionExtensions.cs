@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Identity.API
+namespace BasicIdentityServer
 {
     public static class MongoIdentityServiceCollectionExtensions
     {
@@ -58,9 +58,10 @@ namespace Identity.API
             // No interface for the error describer so we can add errors without rev'ing the interface
             services.TryAddScoped<IdentityErrorDescriber>();
             services.TryAddScoped<ISecurityStampValidator, SecurityStampValidator<TUser>>();
-            services.TryAddScoped<IUserClaimsPrincipalFactory<TUser>, UserClaimsPrincipalFactory<TUser>>();
+            //services.TryAddScoped<IUserClaimsPrincipalFactory<TUser>, ClaimsPrincipalFactory>();
             services.TryAddScoped<UserManager<TUser>, AspNetUserManager<TUser>>();
             services.TryAddScoped<SignInManager<TUser>, SignInManager<TUser>>();
+            //services.TryAddScoped<IUserClaimsPrincipalFactory<TUser>, UserClaimsPrincipalFactory<TUser>>();
 
             if (setupAction != null)
             {

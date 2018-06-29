@@ -17,7 +17,7 @@
     <PackageReference Include="EventFlow.Autofac" Version="0.60.3490" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.0-beta0001" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="2.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="2.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="2.5.0" />
