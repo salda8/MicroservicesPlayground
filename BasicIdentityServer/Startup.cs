@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BasicIdentityServer.Configuration;
 using BasicIdentityServer.Services;
-
 using Identity.MongoDb;
-
-using IdentityServer4.MongoDB.Interfaces;
+using IdentityServer4;
 using IdentityServer4.MongoDB.Mappers;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using BasicIdentityServer;
-using BasicIdentityServer.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using BasicIdentityServer.Models;
-using Serilog;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using IdentityServer4.Validation;
+using System.Linq;
 
 namespace BasicIdentityServer
 {
@@ -40,12 +30,17 @@ namespace BasicIdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //     services.AddIdentityServer()
-            //.AddDeveloperSigningCredential()
-            //.AddInMemoryApiResources(Config.GetApis())
-            //.AddInMemoryClients(Config.GetClients(new Dictionary<string, string>()));
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            services.AddIdentity<MongoIdentityUser>().AddClaimsPrincipalFactory<ClaimsPrincipalFactory>().AddDefaultTokenProviders();
+            services.AddIdentity<MongoIdentityUser, MongoIdentityRole>()
+                    .AddClaimsPrincipalFactory<ClaimsPrincipalFactory>()
+                    .AddDefaultTokenProviders()
+                    .AddRoles<MongoIdentityRole>()
+                    //.AddRoleManager<RoleManager<MongoIdentity>>()
+
+                    //.AddRoleValidator<RoleValidator<MongoIdentityRole>>()
+                    .AddUserStore<MongoUserStore<MongoIdentityUser>>()
+                    .AddRoleStore<MongoRoleClaimStore<MongoIdentityRole>>();
+
             services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseSuccessEvents = true;
@@ -56,58 +51,48 @@ namespace BasicIdentityServer
                 .AddOperationalStore(Configuration.GetSection("MongoDb"))
                 .AddDeveloperSigningCredential()
                 .AddResourceOwnerValidator<ResourceOwnedPasswordValidation>()
+
                 //.AddExtensionGrantValidator<>()
                 //.AddExtensionGrantValidator<ExtensionGrantValidator>()
                 //.AddExtensionGrantValidator<NoSubjectExtensionGrantValidator>()
                 .AddJwtBearerClientAuthentication()
+                
                 .AddAppAuthRedirectUriValidator();
-                //.AddTestUsers(TestUsers.Users);
+
+            //.AddTestUsers(TestUsers.Users);
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDb"));
-            services.AddSingleton<IUserStore<MongoIdentityUser>>(provider =>
-            {
-                var options = provider.GetService<IOptions<MongoDbSettings>>();
-                var client = new MongoClient(options.Value.ConnectionString);
-                var database = client.GetDatabase(options.Value.Database);
 
-                return new MongoUserStore<MongoIdentityUser>(database);
-            });
+            services.Configure<GoogleApiSettings>(Configuration.GetSection("GoogleApi"));
 
+            services.AddAuthentication()
+                    .AddGoogle("Google", options =>
+                    {
+                        var settings = services.BuildServiceProvider().GetService<IOptions<GoogleApiSettings>>();
+                        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-            var roleStore = CreateMongoRoleClaimStore(services);
+                        options.ClientId = settings.Value.client_id;
+                        options.ClientSecret = settings.Value.client_secret;
+                    });
 
-            services.AddSingleton<IRoleStore<MongoIdentityRole>>(roleStore);
-            services.AddSingleton<IRoleClaimStore<MongoIdentityRole>>(roleStore);
-            //services.AddSingleton<IRoleClaimStore<MongoIdentityRole>>(provider =>
-            //{
-            //    var options = provider.GetService<IOptions<MongoDbSettings>>();
-            //    var client = new MongoClient(options.Value.ConnectionString);
-            //    var database = client.GetDatabase(options.Value.Database);
-
-            //    return new MongoRoleClaimStore<MongoIdentityRole>(database);
-            //});
-
-            services.AddScoped<RoleManager<MongoIdentityRole>>();
             services.AddScoped<IRoleConfigurationDbContext, RoleConfigurationDbContext>();
-           
+
             //services.AddTransient<IRoleStore, RoleStore<>>
             services.AddTransient<IRedirectService, RedirectService>();
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<ILoginService<MongoIdentityUser>, LoginService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-
         }
 
-        public static MongoRoleClaimStore<MongoIdentityRole> CreateMongoRoleClaimStore(IServiceCollection services)
-        {
-            var options = services.BuildServiceProvider().GetService<IOptions<MongoDbSettings>>();
-            var client = new MongoClient(options.Value.ConnectionString);
-            var database = client.GetDatabase(options.Value.Database);
-            return new MongoRoleClaimStore<MongoIdentityRole>(database);
-        }
+        //public static MongoRoleClaimStore<MongoIdentityRole> CreateMongoRoleClaimStore(IServiceCollection services)
+        //{
+        //    var options = services.BuildServiceProvider().GetService<IOptions<MongoDbSettings>>();
+        //    var client = new MongoClient(options.Value.ConnectionString);
+        //    var database = client.GetDatabase(options.Value.Database);
+        //    return new MongoRoleClaimStore<MongoIdentityRole>(database);
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IApplicationLifetime applicationLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime applicationLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -125,7 +110,7 @@ namespace BasicIdentityServer
             app.UseIdentityServer();
             app.UseIdentityServerMongoDBTokenCleanup(applicationLifetime);
             app.UseHttpsRedirection();
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -143,8 +128,6 @@ namespace BasicIdentityServer
                 clientUrls.Add("AppointmentApi", configuration.GetValue<string>("AppointmentApi"));
                 clientUrls.Add("Mvc", configuration.GetValue<string>("MvcTest"));
                 clientUrls.Add("PaymentApi", configuration.GetValue<string>("PaymentApi"));
-
-
 
                 foreach (var client in Config.GetClients(clientUrls).ToList())
                 {
@@ -172,11 +155,11 @@ namespace BasicIdentityServer
             {
                 foreach (var resource in Config.GetRoles().ToList())
                 {
-                    context.AddRolesAsync(resource);
+                    var res = resource;
+                    res.NormalizedName = res.Name.ToUpperInvariant();
+                    context.AddRolesAsync(res);
                 }
             }
         }
     }
-
-    
 }

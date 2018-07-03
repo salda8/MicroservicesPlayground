@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT39M44.0776239S" SolutionTotalViewTime="PT1H31M15.364162S" SolutionTotalDebugTime="PT15M36.3905363S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT2H58M33.8174443S" SolutionTotalViewTime="PT3H26M56.8876636S" SolutionTotalDebugTime="PT29M44.9643919S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
@@ -7,570 +7,231 @@
   <SolutionFolder>C:\Work\BrassPoC</SolutionFolder>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT3.764021S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\Shared\_Layout.cshtml</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:49:15.4639768+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M1.2332172S" EditActiveTime="PT2.5079025S">
-      <ModifiedDate>2018-06-28T13:49:33.8042494+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\Shared\_LoginPartial.cshtml</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:49:19.2419724+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT5.0221415S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\_ViewImports.cshtml</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:49:08.34326+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2.0360235S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\_ViewStart.cshtml</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:49:08.722779+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M24.678429S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Controllers\AccountController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:24:07.78976+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M27.1150823S" EditActiveTime="PT1M1.5821063S">
-      <ModifiedDate>2018-06-28T13:45:11.9834081+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT2M59.6302088S" EditActiveTime="PT8M35.451328S">
+      <ModifiedDate>2018-07-02T12:32:24.1723472+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\AccountController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:27:19.3184517+02:00</CreatedDate>
+      <CreatedDate>2018-07-02T11:02:49.1604592+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT18.4823572S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Controllers\AccountController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:39:19.9732579+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT29.6090063S" EditActiveTime="PT37.1501433S">
-      <ModifiedDate>2018-06-28T13:09:14.7493362+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.2637054S" EditActiveTime="PT17.6839486S">
+      <ModifiedDate>2018-07-02T13:20:05.8261787+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\ApplicationUser.cs</Item>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ClaimsPrincipalFactory.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:07:12.4282888+02:00</CreatedDate>
+      <CreatedDate>2018-07-02T12:23:17.9155448+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.9546022S" EditActiveTime="PT0.3737581S">
-      <ModifiedDate>2018-06-28T13:41:25.7838652+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Models\ApplicationUser.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:41:22.6244131+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M19.5743317S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\SchedulingApi\Models\AppointmentModel\AppointmentAggregate.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\SchedulingApi\AppointmentApi.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:35:35.5592286+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT5.7714378S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\PaymentApi\appsettings.json</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\PaymentApi\PaymentApi.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:39:53.0006394+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.2698141S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\appsettings.json</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:39:58.7761142+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.5576905S" EditActiveTime="PT0.807155S">
-      <ModifiedDate>2018-06-28T12:40:11.1464008+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\appsettings.json</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:40:06.046929+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT50.5476289S" EditActiveTime="PT13.3524214S">
-      <ModifiedDate>2018-06-28T12:54:31.5371734+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT1M13.9464724S" EditActiveTime="PT1M40.0872836S">
+      <ModifiedDate>2018-07-02T13:15:15.7664759+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Config.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:54:13.0659255+02:00</CreatedDate>
+      <CreatedDate>2018-07-02T10:57:32.2659057+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.6014698S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT1.2780184S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Controllers\ConsentController.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\ConfirmationOccurrence.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:25:16.6866521+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:51.6626279+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2.7130483S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\ConsentController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:39:38.4628602+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT22.8431037S" EditActiveTime="PT3.0076689S">
-      <ModifiedDate>2018-06-28T13:42:09.5447861+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Models\AccountViewModels\ConsentInputModel.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:41:43.6929804+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9M28.4337715S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT4M56.5862646S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
-      <CreatedDate>2018-06-28T12:42:39.0281096+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT13.4007782S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Services\EFLoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:05:25.4940817+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT29.4011752S" EditActiveTime="PT5.3782346S">
-      <ModifiedDate>2018-06-28T13:43:44.9851574+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\EFLoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:43:17.5890631+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3.7478669S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Services\EFLoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:48:25.4030374+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M4.80812S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\EventBusKafka\EventBusKafka.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\EventBusKafka\EventBusKafka.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:33:08.0670658+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT39.3150595S" EditActiveTime="PT56.103768S">
-      <ModifiedDate>2018-06-28T13:42:29.742523+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\HomeController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:27:26.2073416+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1.117999S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\EventBus\EventBus\Abstractions\IDynamicIntegrationEventHandler.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\EventBus\EventBus\EventBus.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:32:54.4974404+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4.5030666S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Services\ILoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:05:20.989023+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9.0778464S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Services\ILoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:42:54.4278308+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT13.8123825S" EditActiveTime="PT1.8719014S">
-      <ModifiedDate>2018-06-28T13:43:46.299215+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ILoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:43:02.5177892+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10.8838146S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\EventBus\EventBus\InMemoryEventBusSubscriptionsManager.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\EventBus\EventBus\EventBus.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:32:57.1772513+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT0.5552554S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\IReadModelDescriptionProvider.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:36:49.6540396+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.4345996S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Services\IRedirectService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:40:08.7452463+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11.9366556S" EditActiveTime="PT0.9211069S">
-      <ModifiedDate>2018-06-28T13:40:25.594763+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\IRedirectService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:40:16.1848483+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.3570009S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>JwtClaimTypes.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName />
-      <CreatedDate>2018-06-28T12:51:21.5847494+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.7489024S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\LoginService.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:48:35.2701596+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M48.3680116S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventPersistence.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:35:01.2749809+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.2506041S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbInsertOnlyReadModelStore.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:36:50.2133034+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT57.4905148S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbReadModelStore.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:36:56.4709064+02:00</CreatedDate>
+      <CreatedDate>2018-07-02T11:58:38.3569124+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT0S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>0</ViewedCount>
-      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb.Sample\MongoDbSettings.cs</Item>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\HomeController.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb.Sample\Identity.MongoDb.Sample.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:30:10.3161273+02:00</CreatedDate>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T12:21:16.2756574+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11.3128559S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT2.0171049S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\MongoIdentityServiceCollectionExtensions.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\IRoleConfigurationDbContext.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:18:39.655637+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:59:34.3728247+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT20.3197201S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>0</ViewedCount>
-      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb.Sample\MongoIdentityServiceCollectionExtensions.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb.Sample\Identity.MongoDb.Sample.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:30:12.7371721+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11.4350225S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT10M51.7311742S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Repository\MongoRepository.cs</Item>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventPersistence.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:23:56.3377341+02:00</CreatedDate>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:17:32.3307629+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4.3154773S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT1.892874S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\NoSubjectExtensionGrantValidator.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbSettings.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:08:29.3000986+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:43:35.4095977+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT51.6421688S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT14.4892776S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Services\ProfileService.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityRole.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:05:38.8968646+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:28.1779379+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M38.2801949S" EditActiveTime="PT1M8.6030206S">
-      <ModifiedDate>2018-06-28T13:44:54.6145084+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT15.94447S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoIdentityServiceCollectionExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:57:49.9745228+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M34.8035619S" EditActiveTime="PT1M32.2626258S">
+      <ModifiedDate>2018-07-02T11:06:12.5200566+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ProfileService.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityUser.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:06:30.5460768+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:33.0084426+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.3261976S" EditActiveTime="PT0.6440027S">
-      <ModifiedDate>2018-06-28T13:40:33.461614+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT6M54.3515022S" EditActiveTime="PT17M30.5814856S">
+      <ModifiedDate>2018-07-02T12:22:57.3456045+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\RedirectService.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleClaimStore.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:40:29.0586219+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:12:45.3780116+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4.8436678S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT1.7660209S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Models\AccountViewModels\RegisterViewModel.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserClaim.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:42:12.7945956+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:52.9686449+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M55.8248574S" EditActiveTime="PT57.1898708S">
-      <ModifiedDate>2018-06-28T13:19:10.6694272+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT1.7010079S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserContactRecord.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:54.7356659+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT19.3095013S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserEmail.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:59.8277232+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.9106186S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserLogin.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:10.8338226+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.4265067S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserPhoneNumber.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:11.7656556+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M34.6237818S" EditActiveTime="PT1M30.2125104S">
+      <ModifiedDate>2018-07-02T11:49:38.430573+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\Identity.API\Startup.cs</Item>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoUserStore.cs</Item>
       <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:38:12.4561511+02:00</CreatedDate>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:43.7979112+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9M3.6940816S" EditActiveTime="PT5M11.3416329S">
-      <ModifiedDate>2018-06-28T13:52:16.3703377+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT1M5.2757278S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:57:49.0411509+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT50.5583177S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ResourceOwnedPasswordValidation.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T13:20:42.2174867+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.3268166S" EditActiveTime="PT12M54.224646S">
+      <ModifiedDate>2018-07-02T13:15:37.363511+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Startup.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:38:37.862711+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10.5780137S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\TestWeb\Startup.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\TestWeb\TestWeb.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:10:39.3323987+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT19.2081162S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Startup.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:50:52.5691571+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.3849968S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>String.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName />
-      <CreatedDate>2018-06-28T13:04:11.2153515+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1.5468291S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\EventBus\EventBus\SubscriptionInfo.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\EventBus\EventBus\EventBus.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:32:55.6223881+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9.3810448S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>TestUser.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName />
-      <CreatedDate>2018-06-28T13:04:06.6085213+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT52.8725159S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\TestUsers.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T12:49:28.8501865+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4.6433945S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>UserManager.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName />
-      <CreatedDate>2018-06-28T13:13:52.9005452+02:00</CreatedDate>
-      <ViewedBy>v.salovsky</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M4.468762S" EditActiveTime="PT17.2548097S">
-      <ModifiedDate>2018-06-28T13:28:44.5712374+02:00</ModifiedDate>
-      <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\ValuesController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
-      <CreatedDate>2018-06-28T13:28:21.0117531+02:00</CreatedDate>
+      <CreatedDate>2018-07-02T11:35:39.6857868+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -637,11 +298,11 @@
       <CreatedDate>2018-06-27T13:26:04.5937648+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M27.1150823S" EditActiveTime="PT1M1.5821063S">
-      <ModifiedDate>2018-06-28T13:45:11.9834081+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT9M59.5049996S" EditActiveTime="PT12M21.8891987S">
+      <ModifiedDate>2018-07-02T12:32:24.1723472+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\AccountController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
@@ -668,6 +329,16 @@
       <CreatedDate>2018-06-27T13:45:11.7448469+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.9558S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Data\ApplicationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:28:04.8523346+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT13.9598339S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
@@ -676,6 +347,16 @@
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
       <CreatedDate>2018-06-27T13:45:27.6332735+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT39.4587796S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Data\ApplicationDbContextSeed.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:28:06.8101326+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT21.9708775S" EditActiveTime="PT38.664829S">
@@ -721,6 +402,16 @@
       <CreatedDate>2018-06-28T12:35:35.5592286+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT56.9252366S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\TestConsole\AppointmentAggregate.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\TestConsole\TestConsole.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:55:52.2849933+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT13.5722838S" EditActiveTime="PT36.6922429S">
       <ModifiedDate>2018-06-28T10:26:06.1315916+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
@@ -763,15 +454,36 @@
       <CreatedDate>2018-06-28T12:39:53.0006394+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.5576905S" EditActiveTime="PT0.807155S">
+    <DevTrackerDataItem ViewActiveTime="PT3M9.6433804S" EditActiveTime="PT0.807155S">
       <ModifiedDate>2018-06-28T12:40:11.1464008+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\appsettings.json</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T12:40:06.046929+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3.2590445S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity\src\Core\Properties\AssemblyInfo.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity\src\Core\Microsoft.Extensions.Identity.Core.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:35:41.3597609+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M41.0600627S" EditActiveTime="PT17.6839486S">
+      <ModifiedDate>2018-07-02T13:20:05.8261787+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ClaimsPrincipalFactory.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:53:27.4417748+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT9M2.4644891S" EditActiveTime="PT6M10.4487078S">
@@ -785,15 +497,25 @@
       <CreatedDate>2018-06-27T13:25:39.4217735+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT50.5476289S" EditActiveTime="PT13.3524214S">
-      <ModifiedDate>2018-06-28T12:54:31.5371734+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT7M41.1620571S" EditActiveTime="PT6M32.6713673S">
+      <ModifiedDate>2018-07-02T13:15:15.7664759+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Config.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T12:54:13.0659255+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.2780184S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\ConfirmationOccurrence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:51.6626279+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT39.6328086S" EditActiveTime="PT4.5997361S">
@@ -807,10 +529,10 @@
       <CreatedDate>2018-06-27T13:35:42.7355892+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2.7130483S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT2.8454825S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\ConsentController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
@@ -828,10 +550,20 @@
       <CreatedDate>2018-06-28T13:41:43.6929804+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT15M36.3905432S" EditActiveTime="PT1M22.5257971S">
+    <DevTrackerDataItem ViewActiveTime="PT3.3812132S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Constants.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:12:07.3959813+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT29M44.9643919S" EditActiveTime="PT1M22.5257971S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>1</EditedCount>
-      <ViewedCount>5</ViewedCount>
+      <ViewedCount>7</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
@@ -909,6 +641,16 @@
       <CreatedDate>2018-06-28T12:26:43.1753808+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.8684432S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\GlobalSuppressions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:05:35.6630674+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT13.975504S" EditActiveTime="PT4.8519329S">
       <ModifiedDate>2018-06-27T13:35:38.8036673+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
@@ -931,11 +673,11 @@
       <CreatedDate>2018-06-28T09:57:20.4094553+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT39.3150595S" EditActiveTime="PT56.103768S">
+    <DevTrackerDataItem ViewActiveTime="PT39.3420241S" EditActiveTime="PT56.103768S">
       <ModifiedDate>2018-06-28T13:42:29.742523+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\HomeController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
@@ -952,6 +694,16 @@
       <CreatedDate>2018-06-28T10:22:07.6285938+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT54.0337967S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>IConfigurationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-06-29T13:07:49.5184225+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT21.7023503S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
@@ -962,10 +714,20 @@
       <CreatedDate>2018-06-28T12:26:17.134957+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2.7565901S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT4M24.4804384S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity\src\Core\IdentityBuilder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity\src\Core\Microsoft.Extensions.Identity.Core.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:35:14.0158987+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT12.6764082S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>IdentityUser.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName />
@@ -1012,15 +774,25 @@
       <CreatedDate>2018-06-28T13:42:54.4278308+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT13.8123825S" EditActiveTime="PT1.8719014S">
+    <DevTrackerDataItem ViewActiveTime="PT23.3064712S" EditActiveTime="PT1.8719014S">
       <ModifiedDate>2018-06-28T13:43:46.299215+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ILoginService.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:43:02.5177892+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.5573254S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Models\ManageViewModels\IndexViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:27:28.5203845+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT10.8838146S" EditActiveTime="PT0S">
@@ -1064,6 +836,17 @@
       <CreatedDate>2018-06-28T13:40:16.1848483+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.3661168S" EditActiveTime="PT22.9509059S">
+      <ModifiedDate>2018-06-29T13:31:16.588017+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\IRoleConfigurationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:28:07.8674133+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT6.3570009S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
@@ -1074,14 +857,56 @@
       <CreatedDate>2018-06-28T12:51:21.5847494+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.7489024S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT28.3272691S" EditActiveTime="PT38.7445094S">
+      <ModifiedDate>2018-06-29T16:58:19.1568354+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlowKafka\EventFlow.Kafka\Integrations\KafkaTransientFaultHandler.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlowKafka\EventFlow.Kafka\EventFlow.Kafka.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:57:29.2462519+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT36.0255194S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\Account\Login.cshtml</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:21:40.5608006+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M42.138603S" EditActiveTime="PT1M59.133087S">
+      <ModifiedDate>2018-06-29T13:01:27.5680986+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\LoginService.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:48:35.2701596+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.4891994S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Models\AccountViewModels\LoginViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:21:25.0666033+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.0687405S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Models\ManageViewModels\ManageLoginsViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:27:25.2002684+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT46.4060601S" EditActiveTime="PT0S">
@@ -1094,30 +919,107 @@
       <CreatedDate>2018-06-27T13:25:01.4947275+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M48.3680116S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT2M13.9576772S" EditActiveTime="PT3.7947969S">
+      <ModifiedDate>2018-06-29T14:53:16.3324666+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoConfig.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:03:54.3149926+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT39.0646327S" EditActiveTime="PT9.423988S">
+      <ModifiedDate>2018-06-29T17:04:46.1799221+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\Attributes\MongoDbCollectionNameAttribute.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:04:00.2261006+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8.5413562S" EditActiveTime="PT1.0853507S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbContextBaes.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:11.8979248+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M12.1806181S" EditActiveTime="PT6M54.1671264S">
+      <ModifiedDate>2018-06-29T13:28:05.5574645+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbContextBase.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:21.5316293+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT14M5.0569316S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventPersistence.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:35:01.2749809+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.2506041S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT4.989495S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventSeqanceStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:09:15.587515+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.7244129S" EditActiveTime="PT1.3641199S">
+      <ModifiedDate>2018-06-29T17:03:59.0887703+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\Attributes\MongoDbGeoSpatialIndexAttribute.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:03:50.0163153+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M40.7696244S" EditActiveTime="PT0.1230041S">
+      <ModifiedDate>2018-06-29T17:03:22.1425501+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbInsertOnlyReadModelStore.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:36:50.2133034+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT57.4905148S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT1M6.5079221S" EditActiveTime="PT1.7188972S">
+      <ModifiedDate>2018-06-29T17:05:09.9345662+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\Extensions\MongoDbOptionsExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:04:54.8792429+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M8.7055149S" EditActiveTime="PT8.1262642S">
+      <ModifiedDate>2018-06-29T17:04:11.5560701+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbReadModelStore.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
@@ -1144,6 +1046,38 @@
       <CreatedDate>2018-06-28T13:30:10.3161273+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT13.4116022S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoDbSettings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:02:17.2419745+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT52.2733027S" EditActiveTime="PT1M11.2391319S">
+      <ModifiedDate>2018-06-29T13:24:37.2081414+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbSettings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:47.8933625+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M22.8443749S" EditActiveTime="PT16M56.9018597S">
+      <ModifiedDate>2018-06-29T14:12:06.9574054+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityRole.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:58:05.0523708+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT11.3128559S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
@@ -1164,11 +1098,21 @@
       <CreatedDate>2018-06-28T13:30:12.7371721+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT18.5849768S" EditActiveTime="PT14.0794134S">
-      <ModifiedDate>2018-06-27T13:33:07.1964109+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT57.0702717S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoIdentityServiceCollectionExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:18:41.6196997+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8M48.0252688S" EditActiveTime="PT10M8.7881827S">
+      <ModifiedDate>2018-07-02T11:06:12.5200566+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityUser.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
@@ -1206,6 +1150,89 @@
       <CreatedDate>2018-06-28T13:23:56.3377341+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9M1.3306003S" EditActiveTime="PT17M30.5814856S">
+      <ModifiedDate>2018-07-02T12:22:57.3456045+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleClaimStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:12:15.6391051+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT56.3577751S" EditActiveTime="PT8.6728747S">
+      <ModifiedDate>2018-06-29T13:03:29.0052009+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:02:30.6566035+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT46.0651934S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserClaim.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:06.9518188+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT19.673601S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserContactRecord.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:16.1332919+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT23.3461056S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserEmail.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:23.7885232+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M47.3572351S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserLogin.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:25.3134976+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.4265067S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserPhoneNumber.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:11.7656556+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M58.294963S" EditActiveTime="PT22M56.2045414S">
+      <ModifiedDate>2018-07-02T11:49:38.430573+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoUserStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:23:38.9254634+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT4.3154773S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
@@ -1214,6 +1241,16 @@
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\Identity.API\Identity.API.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:08:29.3000986+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.5119993S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\Occurrence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:24:14.7366421+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT1M51.3336815S" EditActiveTime="PT2M9.5457506S">
@@ -1227,15 +1264,26 @@
       <CreatedDate>2018-06-27T13:41:03.089334+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M38.2801949S" EditActiveTime="PT1M8.6030206S">
-      <ModifiedDate>2018-06-28T13:44:54.6145084+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT8M50.83639S" EditActiveTime="PT12M36.812267S">
+      <ModifiedDate>2018-06-29T11:57:40.8516486+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ProfileService.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:06:30.5460768+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT13.9566069S" EditActiveTime="PT1M41.0021258S">
+      <ModifiedDate>2018-06-29T13:01:27.5440953+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Services\ProfileService.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:55:17.8715958+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT3.355364S" EditActiveTime="PT0S">
@@ -1288,14 +1336,24 @@
       <CreatedDate>2018-06-28T11:59:27.5374052+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M30.4484S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT3M13.2580916S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <ViewedCount>4</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Program.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T12:01:09.5509227+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.6929096S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:26:22.6990271+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT1M15.0579032S" EditActiveTime="PT0S">
@@ -1337,6 +1395,38 @@
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T13:42:12.7945956+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M7.9404027S" EditActiveTime="PT9M24.1897162S">
+      <ModifiedDate>2018-06-29T11:38:40.2182449+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ResourceOwnedPasswordValidation.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:01:20.1160762+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT18.6213171S" EditActiveTime="PT1.7885282S">
+      <ModifiedDate>2018-06-29T13:01:27.4980938+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\RoleStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:01:13.8244365+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6.354173S" EditActiveTime="PT19.0419266S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\RoleStore`1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:00:48.4124032+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT4.5479096S" EditActiveTime="PT0S">
@@ -1401,21 +1491,21 @@
       <CreatedDate>2018-06-28T11:59:30.4366449+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11M10.9984161S" EditActiveTime="PT6M32.3316795S">
-      <ModifiedDate>2018-06-28T13:52:16.3703377+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT16M8.6073136S" EditActiveTime="PT24M17.5777069S">
+      <ModifiedDate>2018-07-02T13:15:37.363511+02:00</ModifiedDate>
       <ModifiedBy>v.salovsky</ModifiedBy>
-      <EditedCount>3</EditedCount>
-      <ViewedCount>3</ViewedCount>
+      <EditedCount>5</EditedCount>
+      <ViewedCount>5</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\Startup.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
       <CreatedDate>2018-06-28T12:01:12.5900329+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT19.2081162S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT29.4320487S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Startup.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
@@ -1472,10 +1562,10 @@
       <CreatedDate>2018-06-28T11:45:08.3185605+02:00</CreatedDate>
       <ViewedBy>v.salovsky</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT52.8725159S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT3M38.2469782S" EditActiveTime="PT1M14.0125725S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Work\BrassPoC\BasicIdentityServer\TestUsers.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
@@ -1505,6 +1595,825 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT50.5583177S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ResourceOwnedPasswordValidation.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T13:20:42.2174867+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.2637054S" EditActiveTime="PT17.6839486S">
+      <ModifiedDate>2018-07-02T13:20:05.8261787+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ClaimsPrincipalFactory.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T12:23:17.9155448+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>0</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\HomeController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T12:21:16.2756574+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.0171049S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\IRoleConfigurationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:59:34.3728247+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M56.5862646S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-07-02T11:58:38.3569124+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.892874S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbSettings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:43:35.4095977+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.3268166S" EditActiveTime="PT12M54.224646S">
+      <ModifiedDate>2018-07-02T13:15:37.363511+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Startup.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:35:39.6857868+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M54.3515022S" EditActiveTime="PT17M30.5814856S">
+      <ModifiedDate>2018-07-02T12:22:57.3456045+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleClaimStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:12:45.3780116+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M59.6302088S" EditActiveTime="PT8M35.451328S">
+      <ModifiedDate>2018-07-02T12:32:24.1723472+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\AccountController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:02:49.1604592+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M34.6237818S" EditActiveTime="PT1M30.2125104S">
+      <ModifiedDate>2018-07-02T11:49:38.430573+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoUserStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:43.7979112+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M34.8035619S" EditActiveTime="PT1M32.2626258S">
+      <ModifiedDate>2018-07-02T11:06:12.5200566+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityUser.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:33.0084426+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT14.4892776S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityRole.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:28.1779379+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.4265067S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserPhoneNumber.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:11.7656556+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.9106186S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserLogin.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T11:00:10.8338226+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT19.3095013S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserEmail.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:59.8277232+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.7010079S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserContactRecord.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:54.7356659+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.7660209S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserClaim.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:52.9686449+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.2780184S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\ConfirmationOccurrence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:58:51.6626279+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.94447S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoIdentityServiceCollectionExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:57:49.9745228+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M5.2757278S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:57:49.0411509+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M13.9464724S" EditActiveTime="PT1M40.0872836S">
+      <ModifiedDate>2018-07-02T13:15:15.7664759+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Config.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:57:32.2659057+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT10M51.7311742S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventPersistence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-07-02T10:17:32.3307629+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.989495S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventSeqanceStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:09:15.587515+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.8684432S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\GlobalSuppressions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:05:35.6630674+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M24.9577458S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventStore\MongoDbEventPersistence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:05:12.4338246+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M6.5079221S" EditActiveTime="PT1.7188972S">
+      <ModifiedDate>2018-06-29T17:05:09.9345662+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\Extensions\MongoDbOptionsExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:04:54.8792429+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT39.0646327S" EditActiveTime="PT9.423988S">
+      <ModifiedDate>2018-06-29T17:04:46.1799221+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\Attributes\MongoDbCollectionNameAttribute.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:04:00.2261006+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.7244129S" EditActiveTime="PT1.3641199S">
+      <ModifiedDate>2018-06-29T17:03:59.0887703+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\Attributes\MongoDbGeoSpatialIndexAttribute.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:03:50.0163153+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT11.2150001S" EditActiveTime="PT8.1262642S">
+      <ModifiedDate>2018-06-29T17:04:11.5560701+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbReadModelStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T17:03:36.8658733+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT28.3272691S" EditActiveTime="PT38.7445094S">
+      <ModifiedDate>2018-06-29T16:58:19.1568354+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlowKafka\EventFlow.Kafka\Integrations\KafkaTransientFaultHandler.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlowKafka\EventFlow.Kafka\EventFlow.Kafka.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:57:29.2462519+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT56.9252366S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\TestConsole\AppointmentAggregate.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\TestConsole\TestConsole.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:55:52.2849933+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M46.0856899S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\appsettings.json</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:47:59.3135361+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M34.5190203S" EditActiveTime="PT0.1230041S">
+      <ModifiedDate>2018-06-29T17:03:22.1425501+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\ReadStores\MongoDbInsertOnlyReadModelStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:39:50.9718188+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3.2590445S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity\src\Core\Properties\AssemblyInfo.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity\src\Core\Microsoft.Extensions.Identity.Core.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:35:41.3597609+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M24.4804384S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity\src\Core\IdentityBuilder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity\src\Core\Microsoft.Extensions.Identity.Core.csproj</ProjectName>
+      <CreatedDate>2018-06-29T16:35:14.0158987+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.9198181S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>IdentityUser.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-06-29T16:09:36.8907928+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M22.7963573S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ClaimsPrincipalFactory.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:53:27.4417748+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5M36.6679558S" EditActiveTime="PT4M39.2316623S">
+      <ModifiedDate>2018-06-29T14:52:15.2037883+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Config.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:29:32.9798075+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5.3490119S" EditActiveTime="PT22.9509059S">
+      <ModifiedDate>2018-06-29T13:31:16.588017+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\IRoleConfigurationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:28:07.8674133+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT10.2239325S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Startup.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:26:24.4139344+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.6929096S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:26:22.6990271+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT41.1258017S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoIdentityServiceCollectionExtensions.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:18:41.6196997+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT50.3804287S" EditActiveTime="PT1M11.2391319S">
+      <ModifiedDate>2018-06-29T13:24:37.2081414+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbSettings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:47.8933625+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M12.1806181S" EditActiveTime="PT6M54.1671264S">
+      <ModifiedDate>2018-06-29T13:28:05.5574645+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbContextBase.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:21.5316293+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8.5413562S" EditActiveTime="PT1.0853507S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoDbContextBaes.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:14:11.8979248+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M6.9790981S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleClaimStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:12:15.6391051+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3.3812132S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Constants.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:12:07.3959813+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT54.0337967S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>IConfigurationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-06-29T13:07:49.5184225+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M13.9576772S" EditActiveTime="PT3.7947969S">
+      <ModifiedDate>2018-06-29T14:53:16.3324666+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoConfig.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:03:54.3149926+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT56.3577751S" EditActiveTime="PT8.6728747S">
+      <ModifiedDate>2018-06-29T13:03:29.0052009+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoRoleStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:02:30.6566035+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT13.4116022S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\MongoDbSettings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:02:17.2419745+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT18.6213171S" EditActiveTime="PT1.7885282S">
+      <ModifiedDate>2018-06-29T13:01:27.4980938+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\RoleStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:01:13.8244365+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6.354173S" EditActiveTime="PT19.0419266S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\RoleStore`1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T13:00:48.4124032+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT39.4587796S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Data\ApplicationDbContextSeed.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:28:06.8101326+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.9558S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Data\ApplicationDbContext.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:28:04.8523346+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.5573254S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Models\ManageViewModels\IndexViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:27:28.5203845+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.0687405S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Models\ManageViewModels\ManageLoginsViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:27:25.2002684+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M31.4466165S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserLogin.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:25.3134976+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.0366043S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserEmail.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:23.7885232+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.9725931S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserContactRecord.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:16.1332919+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT44.2991725S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\MongoUserClaim.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T12:02:06.9518188+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M8.3550973S" EditActiveTime="PT16M56.9018597S">
+      <ModifiedDate>2018-06-29T14:12:06.9574054+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityRole.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:58:05.0523708+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT13.9566069S" EditActiveTime="PT1M41.0021258S">
+      <ModifiedDate>2018-06-29T13:01:27.5440953+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\eShop\src\Services\Identity\Identity.API\Services\ProfileService.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\eShop\src\Services\Identity\Identity.API\Identity.API.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:55:17.8715958+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.0269646S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\HomeController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:54:53.6587239+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.1324342S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\ConsentController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:54:53.5133245+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M45.3744623S" EditActiveTime="PT1M14.0125725S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\TestUsers.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:37:06.4649979+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M12.5561951S" EditActiveTime="PT11M28.2092464S">
+      <ModifiedDate>2018-06-29T11:57:40.8516486+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ProfileService.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:31:31.1287113+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.5119993S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\Models\Occurrence.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:24:14.7366421+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M54.6367301S" EditActiveTime="PT8M22.4461435S">
+      <ModifiedDate>2018-06-29T14:46:53.4485438+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoIdentityUser.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:24:10.4220884+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5M23.6711812S" EditActiveTime="PT21M25.992031S">
+      <ModifiedDate>2018-06-29T16:32:40.3853241+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\Identity.MongoDb\Identity.MongoDb\MongoUserStore.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:23:38.9254634+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9M11.9875841S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-06-29T11:22:25.2235005+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5M32.7597085S" EditActiveTime="PT2M44.8557644S">
+      <ModifiedDate>2018-06-29T14:47:59.3338932+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Controllers\AccountController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:22:04.3666546+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT36.0255194S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Views\Account\Login.cshtml</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:21:40.5608006+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.4891994S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Models\AccountViewModels\LoginViewModel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:21:25.0666033+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M39.2820809S" EditActiveTime="PT4M51.0213814S">
+      <ModifiedDate>2018-06-29T13:42:56.9332397+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Startup.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:13:06.2612161+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.4940887S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\ILoginService.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:03:32.0017382+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M17.382085S" EditActiveTime="PT9M24.1897162S">
+      <ModifiedDate>2018-06-29T11:38:40.2182449+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\ResourceOwnedPasswordValidation.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:01:20.1160762+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT37.5339638S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T11:00:42.5821124+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M35.3897006S" EditActiveTime="PT1M59.133087S">
+      <ModifiedDate>2018-06-29T13:01:27.5680986+02:00</ModifiedDate>
+      <ModifiedBy>v.salovsky</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Work\BrassPoC\BasicIdentityServer\Services\LoginService.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Work\BrassPoC\BasicIdentityServer\BasicIdentityServer.csproj</ProjectName>
+      <CreatedDate>2018-06-29T10:57:53.8829012+02:00</CreatedDate>
+      <ViewedBy>v.salovsky</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT19.2081162S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>

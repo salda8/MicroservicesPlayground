@@ -1,4 +1,7 @@
-﻿using IdentityModel;
+﻿using BasicIdentityServer.Models.AccountViewModels;
+using BasicIdentityServer.Services;
+using Identity.MongoDb;
+using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -7,16 +10,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using BasicIdentityServer.Models;
-using BasicIdentityServer.Models.AccountViewModels;
-using BasicIdentityServer.Services;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Identity.MongoDb;
 
 namespace BasicIdentityServer.Controllers
 {
@@ -28,7 +28,8 @@ namespace BasicIdentityServer.Controllers
     public class AccountController : Controller
     {
         //private readonly InMemoryUserLoginService _loginService;
-        private readonly ILoginService<MongoIdentityUser> _loginService;
+        private readonly ILoginService<MongoIdentityUser> loginService;
+
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly ILogger<AccountController> _logger;
@@ -36,15 +37,15 @@ namespace BasicIdentityServer.Controllers
 
         public AccountController(
 
-            //InMemoryUserLoginService loginService,
             ILoginService<MongoIdentityUser> loginService,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             ILogger<AccountController> logger,
             UserManager<MongoIdentityUser> userManager
+
             )
         {
-            _loginService = loginService;
+            this.loginService = loginService;
             _interaction = interaction;
             _clientStore = clientStore;
             _logger = logger;
@@ -54,6 +55,8 @@ namespace BasicIdentityServer.Controllers
         /// <summary>
         /// Show login page
         /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Login(string returnUrl)
         {
@@ -71,17 +74,32 @@ namespace BasicIdentityServer.Controllers
             return View(vm);
         }
 
+        //
+        // POST: /Account/ExternalLogin
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            // Request a redirect to the external login provider.
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var properties = loginService.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
+        }
+
         /// <summary>
         /// Handle postback from username/password login
         /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await _loginService.FindByUsername(model.Email).ConfigureAwait(false);
-                if (await _loginService.ValidateCredentials(user, model.Password).ConfigureAwait(false))
+                var user = await loginService.FindByUsername(model.Email).ConfigureAwait(false);
+                if (await loginService.ValidateCredentials(user, model.Password).ConfigureAwait(false))
                 {
                     AuthenticationProperties props = null;
                     if (model.RememberMe)
@@ -93,8 +111,8 @@ namespace BasicIdentityServer.Controllers
                         };
                     };
 
-                    await _loginService.SignIn(user).ConfigureAwait(false);
-                   
+                    await loginService.SignIn(user).ConfigureAwait(false);
+
                     // make sure the returnUrl is still valid, and if yes - redirect back to authorize endpoint
                     if (_interaction.IsValidReturnUrl(model.ReturnUrl))
                     {
@@ -115,7 +133,7 @@ namespace BasicIdentityServer.Controllers
             return View(vm);
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
         {
             var allowLocal = true;
             if (context?.ClientId != null)
@@ -134,7 +152,7 @@ namespace BasicIdentityServer.Controllers
             };
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(LoginViewModel model)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginViewModel model)
         {
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl).ConfigureAwait(false);
             var vm = await BuildLoginViewModelAsync(model.ReturnUrl, context).ConfigureAwait(false);
@@ -146,6 +164,8 @@ namespace BasicIdentityServer.Controllers
         /// <summary>
         /// Show logout page
         /// </summary>
+        /// <param name="logoutId">The logout identifier.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
         {
@@ -155,7 +175,7 @@ namespace BasicIdentityServer.Controllers
                 return await Logout(new LogoutViewModel { LogoutId = logoutId }).ConfigureAwait(false);
             }
 
-            //Test for Xamarin. 
+            //Test for Xamarin.
             var context = await _interaction.GetLogoutContextAsync(logoutId).ConfigureAwait(false);
             if (context?.ShowSignoutPrompt == false)
             {
@@ -175,6 +195,8 @@ namespace BasicIdentityServer.Controllers
         /// <summary>
         /// Handle logout page postback
         /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout(LogoutViewModel model)
@@ -195,7 +217,6 @@ namespace BasicIdentityServer.Controllers
 
                 try
                 {
-                    
                     // hack: try/catch to handle social providers that throw
                     await HttpContext.SignOutAsync(idp, new AuthenticationProperties
                     {
@@ -234,24 +255,130 @@ namespace BasicIdentityServer.Controllers
         /// <summary>
         /// initiate roundtrip to external authentication provider
         /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <param name="remoteError">The remote error.</param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult ExternalLogin(string provider, string returnUrl)
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
-            if (returnUrl != null)
+            if (remoteError != null)
             {
-                returnUrl = UrlEncoder.Default.Encode(returnUrl);
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                return View(nameof(Login));
             }
-            returnUrl = "/account/externallogincallback?returnUrl=" + returnUrl;
-
-            // start challenge and roundtrip the return URL
-            var props = new AuthenticationProperties
+            var info = await loginService.GetExternalLoginInfoAsync().ConfigureAwait(false);
+            if (info == null)
             {
-                RedirectUri = returnUrl,
-                Items = { { "scheme", provider } }
-            };
-            return new ChallengeResult(provider, props);
+                return RedirectToAction(nameof(Login));
+            }
+
+            // Sign in the user with this external login provider if the user already has a login.
+            var result = await loginService.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false).ConfigureAwait(false);
+            if (result.Succeeded)
+            {
+                // Update any authentication tokens if login succeeded
+                await loginService.UpdateExternalAuthenticationTokensAsync(info).ConfigureAwait(false);
+
+                _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
+                return RedirectToLocal(returnUrl);
+            }
+            if (result.RequiresTwoFactor)
+            {
+               return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl });
+            }
+            if (result.IsLockedOut)
+            {
+                return View("Lockout");
+            }
+            else
+            {
+                // If the user does not have an account, then ask the user to create an account.
+                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["LoginProvider"] = info.LoginProvider;
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
+            }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendCode(SendCodeViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            if (model.SelectedProvider == "Authenticator")
+            {
+                return RedirectToAction(nameof(VerifyAuthenticatorCode), new { ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            }
+
+            // Generate the token and send it
+            var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return View("Error");
+            }
+
+            var message = "Your security code is: " + code;
+            //if (model.SelectedProvider == "Email")
+            //{
+            //    await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user).ConfigureAwait(false), "Security Code", message).ConfigureAwait(false);
+            //}
+            //else if (model.SelectedProvider == "Phone")
+            //{
+            //    await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user).ConfigureAwait(false), message).ConfigureAwait(false);
+            //}
+
+            return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyAuthenticatorCode(bool rememberMe, string returnUrl = null)
+        {
+            // Require that the user has already logged in via username/password or external login
+            var user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            if (user == null)
+            {
+                return View("Error");
+            }
+            return View(new VerifyAuthenticatorCodeViewModel { ReturnUrl = returnUrl, RememberMe = rememberMe });
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
+        {
+            // Require that the user has already logged in via username/password or external login
+            var user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            if (user == null)
+            {
+                return View("Error");
+            }
+            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
 
         // GET: /Account/Register
         [HttpGet]
@@ -273,12 +400,17 @@ namespace BasicIdentityServer.Controllers
             if (ModelState.IsValid)
             {
                 var user = model.ToMongoIdentityUser();
-                user.AddRole("user");
-                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
-                if (result.Errors.Any())
+
+                var results = new List<IdentityResult>();
+
+                var createResult = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                results.Add(createResult);
+                var addRoleResult = await _userManager.AddToRolesAsync(user, new List<string>() { "user" });
+                results.Add(addRoleResult);
+                if (results.Any(x => x.Errors.Any()))
                 {
-                    AddErrors(result);
-                    // If we got this far, something failed, redisplay form
+                    results.ForEach(AddErrors);
+
                     return View(model);
                 }
             }

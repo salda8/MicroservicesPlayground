@@ -159,6 +159,7 @@ namespace BasicIdentityServer.Configuration
 
             var userRole = new MongoIdentityRole("user");
             userRole.Claims.Add(new Identity.MongoDb.Models.MongoUserClaim(new System.Security.Claims.Claim(ClaimTypes.GroupSid, Guid.NewGuid().ToString())));
+            userRole.Claims.Add(new Identity.MongoDb.Models.MongoUserClaim(new Claim(ClaimTypes.PrimarySid, Guid.NewGuid().ToString())));
             var roles=  new List<MongoIdentityRole>()
             {
                userRole,

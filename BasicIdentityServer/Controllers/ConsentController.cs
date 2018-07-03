@@ -53,6 +53,8 @@ namespace BasicIdentityServer.Controllers
         /// <summary>
         /// Handles the consent screen postback
         /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(ConsentInputModel model)

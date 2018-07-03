@@ -22,6 +22,7 @@ namespace BasicIdentityServer
             WebHost.CreateDefaultBuilder(args)
             .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
     .ReadFrom.Configuration(hostingContext.Configuration))
+           
                 .UseStartup<Startup>();
     }
 }
