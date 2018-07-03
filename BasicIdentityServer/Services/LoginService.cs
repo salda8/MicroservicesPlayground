@@ -14,6 +14,7 @@ namespace BasicIdentityServer.Services
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            
         }
 
         public async Task<MongoIdentityUser> FindByUsername(string user)
@@ -55,5 +56,37 @@ namespace BasicIdentityServer.Services
         {
             return signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
         }
+
+        public Task<SignInResult> TwoFactorRecoveryCodeSignInAsync(string recoveryCode)
+        {
+            return signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+        }
+
+        public Task<SignInResult> TwoFactorAuthenticatorSignInAsync(string authenticatorCode, bool rememberMe, bool rememberMachine)
+        {
+            return signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, rememberMachine);
+        }
+
+        public Task<SignInResult> PasswordSignInAsync(string email, string password, bool rememberMe, bool lockoutOnFailure)
+        {
+            return signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure);
+        }
+
+        public Task SignInAsync(MongoIdentityUser user, bool isPersistent)
+        {
+            return signInManager.SignInAsync(user, true);
+        }
+
+        public Task SignOutAsync()
+        {
+            return signInManager.SignOutAsync();
+        }
+
+        public Task<SignInResult> TwoFactorSignInAsync(string provider, string code, bool rememberMe, bool rememberBrowser)
+        {
+            return signInManager.TwoFactorSignInAsync(provider, code, rememberBrowser, rememberBrowser);
+        }
+
+        public SignInManager<MongoIdentityUser> SignInManager => signInManager;
     }
 }

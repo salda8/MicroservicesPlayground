@@ -2,7 +2,6 @@
 
 namespace BasicIdentityServer.Models.AccountViewModels
 {
-
     public class VerifyAuthenticatorCodeViewModel
     {
         [Required]

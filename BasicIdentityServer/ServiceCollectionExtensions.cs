@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using BasicIdentityServer.Services;
+using Identity.MongoDb;
+using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
@@ -10,8 +14,27 @@ using System.Threading.Tasks;
 
 namespace BasicIdentityServer
 {
-    public static class MongoIdentityServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
+        internal static void ConfigureOptions(this IServiceCollection services, IConfiguration Configuration)
+        {
+            services.Configure<EmailSenderOptions>(Configuration.GetSection("EmailService"));
+            services.Configure<SmsSenderOptions>(Configuration.GetSection("SmsService"));
+            //.AddTestUsers(TestUsers.Users);
+            services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDb"));
+
+            services.Configure<GoogleApiOptions>(Configuration.GetSection("GoogleApi"));
+        }
+
+        internal static void AddApplicationServices(this IServiceCollection services)
+        {
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<IRedirectService, RedirectService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<ILoginService<MongoIdentityUser>, LoginService>();
+        }
+
         public static IdentityBuilder AddIdentity<TUser>(this IServiceCollection services)
             where TUser : class => services.AddIdentity<TUser>(null);
 

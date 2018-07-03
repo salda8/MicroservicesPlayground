@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Identity.MongoDb;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -14,5 +15,13 @@ namespace BasicIdentityServer.Services
         Task<IdentityResult> UpdateExternalAuthenticationTokensAsync(ExternalLoginInfo info);
         Task<T> GetTwoFactorAuthenticationUserAsync();
         AuthenticationProperties ConfigureExternalAuthenticationProperties(string provider, string redirectUrl);
+        Task<SignInResult> TwoFactorRecoveryCodeSignInAsync(string recoveryCode);
+        Task<SignInResult> TwoFactorAuthenticatorSignInAsync(string authenticatorCode, bool rememberMe, bool rememberMachine);
+        Task<SignInResult> PasswordSignInAsync(string email, string password, bool rememberMe, bool lockoutOnFailure);
+        Task SignInAsync(MongoIdentityUser user, bool isPersistent);
+        Task SignOutAsync();
+        Task<SignInResult> TwoFactorSignInAsync(string provider, string code, bool rememberMe, bool rememberBrowser);
+
+        SignInManager<MongoIdentityUser> SignInManager { get; }
     }
 }
