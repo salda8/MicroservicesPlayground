@@ -21,7 +21,7 @@ namespace BasicIdentityServer.Services
         Task SignInAsync(MongoIdentityUser user, bool isPersistent);
         Task SignOutAsync();
         Task<SignInResult> TwoFactorSignInAsync(string provider, string code, bool rememberMe, bool rememberBrowser);
-
+        Task SetEmailAsConfirmed(MongoIdentityUser user);
         SignInManager<MongoIdentityUser> SignInManager { get; }
     }
 }

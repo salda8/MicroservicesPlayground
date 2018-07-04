@@ -1,20 +1,23 @@
 ﻿using Identity.MongoDb;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BasicIdentityServer.Services
 {
     public class LoginService : ILoginService<MongoIdentityUser>
     {
+        private readonly IUserEmailStore<MongoIdentityUser> mongoUserStore;
         private UserManager<MongoIdentityUser> userManager;
         private SignInManager<MongoIdentityUser> signInManager;
 
-        public LoginService(UserManager<MongoIdentityUser> userManager, SignInManager<MongoIdentityUser> signInManager)
+
+        public LoginService(UserManager<MongoIdentityUser> userManager, SignInManager<MongoIdentityUser> signInManager, IUserEmailStore<MongoIdentityUser> mongoUserStore)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            
+            this.mongoUserStore = mongoUserStore;
         }
 
         public async Task<MongoIdentityUser> FindByUsername(string user)
@@ -59,6 +62,7 @@ namespace BasicIdentityServer.Services
 
         public Task<SignInResult> TwoFactorRecoveryCodeSignInAsync(string recoveryCode)
         {
+            
             return signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
         }
 
@@ -85,6 +89,11 @@ namespace BasicIdentityServer.Services
         public Task<SignInResult> TwoFactorSignInAsync(string provider, string code, bool rememberMe, bool rememberBrowser)
         {
             return signInManager.TwoFactorSignInAsync(provider, code, rememberBrowser, rememberBrowser);
+        }
+
+        public async Task SetEmailAsConfirmed(MongoIdentityUser user)
+        {
+            await mongoUserStore.SetEmailConfirmedAsync(user, true, CancellationToken.None).ConfigureAwait(false);
         }
 
         public SignInManager<MongoIdentityUser> SignInManager => signInManager;

@@ -39,6 +39,8 @@ namespace BasicIdentityServer
                     .AddRoles<MongoIdentityRole>()
                     .AddUserStore<MongoUserStore<MongoIdentityUser>>()
                     .AddRoleStore<MongoRoleClaimStore<MongoIdentityRole>>();
+            services.AddScoped<IUserEmailStore<MongoIdentityUser>, MongoUserStore<MongoIdentityUser>>();
+            
 
             services.AddIdentityServer(options =>
             {

@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace BasicIdentityServer.Controllers
 {
@@ -450,6 +452,59 @@ namespace BasicIdentityServer.Controllers
             var result = await _userManager.AddLoginAsync(user, info).ConfigureAwait(false);
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DownloadPersonalData()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
+
+            // Only include personal data for download
+            var personalData = new Dictionary<string, string>();
+            personalData.Add("UserId", await _userManager.GetUserIdAsync(user));
+            personalData.Add("UserName", await _userManager.GetUserNameAsync(user));
+            personalData.Add("Email", await _userManager.GetEmailAsync(user));
+            personalData.Add("EmailConfirmed", (await _userManager.IsEmailConfirmedAsync(user)).ToString());
+            personalData.Add("PhoneNumber", await _userManager.GetPhoneNumberAsync(user));
+            personalData.Add("PhoneNumberConfirmed", (await _userManager.IsEmailConfirmedAsync(user)).ToString());
+            personalData.Add("IAmCustomized", "true");
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
+            return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePersonalData()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            _logger.LogInformation("User with ID '{UserId}' asked to delete their personal data.", _userManager.GetUserId(User));
+            await _userManager.DeleteAsync(user);
+
+
+            return RedirectToAction(nameof(Index));
+
+
+        }
+        [HttpGet]
+        public IActionResult PersonalData()
+        {
+            var model = new PersonalDataViewModel();
+            return View(model);
         }
 
         #region Helpers

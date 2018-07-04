@@ -172,10 +172,12 @@ namespace BasicIdentityServer.Controllers
             if (ModelState.IsValid)
             {
                 var user = new MongoIdentityUser(model.Email, model.Email);
-                user.AddClaim(new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String));
+                //user.AddClaim(new Claim(ClaimTypes.Role, "User", ClaimValueTypes.String));
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "user");
+                    
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false);
@@ -284,8 +286,11 @@ namespace BasicIdentityServer.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    result = await _userManager.AddLoginAsync(user, info).ConfigureAwait(false);
-                    if (result.Succeeded)
+                    var addToRoleResult = await _userManager.AddToRoleAsync(user, "user");
+                    await _userManager.ConfirmEmailAsync(user, await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false));
+                    //await loginService.SetEmailAsConfirmed(user);
+                    result = await _userManager.AddLoginAsync(user, info);
+                    if (result.Succeeded && addToRoleResult.Succeeded)
                     {
                         await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                         _logger.LogInformation(6, "User created an account using {Name} provider.", info.LoginProvider);
@@ -448,7 +453,7 @@ namespace BasicIdentityServer.Controllers
 
             if (model.SelectedProvider == "Authenticator")
             {
-                return RedirectToAction(nameof(VerifyAuthenticatorCode), new { ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+                return RedirectToAction(nameof(VerifyAuthenticatorCode), new { model.ReturnUrl, model.RememberMe });
             }
 
             // Generate the token and send it
