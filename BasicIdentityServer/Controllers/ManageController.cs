@@ -47,6 +47,9 @@ namespace BasicIdentityServer.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
+            if (user is null) { return RedirectToAction("Login", "Account"); }
+
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -55,8 +58,8 @@ namespace BasicIdentityServer.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
-            var user = await GetCurrentUserAsync().ConfigureAwait(false);
+                     
+                
             var model = new IndexViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user).ConfigureAwait(false),
@@ -66,6 +69,7 @@ namespace BasicIdentityServer.Controllers
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user).ConfigureAwait(false),
                 AuthenticatorKey = await _userManager.GetAuthenticatorKeyAsync(user).ConfigureAwait(false)
             };
+                
             return View(model);
         }
 
@@ -493,10 +497,20 @@ namespace BasicIdentityServer.Controllers
             }
 
             _logger.LogInformation("User with ID '{UserId}' asked to delete their personal data.", _userManager.GetUserId(User));
+           
             await _userManager.DeleteAsync(user);
-
+            
 
             return RedirectToAction(nameof(Index));
+
+
+        }
+
+        [HttpGet]
+        public IActionResult GetDeletePersonalDataView()
+        {
+                       
+            return View(nameof(DeletePersonalData), new DeletePersonalDataViewModel { RequirePassword = false });
 
 
         }
