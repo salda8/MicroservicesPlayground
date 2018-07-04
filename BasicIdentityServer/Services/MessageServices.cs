@@ -24,7 +24,7 @@ namespace BasicIdentityServer.Services
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            var client = new SendGridClient(new SendGridClientOptions { ApiKey = emailSenderOptions.Value.ApiKey });
+            var client = new SendGridClient(new SendGridClientOptions { ApiKey = emailSenderOptions.Value.SendGridKey });
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("Joe@contoso.com", "Joe Smith"),

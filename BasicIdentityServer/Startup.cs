@@ -1,8 +1,5 @@
-﻿using BasicIdentityServer.Configuration;
-using BasicIdentityServer.Services;
+﻿using BasicIdentityServer.Services;
 using Identity.MongoDb;
-using IdentityServer4;
-using IdentityServer4.MongoDB.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace BasicIdentityServer
 {
@@ -38,7 +32,8 @@ namespace BasicIdentityServer
             });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            services.AddIdentity<MongoIdentityUser, MongoIdentityRole>()
+            services.AddIdentity<MongoIdentityUser, MongoIdentityRole>(config => config.SignIn.RequireConfirmedEmail = true)
+
                     .AddClaimsPrincipalFactory<ClaimsPrincipalFactory>()
                     .AddDefaultTokenProviders()
                     .AddRoles<MongoIdentityRole>()
@@ -71,6 +66,12 @@ namespace BasicIdentityServer
                         //options.CallbackPath = "/Account/ExternalLoginCallback";
                         options.ClientId = settings.Value.client_id;
                         options.ClientSecret = settings.Value.client_secret;
+                    })
+                    .AddFacebook(facebookOptions =>
+                    {
+                        var settings = services.BuildServiceProvider().GetService<IOptions<FacebookApiOptions>>();
+                        facebookOptions.AppId = settings.Value.AppId;
+                        facebookOptions.AppSecret = settings.Value.AppSecret;
                     });
 
             services.AddScoped<IRoleConfigurationDbContext, RoleConfigurationDbContext>();
@@ -94,7 +95,6 @@ namespace BasicIdentityServer
             }
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-               
                 SeedData.EnsureSeedData(serviceScope.ServiceProvider.GetService<IRoleConfigurationDbContext>(), app.ApplicationServices.GetService<IConfiguration>());
             }
             app.UseStaticFiles();
@@ -109,7 +109,5 @@ namespace BasicIdentityServer
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-       
     }
 }

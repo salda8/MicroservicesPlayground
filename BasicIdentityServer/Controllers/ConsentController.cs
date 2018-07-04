@@ -44,7 +44,7 @@ namespace BasicIdentityServer.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (vm != null)
             {
-                return View("Index", vm);
+                return View(nameof(Index), vm);
             }
 
             return View("Error");
@@ -102,7 +102,7 @@ namespace BasicIdentityServer.Controllers
             var vm = await BuildViewModelAsync(model.ReturnUrl, model).ConfigureAwait(false);
             if (vm != null)
             {
-                return View("Index", vm);
+                return View(nameof(Index), vm);
             }
 
             return View("Error");

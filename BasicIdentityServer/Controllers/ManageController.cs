@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace BasicIdentityServer.Controllers
 {
 
-    [Authorize(Roles ="Administrator")]
+    //[Authorize(Roles ="Administrator")]
     public class ManageController : Controller
     {
         private readonly UserManager<MongoIdentityUser> _userManager;
@@ -161,14 +161,14 @@ namespace BasicIdentityServer.Controllers
         [HttpGet]
         public async Task<IActionResult> EnableAuthenticator()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
             if (user == null)
             {
                 throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
             var model = new EnableAuthenticatorViewModel();
-            await LoadSharedKeyAndQrCodeUriAsync(user, model);
+            await LoadSharedKeyAndQrCodeUriAsync(user, model).ConfigureAwait(false);
 
             return View(model);
         }
@@ -178,7 +178,7 @@ namespace BasicIdentityServer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableAuthenticator(EnableAuthenticatorViewModel model)
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
             if (user == null)
             {
                 throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -186,7 +186,7 @@ namespace BasicIdentityServer.Controllers
 
             if (!ModelState.IsValid)
             {
-                await LoadSharedKeyAndQrCodeUriAsync(user, model);
+                await LoadSharedKeyAndQrCodeUriAsync(user, model).ConfigureAwait(false);
                 return View(model);
             }
 
@@ -194,18 +194,18 @@ namespace BasicIdentityServer.Controllers
             var verificationCode = model.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
 
             var is2faTokenValid = await _userManager.VerifyTwoFactorTokenAsync(
-                user, _userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
+                user, _userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode).ConfigureAwait(false);
 
             if (!is2faTokenValid)
             {
                 ModelState.AddModelError("Code", "Verification code is invalid.");
-                await LoadSharedKeyAndQrCodeUriAsync(user, model);
+                await LoadSharedKeyAndQrCodeUriAsync(user, model).ConfigureAwait(false);
                 return View(model);
             }
 
-            await _userManager.SetTwoFactorEnabledAsync(user, true);
+            await _userManager.SetTwoFactorEnabledAsync(user, true).ConfigureAwait(false);
             _logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
-            var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+            var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10).ConfigureAwait(false);
             TempData["RecoveryCodes"] = recoveryCodes.ToArray();
 
             return View("DisplayRecoveryCodes", new DisplayRecoveryCodesViewModel { Codes = recoveryCodes });
@@ -216,7 +216,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> EnableGoogleTwoFactorAuthentication()
         {
             var user = await GetCurrentUserAsync().ConfigureAwait(false);
-            return View("EnableAuthenticator", new EnableAuthenticatorViewModel() { SharedKey = string.Join(" ", user.RecoveryCodes.Select(x => x)), AuthenticatorUri = GenerateQrCodeUri("secret",user.NormalizedEmail) });
+            return View(nameof(EnableAuthenticator), new EnableAuthenticatorViewModel() { SharedKey = string.Join(" ", user.RecoveryCodes.Select(x => x)), AuthenticatorUri = GenerateQrCodeUri("secret",user.NormalizedEmail) });
         }
 
 #pragma warning disable SCS0029 // Potential XSS vulnerability
@@ -229,11 +229,11 @@ namespace BasicIdentityServer.Controllers
 
         private async Task LoadSharedKeyAndQrCodeUriAsync(MongoIdentityUser user, EnableAuthenticatorViewModel model)
         {
-            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
+            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user).ConfigureAwait(false);
             if (string.IsNullOrEmpty(unformattedKey))
             {
-                await _userManager.ResetAuthenticatorKeyAsync(user);
-                unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
+                await _userManager.ResetAuthenticatorKeyAsync(user).ConfigureAwait(false);
+                unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user).ConfigureAwait(false);
             }
 
             model.SharedKey = FormatKey(unformattedKey);
@@ -427,7 +427,7 @@ namespace BasicIdentityServer.Controllers
         public IActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
+            var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
             return Challenge(properties, provider);
         }

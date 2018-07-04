@@ -20,6 +20,8 @@ namespace BasicIdentityServer
         {
             services.Configure<EmailSenderOptions>(Configuration.GetSection("EmailService"));
             services.Configure<SmsSenderOptions>(Configuration.GetSection("SmsService"));
+
+            services.Configure<FacebookApiOptions>(Configuration.GetSection("FacebookApi"));
             //.AddTestUsers(TestUsers.Users);
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDb"));
 

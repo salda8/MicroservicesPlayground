@@ -1,7 +1,6 @@
 using BasicIdentityServer.Models.AccountViewModels;
 using BasicIdentityServer.Services;
 using Identity.MongoDb;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +41,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
 
             if (user == null)
             {
@@ -65,7 +64,7 @@ namespace BasicIdentityServer.Controllers
                 return View(model);
             }
 
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -73,7 +72,7 @@ namespace BasicIdentityServer.Controllers
 
             var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine).ConfigureAwait(false);
 
             if (result.Succeeded)
             {
@@ -122,7 +121,7 @@ namespace BasicIdentityServer.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                Microsoft.AspNetCore.Identity.SignInResult result = await loginService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                Microsoft.AspNetCore.Identity.SignInResult result = await loginService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -139,7 +138,8 @@ namespace BasicIdentityServer.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    var msg = result.IsNotAllowed ? string.Format(IsNotAllowedMsg, 0) : string.Empty;
+                    ModelState.AddModelError(string.Empty, $"Invalid login attempt. {msg}");
                     return View(model);
                 }
             }
@@ -148,11 +148,14 @@ namespace BasicIdentityServer.Controllers
             return View(model);
         }
 
+        private string IsNotAllowedMsg = "Check your email/phone for confirmation message.";
+
         //
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
+
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -175,11 +178,11 @@ namespace BasicIdentityServer.Controllers
                 {
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false);
+                    var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>").ConfigureAwait(false);
+                    //await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -203,6 +206,7 @@ namespace BasicIdentityServer.Controllers
 
         private const string LoginProviderKey = "LoginProvider";
         private const string XsrfKey = "XsrfId";
+
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -210,11 +214,11 @@ namespace BasicIdentityServer.Controllers
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
             Microsoft.AspNetCore.Authentication.AuthenticationProperties properties = loginService.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return Challenge(properties, provider);
         }
-        
+
         //
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
@@ -248,7 +252,7 @@ namespace BasicIdentityServer.Controllers
             }
             if (result.IsLockedOut)
             {
-                return View("Lockout");
+                return View(nameof(Lockout));
             }
             else
             {
@@ -256,7 +260,8 @@ namespace BasicIdentityServer.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
+                var name = info.Principal.FindFirstValue(ClaimTypes.Name);
+                return View(nameof(ExternalLoginConfirmation), new ExternalLoginConfirmationViewModel { Email = email, Name = name });
             }
         }
 
@@ -313,7 +318,7 @@ namespace BasicIdentityServer.Controllers
                 return View("Error");
             }
             IdentityResult result = await _userManager.ConfirmEmailAsync(user, code).ConfigureAwait(false);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return View(result.Succeeded ? nameof(ConfirmEmail) : "Error");
         }
 
         //
@@ -338,7 +343,7 @@ namespace BasicIdentityServer.Controllers
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user).ConfigureAwait(false)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    return View(nameof(ForgotPasswordConfirmation));
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
@@ -486,7 +491,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -507,7 +512,7 @@ namespace BasicIdentityServer.Controllers
                 return View(model);
             }
 
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -515,7 +520,7 @@ namespace BasicIdentityServer.Controllers
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
 
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(recoveryCode).ConfigureAwait(false);
 
             if (result.Succeeded)
             {
@@ -558,7 +563,7 @@ namespace BasicIdentityServer.Controllers
             if (result.IsLockedOut)
             {
                 _logger.LogWarning(7, "User account locked out.");
-                return View("Lockout");
+                return View(nameof(Lockout));
             }
             else
             {
@@ -605,7 +610,7 @@ namespace BasicIdentityServer.Controllers
             if (result.IsLockedOut)
             {
                 _logger.LogWarning(7, "User account locked out.");
-                return View("Lockout");
+                return View(nameof(Lockout));
             }
             else
             {
