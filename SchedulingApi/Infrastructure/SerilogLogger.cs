@@ -11,8 +11,8 @@ namespace SchedulingApi
         public SerilogLogger(ILogger logger)
         {
             this.logger = logger;
-
         }
+
         protected override bool IsDebugEnabled { get; }
         protected override bool IsInformationEnabled { get; }
 
@@ -20,15 +20,12 @@ namespace SchedulingApi
 
         public override void Write(LogLevel logLevel, string format, params object[] args)
         {
-
             logger.Write((Serilog.Events.LogEventLevel)logLevel, string.Format(format, args));
         }
 
         public override void Write(LogLevel logLevel, Exception exception, string format, params object[] args)
         {
             logger.Write((Serilog.Events.LogEventLevel)logLevel, exception, string.Format(format, args));
-
-
         }
     }
 }

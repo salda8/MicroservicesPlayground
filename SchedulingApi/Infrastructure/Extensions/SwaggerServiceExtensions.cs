@@ -17,7 +17,7 @@ namespace AppointmentApi
             {
                 c.SwaggerDoc("v1.0", new Info { Title = "Main API v1.0", Version = "v1.0" });
 
-                // Swagger 2.+ support
+               
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
                     {"Bearer", new string[] { }},
