@@ -16,7 +16,6 @@ namespace IdentityServer4.Quickstart.Repository
     {
         protected static IMongoDatabase database;
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MongoRepository"/> class.
         /// </summary>

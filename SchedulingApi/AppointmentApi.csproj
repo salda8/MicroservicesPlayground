@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
-    <Folder Include="Models\IdentityModel\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
