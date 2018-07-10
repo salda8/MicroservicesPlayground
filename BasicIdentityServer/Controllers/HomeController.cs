@@ -9,5 +9,11 @@ namespace BasicIdentityServer.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace BasicIdentityServer.Services
             {
                 var clientUrls = new Dictionary<string, string>();
 
-                clientUrls.Add("AppointmentApi", configuration.GetValue<string>("AppointmentApi"));
+                clientUrls.Add("AppointmentApiClient", configuration.GetValue<string>("AppointmentApiClient"));
                 clientUrls.Add("Mvc", configuration.GetValue<string>("MvcTest"));
                 clientUrls.Add("PaymentApi", configuration.GetValue<string>("PaymentApi"));
 

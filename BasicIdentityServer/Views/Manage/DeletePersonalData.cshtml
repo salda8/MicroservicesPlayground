@@ -14,7 +14,7 @@
 </div>
 
 <div>
-    <form id="delete-user" asp-antiforgery="true" asp-action="DeletePersonalData" method="post" class="form-group">
+    <form id="delete-user" asp-antiforgery="true" asp-action="DeletePersonalDataAsync" method="post" class="form-group">
         <div asp-validation-summary="All" class="text-danger"></div>
         @if (Model.RequirePassword)
         {

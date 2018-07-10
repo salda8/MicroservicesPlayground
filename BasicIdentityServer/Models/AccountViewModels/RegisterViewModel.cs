@@ -23,5 +23,9 @@ namespace BasicIdentityServer.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Out personal data policy")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "The field must be checked.")]
+        public bool GdprConsent { get; set; }
     }
 }

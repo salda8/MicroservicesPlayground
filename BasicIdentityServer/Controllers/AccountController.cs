@@ -176,7 +176,7 @@ namespace BasicIdentityServer.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "user");
+                    await _userManager.AddToRoleAsync(user, "user").ConfigureAwait(false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
@@ -286,10 +286,10 @@ namespace BasicIdentityServer.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    var addToRoleResult = await _userManager.AddToRoleAsync(user, "user");
-                    await _userManager.ConfirmEmailAsync(user, await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false));
+                    var addToRoleResult = await _userManager.AddToRoleAsync(user, "user").ConfigureAwait(false);
+                    await _userManager.ConfirmEmailAsync(user, await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false)).ConfigureAwait(false);
                     //await loginService.SetEmailAsConfirmed(user);
-                    result = await _userManager.AddLoginAsync(user, info);
+                    result = await _userManager.AddLoginAsync(user, info).ConfigureAwait(false);
                     if (result.Succeeded && addToRoleResult.Succeeded)
                     {
                         await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);

@@ -36,18 +36,67 @@ namespace BasicIdentityServer.Configuration
         {
             return new List<Client>
             {
-                // JavaScript Client
                 new Client
-        {
-            ClientId = "ro.client",
-            AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                {
+                    ClientId = "appointmentswaggerui",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    AllowedCorsOrigins = {clientsUrl["AppointmentApiClient"] },
+                    ClientUri = clientsUrl["AppointmentApiClient"],
+                    AllowAccessTokensViaBrowser = false,
+                    RequireConsent = false,
+                    AllowOfflineAccess = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
 
-            ClientSecrets =
-            {
-                new Secret("secret".Sha256())
-            },
-            AllowedScopes = { "appointment" }
-        },
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = {"appointment", IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess }
+                },
+                new Client
+                {
+                    ClientId = "appointmentService",
+                    //ClientName = "Appointment Service",
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                   // ClientUri = $"{clientsUrl["AppointmentApi"]}",                             // public uri of the client
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    //AllowAccessTokensViaBrowser = false,
+                    //RequireConsent = false,
+                    //AllowOfflineAccess = true,
+                    //AlwaysIncludeUserClaimsInIdToken = true,
+                    //RedirectUris = new List<string>
+                    //{
+                    //    $"{clientsUrl["AppointmentApi"]}/signin-oidc"
+                    //},
+                    //PostLogoutRedirectUris = new List<string>
+                    //{
+                    //    $"{clientsUrl["AppointmentApi"]}/signout-callback-oidc"
+                    //},
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "appointment",
+                        "payment",
+                    },
+                },
+                new Client
+                {
+                    ClientId = "ro.client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "appointment" }
+                },
                 new Client
                 {
                     ClientId = "appointmentService",
@@ -137,30 +186,30 @@ namespace BasicIdentityServer.Configuration
                     },
                 },
              new Client
+                {
+                    ClientId = "client",
+
+                    // no interactive user, use the clientid/secret for authentication
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+
+                    // secret for authentication
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
+                    // scopes that client has access to
+                    AllowedScopes = { "api1" }
+                }
+        };
+        }
+
+        internal static IEnumerable<MongoIdentityRole> GetRoles()
         {
-            ClientId = "client",
-
-            // no interactive user, use the clientid/secret for authentication
-            AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-            // secret for authentication
-            ClientSecrets =
-            {
-                new Secret("secret".Sha256())
-            },
-
-            // scopes that client has access to
-            AllowedScopes = { "api1" }
-        }
-};
-        }
-
-        internal static IEnumerable<MongoIdentityRole> GetRoles() {
-
             var userRole = new MongoIdentityRole("user");
             userRole.Claims.Add(new Identity.MongoDb.Models.MongoUserClaim(new System.Security.Claims.Claim(ClaimTypes.GroupSid, Guid.NewGuid().ToString())));
             userRole.Claims.Add(new Identity.MongoDb.Models.MongoUserClaim(new Claim(ClaimTypes.PrimarySid, Guid.NewGuid().ToString())));
-            var roles=  new List<MongoIdentityRole>()
+            var roles = new List<MongoIdentityRole>()
             {
                userRole,
                 new MongoIdentityRole("administrator"),

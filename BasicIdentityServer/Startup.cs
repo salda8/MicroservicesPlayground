@@ -94,15 +94,25 @@ namespace BasicIdentityServer
             else
             {
                 app.UseHsts();
+
             }
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 SeedData.EnsureSeedData(serviceScope.ServiceProvider.GetService<IRoleConfigurationDbContext>(), app.ApplicationServices.GetService<IConfiguration>());
             }
+
+            app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseIdentityServerMongoDBTokenCleanup(applicationLifetime);
             app.UseHttpsRedirection();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            });
 
             app.UseMvc(routes =>
             {

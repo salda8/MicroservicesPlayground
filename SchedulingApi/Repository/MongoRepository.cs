@@ -1,5 +1,5 @@
-﻿
-using AppointmentApi;
+﻿using AppointmentApi;
+using AppointmentApi.MongoDb;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -14,23 +14,18 @@ namespace IdentityServer4.Quickstart.Repository
     /// </summary>
     public class MongoRepository : IRepository
     {
-        protected static IMongoClient client;
         protected static IMongoDatabase database;
 
+
         /// <summary>
-        /// This Contructor leverages  .NET Core built-in DI
+        /// Initializes a new instance of the <see cref="MongoRepository"/> class.
         /// </summary>
-        /// <param name="optionsAccessor">Injected by .NET Core built-in Depedency Injection</param>
-        public MongoRepository(IOptions<MongoConfigurationOptions> optionsAccessor)
+        /// <param name="databaseFactory">The database factory.</param>
+        /// <param name="optionsAccessor">The options accessor.</param>
+        public MongoRepository(IMongoDatabaseFactory databaseFactory, IOptions<MongoConfigurationOptions> optionsAccessor)
         {
-            var configurationOptions = optionsAccessor.Value;
-
-            client = new MongoClient(configurationOptions.MongoConnection);
-            database = client.GetDatabase(configurationOptions.MongoDatabaseName);
-            
+            database = databaseFactory.Connect(optionsAccessor);
         }
-
-        
 
         public IQueryable<T> All<T>() where T : class, new()
         {
@@ -45,8 +40,8 @@ namespace IdentityServer4.Quickstart.Repository
         public void Delete<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class, new()
         {
             var result = database.GetCollection<T>(typeof(T).Name).DeleteMany(predicate);
-
         }
+
         public T Single<T>(System.Linq.Expressions.Expression<Func<T, bool>> expression) where T : class, new()
         {
             return All<T>().Where(expression).SingleOrDefault();
@@ -56,9 +51,8 @@ namespace IdentityServer4.Quickstart.Repository
         {
             var collection = database.GetCollection<T>(typeof(T).Name);
             var filter = new BsonDocument();
-            var totalCount = collection.Count(filter);
+            var totalCount = collection.CountDocuments(filter);
             return (totalCount > 0);
-
         }
 
         public void Add<T>(T item) where T : class, new()
@@ -70,8 +64,5 @@ namespace IdentityServer4.Quickstart.Repository
         {
             database.GetCollection<T>(typeof(T).Name).InsertMany(items);
         }
-
-
-       
     }
 }

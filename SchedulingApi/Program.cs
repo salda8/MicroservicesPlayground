@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using NLog.Web;
-using Autofac.Extensions.DependencyInjection;
-using Autofac.Extensions;
+using Serilog;
 
 namespace SchedulingApi
 {
@@ -17,36 +9,14 @@ namespace SchedulingApi
     {
         public static void Main(string[] args)
         {
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-            try
-            {
-                logger.Debug("init main");
-                CreateWebHostBuilder(args).Build().Run();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Stopped program because of exception");
-                throw;
-            }
-            finally
-            {
-                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-                NLog.LogManager.Shutdown();
-            }
-
+            CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-            .ConfigureServices(services=>services.AddAutofac())
-            .ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.SetMinimumLevel(LogLevel.Trace);
-            })
-            
-                .UseNLog();
-        
+                    .UseStartup<Startup>()
+                    .ConfigureServices(services => services.AddAutofac())
+                    .UseSerilog((hostingContext, loggerConfiguration)
+                                 => loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
     }
 }

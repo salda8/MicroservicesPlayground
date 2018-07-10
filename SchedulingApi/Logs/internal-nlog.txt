@@ -1,6 +1,0 @@
-2018-06-14 10:58:49.4129 Info Message Template Auto Format enabled
-2018-06-14 10:58:49.4335 Info Loading assembly: NLog.Web.AspNetCore
-2018-06-14 10:58:49.5787 Info Adding target File Target[allfile]
-2018-06-14 10:58:49.6122 Info Adding target File Target[ownFile-web]
-2018-06-14 10:58:49.6319 Info Configured from an XML element in C:\Work\BrassPoC\SchedulingApi\bin\Debug\netcoreapp2.1\nlog.config...
-2018-06-14 10:58:49.6578 Info Found 45 configuration items

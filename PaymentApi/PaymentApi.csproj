@@ -14,13 +14,13 @@
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="Confluent.Kafka" Version="1.0.0-experimental-4" />
-    <PackageReference Include="EventFlow.Autofac" Version="0.60.3490" />
+    <PackageReference Include="EventFlow.Autofac" Version="0.62.3569" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="MongoDB.Driver" Version="2.7.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="2.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="2.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="2.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

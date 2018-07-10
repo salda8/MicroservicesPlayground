@@ -1,23 +1,19 @@
-using System;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Identity.MongoDb;
 using BasicIdentityServer.Models.ManageViewModels;
 using BasicIdentityServer.Services;
-
-using Microsoft.AspNetCore.Authorization;
+using Identity.MongoDb;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BasicIdentityServer.Controllers
 {
-
     //[Authorize(Roles ="Administrator")]
     public class ManageController : Controller
     {
@@ -58,8 +54,7 @@ namespace BasicIdentityServer.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-                     
-                
+
             var model = new IndexViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user).ConfigureAwait(false),
@@ -69,7 +64,7 @@ namespace BasicIdentityServer.Controllers
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user).ConfigureAwait(false),
                 AuthenticatorKey = await _userManager.GetAuthenticatorKeyAsync(user).ConfigureAwait(false)
             };
-                
+
             return View(model);
         }
 
@@ -179,7 +174,6 @@ namespace BasicIdentityServer.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableAuthenticator(EnableAuthenticatorViewModel model)
@@ -222,15 +216,16 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> EnableGoogleTwoFactorAuthentication()
         {
             var user = await GetCurrentUserAsync().ConfigureAwait(false);
-            return View(nameof(EnableAuthenticator), new EnableAuthenticatorViewModel() { SharedKey = string.Join(" ", user.RecoveryCodes.Select(x => x)), AuthenticatorUri = GenerateQrCodeUri("secret",user.NormalizedEmail) });
+            return View(nameof(EnableAuthenticator), new EnableAuthenticatorViewModel() { SharedKey = string.Join(" ", user.RecoveryCodes.Select(x => x)), AuthenticatorUri = GenerateQrCodeUri("secret", user.NormalizedEmail) });
         }
 
 #pragma warning disable SCS0029 // Potential XSS vulnerability
-        public string GenerateQrCodeUri(string secret, string label, string issue="MyTestIssuer")
+
+        public string GenerateQrCodeUri(string secret, string label, string issue = "MyTestIssuer")
         {
             return string.Format(AuthenticatorUriFormat, WebUtility.UrlEncode(label), WebUtility.UrlEncode(issue), secret);
-            
         }
+
 #pragma warning restore SCS0029 // Potential XSS vulnerability
 
         private async Task LoadSharedKeyAndQrCodeUriAsync(MongoIdentityUser user, EnableAuthenticatorViewModel model)
@@ -462,7 +457,7 @@ namespace BasicIdentityServer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DownloadPersonalData()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
 
             if (user == null)
             {
@@ -473,12 +468,12 @@ namespace BasicIdentityServer.Controllers
 
             // Only include personal data for download
             var personalData = new Dictionary<string, string>();
-            personalData.Add("UserId", await _userManager.GetUserIdAsync(user));
-            personalData.Add("UserName", await _userManager.GetUserNameAsync(user));
-            personalData.Add("Email", await _userManager.GetEmailAsync(user));
-            personalData.Add("EmailConfirmed", (await _userManager.IsEmailConfirmedAsync(user)).ToString());
-            personalData.Add("PhoneNumber", await _userManager.GetPhoneNumberAsync(user));
-            personalData.Add("PhoneNumberConfirmed", (await _userManager.IsEmailConfirmedAsync(user)).ToString());
+            personalData.Add("UserId", await _userManager.GetUserIdAsync(user).ConfigureAwait(false));
+            personalData.Add("UserName", await _userManager.GetUserNameAsync(user).ConfigureAwait(false));
+            personalData.Add("Email", await _userManager.GetEmailAsync(user).ConfigureAwait(false));
+            personalData.Add("EmailConfirmed", (await _userManager.IsEmailConfirmedAsync(user).ConfigureAwait(false)).ToString());
+            personalData.Add("PhoneNumber", await _userManager.GetPhoneNumberAsync(user).ConfigureAwait(false));
+            personalData.Add("PhoneNumberConfirmed", (await _userManager.IsEmailConfirmedAsync(user).ConfigureAwait(false)).ToString());
             personalData.Add("IAmCustomized", "true");
 
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
@@ -487,9 +482,9 @@ namespace BasicIdentityServer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePersonalData()
+        public async Task<IActionResult> DeletePersonalDataAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
 
             if (user == null)
             {
@@ -497,23 +492,18 @@ namespace BasicIdentityServer.Controllers
             }
 
             _logger.LogInformation("User with ID '{UserId}' asked to delete their personal data.", _userManager.GetUserId(User));
-           
-            await _userManager.DeleteAsync(user);
-            
+
+            await _userManager.DeleteAsync(user).ConfigureAwait(false);
 
             return RedirectToAction(nameof(Index));
-
-
         }
 
         [HttpGet]
-        public IActionResult GetDeletePersonalDataView()
+        public IActionResult DeletePersonalData()
         {
-                       
-            return View(nameof(DeletePersonalData), new DeletePersonalDataViewModel { RequirePassword = false });
-
-
+            return View(new DeletePersonalDataViewModel { RequirePassword = false });
         }
+
         [HttpGet]
         public IActionResult PersonalData()
         {
