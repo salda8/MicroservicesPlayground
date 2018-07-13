@@ -35,7 +35,56 @@ namespace BasicIdentityServer.Configuration
         public static IEnumerable<Client> GetClients(Dictionary<string, string> clientsUrl)
         {
             return new List<Client>
-            {
+            {new Client
+                {
+                    ClientId = "settingsswaggerui",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    AllowedCorsOrigins = {clientsUrl["settingsApiClient"] },
+                    ClientUri = clientsUrl["settingsApiClient"],
+                    AllowAccessTokensViaBrowser = false,
+                    RequireConsent = false,
+                    AllowOfflineAccess = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = {"settings", IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess }
+                },
+                new Client
+                {
+                    ClientId = "settingsService",
+                    //ClientName = "settings Service",
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                   // ClientUri = $"{clientsUrl["settingsApi"]}",                             // public uri of the client
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    //AllowAccessTokensViaBrowser = false,
+                    //RequireConsent = false,
+                    //AllowOfflineAccess = true,
+                    //AlwaysIncludeUserClaimsInIdToken = true,
+                    //RedirectUris = new List<string>
+                    //{
+                    //    $"{clientsUrl["settingsApi"]}/signin-oidc"
+                    //},
+                    //PostLogoutRedirectUris = new List<string>
+                    //{
+                    //    $"{clientsUrl["settingsApi"]}/signout-callback-oidc"
+                    //},
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "settings",
+                       
+                    },
+                },
                 new Client
                 {
                     ClientId = "appointmentswaggerui",

@@ -60,7 +60,7 @@ namespace SchedulingApi
                 app.UseHsts();
             }
 
-            app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
+            app.UseExceptionHandlingMiddleware();
 
             app.UseAuthentication();
             app.UseHttpsRedirection();

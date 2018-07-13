@@ -12,16 +12,16 @@ namespace IdentityServer4.Quickstart.Repository
     /// <summary>
     /// Provides functionality  to persist "IdentityServer4.Models" into a given MongoDB
     /// </summary>
-    public class MongoRepository : IRepository
+    public class GenericMongoRepository : IRepository
     {
         protected static IMongoDatabase database;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MongoRepository"/> class.
+        /// Initializes a new instance of the <see cref="GenericMongoRepository"/> class.
         /// </summary>
         /// <param name="databaseFactory">The database factory.</param>
         /// <param name="optionsAccessor">The options accessor.</param>
-        public MongoRepository(IMongoDatabaseFactory databaseFactory, IOptions<MongoConfigurationOptions> optionsAccessor)
+        public GenericMongoRepository(IMongoDatabaseFactory databaseFactory, IOptions<MongoConfigurationOptions> optionsAccessor)
         {
             database = databaseFactory.Connect(optionsAccessor);
         }

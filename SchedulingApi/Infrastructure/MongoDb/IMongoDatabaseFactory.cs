@@ -17,7 +17,7 @@ namespace AppointmentApi.MongoDb
         public IMongoDatabase Connect(IOptions<MongoConfigurationOptions> optionsAccessor)
         {
             var configurationOptions = optionsAccessor.Value;
-            return new MongoClient(configurationOptions.MongoConnection).GetDatabase(configurationOptions.MongoDatabaseName);
+            return new MongoClient(configurationOptions.ConnectionString).GetDatabase(configurationOptions.DatabaseName);
         }
     }
 }

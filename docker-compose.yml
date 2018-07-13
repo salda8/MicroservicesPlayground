@@ -48,3 +48,10 @@ services:
       context: .
       dockerfile: ApiTest/Dockerfile
 
+
+  settingsapi:
+    image: ${DOCKER_REGISTRY}settingsapi
+    build:
+      context: .
+      dockerfile: SettingsApi/Dockerfile
+

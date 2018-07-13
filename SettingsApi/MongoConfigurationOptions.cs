@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppointmentApi
+namespace SettingsApi
 {
     
     public class MongoConfigurationOptions
     {
-        public string MongoConnection { get; set; }
-        public string MongoDatabaseName { get; set; }
+        public string DatabaseName { get; set; }
+        public string ConnectionString { get; set; }
     }
 }
