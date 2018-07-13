@@ -1,0 +1,19 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>ControllerApi.cs</DefaultName>
+    <Name>ControllerApi</Name>
+    <Description>Test</Description>
+    <ProjectType>CSharp</ProjectType>
+	<TemplateGroupID>AspNetCore</TemplateGroupID>
+    <SortOrder>10</SortOrder>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <CustomParameters>  
+    <CustomParameter Name="$assemblyNamespace$" Value="SettingsApi"/>  
+  </CustomParameters> 
+    <References />
+    <ProjectItem SubType="" TargetFileName="$fileinputname$.cs" ReplaceParameters="true">ApiController.cs</ProjectItem>
+  </TemplateContent>
+   
+</VSTemplate>

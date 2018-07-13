@@ -12,9 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{50CFA2FE-75B3-46DB-8548-579CA115D9D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6EF8B235-066A-4338-81C1-1F5841CE9D0F}"
-	ProjectSection(SolutionItems) = preProject
-		..\eShop\src\Services\Identity\Identity.API\wwwroot\css\site.css = ..\eShop\src\Services\Identity\Identity.API\wwwroot\css\site.css
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{419B5D2C-E0B9-4AEE-8888-8308151A7427}"
 EndProject
@@ -34,13 +31,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.MongoDb", "..\Iden
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicIdentityServer", "BasicIdentityServer\BasicIdentityServer.csproj", "{1D3277C6-89E8-4880-858A-1953F858FB3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsApi", "SettingsApi\SettingsApi.csproj", "{46FC0E45-EC82-4D52-9251-11ED0CE927D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsApi", "SettingsApi\SettingsApi.csproj", "{46FC0E45-EC82-4D52-9251-11ED0CE927D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDD", "DDD", "{49E181F7-7780-4530-A993-6A75FAD9BA45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3L", "3L", "{9EF4F635-ECDA-45C9-8C57-04B16593A261}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDbGenericRepository", "..\mongodb-generic-repository\MongoDbGenericRepository\MongoDbGenericRepository.csproj", "{A8BE1E6E-CECE-49BA-AC2B-6E34EEC1BE04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{C38795AB-1963-4415-9AF7-2CC828C4EC1B}"
+	ProjectSection(SolutionItems) = preProject
+		ControllerApi\__TemplateIcon.ico = ControllerApi\__TemplateIcon.ico
+		ControllerApi\ApiController.cs = ControllerApi\ApiController.cs
+		ControllerApi\MyTemplate.vstemplate = ControllerApi\MyTemplate.vstemplate
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
