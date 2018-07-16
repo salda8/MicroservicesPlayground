@@ -2,9 +2,7 @@
 
 namespace MicroservicesPlayground
 {
-    public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
-    {
-        public class SubscriptionInfo
+         public class SubscriptionInfo
         {
             public bool IsDynamic { get; }
             public Type HandlerType{ get; }
@@ -24,5 +22,4 @@ namespace MicroservicesPlayground
                 return new SubscriptionInfo(false, handlerType);
             }
         }
-    }
 }

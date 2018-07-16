@@ -15,6 +15,8 @@ namespace EventBusKafka
             subscriptionsManager.OnEventRemoved += SubscriptionManager_OnEventRemoved;
             this.consumerConnection = consumerConnection;
             this.producerConnection = producerConnection;
+            
+            
         }
 
         private void SubscriptionManager_OnEventRemoved(object sender, string e)
