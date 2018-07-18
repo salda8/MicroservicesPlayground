@@ -9,12 +9,19 @@ using System.Threading;
 
 namespace AppointmentApi.Models.Appointment.Integration
 {
-    public class IntegrationEventTest : IntegrationEvent
+    public class LocationSet : IntegrationEvent
     {
-        
+        public LocationSet() : base(typeof(LocationSet).Name)
+        {
+            
+        }
+        public LocationSet(string name) : base(name)
+        {
+            
+        }
     }
 
-    public class IntegrationTestEventHandler : IIntegrationEventHandler<IntegrationEventTest>
+    public class IntegrationTestEventHandler : IIntegrationEventHandler<LocationSet>
     {
         private readonly ICommandBus commandBus;
 
@@ -22,7 +29,7 @@ namespace AppointmentApi.Models.Appointment.Integration
         {
             this.commandBus = commandBus;
         }
-        public async Task Handle(IntegrationEventTest @event)
+        public async Task Handle(LocationSet @event)
         {
             var command =  new AppointmentBookCommand(AppointmentId.With(@event.Id));
             await commandBus.PublishAsync(command, cancellationToken: CancellationToken.None);

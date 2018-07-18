@@ -9,10 +9,10 @@ namespace AppointmentApi.AppointmentModel.Commands
 {
     public class AppointmentSetCarServiceCommand : Command<AppointmentAggregate, AppointmentId>
     {
-        public AppointmentSetCarServiceCommand(AppointmentId id, CarService carSerivce) : base(id)
+        public AppointmentSetCarServiceCommand(AppointmentId id, CarService carService) : base(id)
 
         {
-            CarService = carSerivce;
+            CarService = carService;
         }
 
         public CarService CarService { get; }

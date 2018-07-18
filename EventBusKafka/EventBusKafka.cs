@@ -8,6 +8,7 @@ using Confluent.Kafka.Serialization;
 using EventBus.Abstractions;
 using EventBus.Events;
 using EventFlow.Kafka;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -40,7 +41,7 @@ namespace EventBus.Kafka
 
         public IEnumerable<string> SubscribedTopics => subscribedTopics;
 
-        public IKafkaConsumerFactory ConsumerFactory { get; }
+        public IKafkaConsumerFactory consumerFactory;
         public Dictionary<string, object> Configuration { get; }
 
         private CancellationToken cancellationToken = new CancellationToken();
@@ -48,10 +49,11 @@ namespace EventBus.Kafka
         public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, IKafkaConsumerFactory consumerFactory, ILifetimeScope autofac, IKafkaConsumerConfiguration configuration, IDeserializer<string> valueDeserializer)
         {
             this.subscriptionsManager = subscriptionsManager ?? new InMemoryEventBusSubscriptionsManager();
-            ConsumerFactory = consumerFactory;
+            this.consumerFactory = consumerFactory;
             this.autofac = autofac;
             this.configuration = configuration;
             this.valueDeserializer = valueDeserializer;
+            this.subscribedTopics = configuration.SubscribedTopics;
             Configuration = configuration.Configuration;
             valueDeserializer.Configure(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(StringDeserializer.KeyEncodingConfigParam, configuration.Encoding.HeaderName) }, true);
             CreateOneConsumerPerTopic();
@@ -66,21 +68,20 @@ namespace EventBus.Kafka
             subscriptionsManager.AddDynamicSubscription<TH>(eventName);
         }
 
-        public void Subscribe<T, TH>()
+        public void Subscribe<T, TH>(string eventName)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>
         {
-            var eventName = subscriptionsManager.GetEventKey<T>();
 
-            subscriptionsManager.AddSubscription<T, TH>();
+            subscriptionsManager.AddSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
         }
 
 
-        public void Unsubscribe<T, TH>()
+        public void Unsubscribe<T, TH>(string eventName)
             where TH : IIntegrationEventHandler<T>
             where T : IntegrationEvent
         {
-            subscriptionsManager.RemoveSubscription<T, TH>();
+            subscriptionsManager.RemoveSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
         }
 
         public void UnsubscribeDynamic<TH>(string eventName)
@@ -92,18 +93,22 @@ namespace EventBus.Kafka
         public void AddTopicToSubscribeTo(string topicName, CancellationToken cancelToken = default(CancellationToken))
         {
             subscribedTopics.Add(topicName);
-            Task.Factory.StartNew(async () => await ConsumerAction(topicName), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            Task.Factory.StartNew(async () => await ConsumerAction(topicName, cancelToken), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
 
         }
 
-        private async Task Consume(Consumer<Ignore, string> consumer)
+        private async Task Consume(Consumer<Ignore, string> consumer, CancellationToken cancellationToken)
         {
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 if (consumer.Consume(out ConsumerRecord<Ignore, string> record, TimeSpan.FromSeconds(1)))
                 {
                     var serObject = JsonConvert.DeserializeObject<KafkaEvent>(record.Message.Value);
                     await ProcessEventAsync(serObject.Metadata.EventName, record.Message.Value);
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -115,17 +120,17 @@ namespace EventBus.Kafka
             foreach (string topic in subscribedTopics)
             {
 
-                Task.Factory.StartNew(async () => await ConsumerAction(topic), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                Task.Factory.StartNew(async () => await ConsumerAction(topic, cancellationToken), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
 
             }
 
         }
-        async Task ConsumerAction(string topic)
+        async Task ConsumerAction(string topic, CancellationToken cancellationToken)
         {
-            using (var consumer = ConsumerFactory.CreateConsumer(Configuration, valueDeserializer))
+            using (var consumer = consumerFactory.CreateConsumer(Configuration, valueDeserializer))
             {
                 consumer.Subscribe(topic);
-                await Consume(consumer);
+                await Consume(consumer, cancellationToken);
             }
         }
 

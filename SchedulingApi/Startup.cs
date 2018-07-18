@@ -19,6 +19,9 @@ using MongoDB.Bson.Serialization;
 using SchedulingApi.Controllers;
 using System.Reflection;
 using EventBus.Kafka;
+using EventBus;
+using Confluent.Kafka.Serialization;
+using Microsoft.Extensions.Options;
 
 namespace SchedulingApi
 {
@@ -35,6 +38,7 @@ namespace SchedulingApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
+            services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -43,27 +47,25 @@ namespace SchedulingApi
                 options.Authority = Configuration.GetSection("IdentityUrlExternal").Value;
                 options.RequireHttpsMetadata = false;
                 options.ApiName = "appointment";
-                
+
             });
 
-            services.AddSingleton<IEventBus, EventBusKafka>();
-            // services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
-            //     {
-            //         var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
-            //         var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
-            //         var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
-            //         var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
+            services.AddSingleton<ISubscriptionEventBus, EventBusKafka>(sp =>
+                {
+                    var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
+                    var consumerFactory = sp.GetRequiredService<IKafkaConsumerFactory>();
+                    var kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
+                    var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId, 
+                    kafkaSettings.ClientId, kafkaSettings.SubscribedTopics);
+                    var valueDeserializer = new StringDeserializer();
+                    var topics = kafkaSettings.SubscribedTopics;
+                    var eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 
-            //         var retryCount = 5;
-            //         if (!string.IsNullOrEmpty(Configuration["EventBusRetryCount"]))
-            //         {
-            //             retryCount = int.Parse(Configuration["EventBusRetryCount"]);
-            //         }
-
-            //         return new EventBus.Kafka(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
-            //     });
+                    return new EventBusKafka(eventBusSubscriptionsManager, consumerFactory, iLifetimeScope, kafkaConfig, valueDeserializer);
+                });
 
             services.AddSwaggerDocumentation(Configuration);
+            services.AddTransient<IntegrationTestEventHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,10 +90,10 @@ namespace SchedulingApi
             app.UseMvc();
             app.UseCors(builder =>
             {
-              builder.AllowAnyOrigin()
-                     .AllowAnyMethod()
-                     .AllowAnyHeader()
-                     .AllowCredentials();
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials();
             });
 
             app.UseSwaggerDocumentation();
@@ -111,8 +113,9 @@ namespace SchedulingApi
             // method or this won't be called.
 
             builder.RegisterModule(new AutofacModule());
-            var amqpuri = Configuration.GetSection("RabbitMq").Get<RabbitMqSettings>().ConnectionString;
-            var kafkaUri = Configuration.GetSection("Kafka").Get<KafkaSettings>().ConnectionString;
+
+            var amqpUri = Configuration.GetSection("RabbitMq").Get<RabbitMqSettings>().ConnectionString;
+            var kafkaUri = Configuration.GetSection("Kafka").Get<KafkaSettings>().BrokerAddresses;
             var mongoDbSettings = Configuration.GetSection("MongoDb").Get<MongoDbSettings>();
             var container = EventFlowOptions.New
               .UseAutofacContainerBuilder(builder) // Must be the first line!
@@ -128,11 +131,9 @@ namespace SchedulingApi
 
         private void ConfigureEventBus(IApplicationBuilder app)
         {
-            IEventBus eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<IntegrationEventTest, IntegrationTestEventHandler>();
-            
+            var eventBus = app.ApplicationServices.GetRequiredService<ISubscriptionEventBus>();
+            eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>("LocationSet");
 
-            
         }
 
 

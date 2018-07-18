@@ -7,8 +7,6 @@ namespace EventBus.Kafka {
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
 
-        [JsonIgnore]
-        public Payload Payload { get; set; }
 
         public static KafkaEvent FromJson(string json)=> JsonConvert.DeserializeObject<KafkaEvent>(json, KafkaEvent.Settings);
 

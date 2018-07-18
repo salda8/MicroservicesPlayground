@@ -25,6 +25,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using EventBus.Kafka;
 using System;
 using System.Reflection;
+using EventBus;
+using EventBus.Abstractions;
+using AppointmentApi.Models.Appointment.Integration;
 
 namespace SchedulingApi
 {
@@ -39,6 +42,9 @@ namespace SchedulingApi
             builder.RegisterType<ExceptionHandlingMiddleware>();
             builder.RegisterType<MongoDatabaseFactory>().As<IMongoDatabaseFactory>();
             builder.RegisterType<AppointmentService>().As<IAppointmentService>();
+            builder.RegisterType<InMemoryEventBusSubscriptionsManager>().As<IEventBusSubscriptionsManager>();
+            builder.RegisterType<IntegrationTestEventHandler>().As<IIntegrationEventHandler>();
+            
             ISnapshotStrategy newStrategy = SnapshotEveryFewVersionsStrategy.With(10);
             builder.RegisterInstance(newStrategy);
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>

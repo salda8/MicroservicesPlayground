@@ -39,8 +39,8 @@ namespace BasicIdentityServer.Configuration
                 {
                     ClientId = "settingsswaggerui",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedCorsOrigins = {clientsUrl["settingsApiClient"] },
-                    ClientUri = clientsUrl["settingsApiClient"],
+                    AllowedCorsOrigins = {clientsUrl["SettingsApiClient"] },
+                    ClientUri = clientsUrl["SettingsApiClient"],
                     AllowAccessTokensViaBrowser = false,
                     RequireConsent = false,
                     AllowOfflineAccess = true,

@@ -12,7 +12,7 @@ namespace AppointmentApi.Sagas
     {
         public Task<ISagaId> LocateSagaAsync(IDomainEvent domainEvent, CancellationToken cancellationToken)
         {
-            var appointmentId = domainEvent.Metadata["appointment-id"];
+            var appointmentId = domainEvent.Metadata["aggregate_id"];
             var appointmentSagaId = new AppointmentSagaId($"appointmentSaga-{appointmentId}");
 
             return Task.FromResult<ISagaId>(appointmentSagaId);
