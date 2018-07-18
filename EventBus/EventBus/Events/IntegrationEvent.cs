@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MicroservicesPlayground.Events
+namespace EventBus.Events
 {
     public class IntegrationEvent
     {

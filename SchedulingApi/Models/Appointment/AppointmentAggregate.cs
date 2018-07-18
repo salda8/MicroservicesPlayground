@@ -29,9 +29,9 @@ namespace SchedulingApi.Controllers
         public Location Location => state.Location;
         public AppointmentOrder AppointmentOrder => state.AppointmentOrder;
         public CarService CarService => state.CarService;
-        public List<IUncommittedEvent> NotCommitedEvents = new List<IUncommittedEvent>();
+        public List<IUncommittedEvent> NotCommittedEvents = new List<IUncommittedEvent>();
 
-        public async Task<IExecutionResult> BookAppointment(string value)
+        public Task<IExecutionResult> BookAppointment(string value)
         {
             var spec = new AppointmentSpecification();
             //spec.ThrowDomainErrorIfNotSatisifiedBy(this);
@@ -40,7 +40,7 @@ namespace SchedulingApi.Controllers
 
             //this.eventFactory.Create(new AppointmentBookedEvent(AppointmentOrder, Location, Schedule),)
 
-            return ExecutionResult.Success();
+            return Task.FromResult(ExecutionResult.Success());
         }
 
         private readonly IMongoDbEventSequenceStore sequenceStore;
@@ -92,7 +92,7 @@ namespace SchedulingApi.Controllers
             var uncommittedEvent = new UncommittedEvent(aggregateEvent, eventMetadata);
 
             ApplyEvent(aggregateEvent);
-            NotCommitedEvents.Add(uncommittedEvent);
+            NotCommittedEvents.Add(uncommittedEvent);
         }
 
         public void SetCarService(CarService carService)
@@ -117,6 +117,7 @@ namespace SchedulingApi.Controllers
                 return domainEvents;
             }
 
+
             var snapshotContainer = await CreateSnapshotContainerAsync(cancellationToken).ConfigureAwait(false);
             await snapshotStore.StoreSnapshotAsync<AppointmentAggregate, AppointmentId, AppointmentSnapshot>(
                 Id,
@@ -138,11 +139,11 @@ namespace SchedulingApi.Controllers
 
             var domainEvents = await eventStore.StoreAsync<AppointmentAggregate, AppointmentId>(
                 Id,
-                NotCommitedEvents,
+                NotCommittedEvents,
                 sourceId,
                 cancellationToken)
                 .ConfigureAwait(false);
-            NotCommitedEvents.Clear();
+            NotCommittedEvents.Clear();
             return domainEvents;
         }
 

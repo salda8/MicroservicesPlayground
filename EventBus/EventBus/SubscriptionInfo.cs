@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace MicroservicesPlayground
+namespace EventBus
 {
-    public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
-    {
+    
         public class SubscriptionInfo
         {
             public bool IsDynamic { get; }
@@ -23,6 +22,6 @@ namespace MicroservicesPlayground
             {
                 return new SubscriptionInfo(false, handlerType);
             }
-        }
+        
     }
 }

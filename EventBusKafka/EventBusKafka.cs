@@ -1,16 +1,15 @@
-﻿using Autofac;
-using Confluent.Kafka;
-using Confluent.Kafka.Serialization;
-using EventFlow.Kafka;
-using MicroservicesPlayground;
-using MicroservicesPlayground.Abstractions;
-using MicroservicesPlayground.Events;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Autofac;
+using Confluent.Kafka;
+using Confluent.Kafka.Serialization;
+using EventBus.Abstractions;
+using EventBus.Events;
+using EventFlow.Kafka;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EventBus.Kafka
 {
@@ -30,7 +29,7 @@ namespace EventBus.Kafka
     //CON: Guaranteeing order across the processors requires particular care as the threads will execute independently an earlier chunk of data may actually be processed after a later chunk of data just due to the luck of thread execution timing.For processing that has no ordering requirements this is not a problem.
     //CON: Manually committing the position becomes harder as it requires that all threads co-ordinate to ensure that processing is complete for that partition.
     //There are many possible variations on this approach.For example each processor thread can have its own queue, and the consumer threads can hash into these queues using the TopicPartition to ensure in-order consumption and simplify commit.
-    public class EventBusKafka : IEventBus
+    public class EventBusKafka : ISubscriptionEventBus
     {
         private readonly IDeserializer<string> valueDeserializer;
         private readonly IKafkaConsumerConfiguration configuration;
@@ -40,30 +39,30 @@ namespace EventBus.Kafka
         private List<string> subscribedTopics = new List<string> { "eventflow.domainevent.appointment-aggregate" };
 
         public IEnumerable<string> SubscribedTopics => subscribedTopics;
-        private Consumer<Ignore, string> Consumer { get; }
+
+        public IKafkaConsumerFactory ConsumerFactory { get; }
+        public Dictionary<string, object> Configuration { get; }
+
         private CancellationToken cancellationToken = new CancellationToken();
 
-        public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, ILifetimeScope autofac, IKafkaConsumerConfiguration configuration, IDeserializer<string> valueDeserializer)
+        public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, IKafkaConsumerFactory consumerFactory, ILifetimeScope autofac, IKafkaConsumerConfiguration configuration, IDeserializer<string> valueDeserializer)
         {
             this.subscriptionsManager = subscriptionsManager ?? new InMemoryEventBusSubscriptionsManager();
+            ConsumerFactory = consumerFactory;
             this.autofac = autofac;
             this.configuration = configuration;
             this.valueDeserializer = valueDeserializer;
+            Configuration = configuration.Configuration;
             valueDeserializer.Configure(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(StringDeserializer.KeyEncodingConfigParam, configuration.Encoding.HeaderName) }, true);
-            Consumer = new Consumer<Ignore, string>(configuration.Configuration, null, valueDeserializer);
-            Consumer.Subscribe(SubscribedTopics);
-            Task.Factory.StartNew(CreateConsumer, cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            CreateOneConsumerPerTopic();
         }
 
-        //todo do i need publish? publishing through eventflow...
-        public void Publish(IntegrationEvent @event) {
-            throw new NotImplementedException();
-         }
+
 
         public void SubscribeDynamic<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler
         {
-            //DoInternalSubscription(eventName);
+
             subscriptionsManager.AddDynamicSubscription<TH>(eventName);
         }
 
@@ -72,29 +71,10 @@ namespace EventBus.Kafka
             where TH : IIntegrationEventHandler<T>
         {
             var eventName = subscriptionsManager.GetEventKey<T>();
-            //DoInternalSubscription(eventName);
+
             subscriptionsManager.AddSubscription<T, TH>();
         }
 
-        //todo do i need internal subscription? subscription through eventflow...
-        private void DoInternalSubscription(string eventName)
-        {
-            //var containsKey = subscriptionsManager.HasSubscriptionsForEvent(eventName);
-            //if (!containsKey)
-            //{
-            //    if (!_persistentConnection.IsConnected)
-            //    {
-            //        _persistentConnection.TryConnect();
-            //    }
-
-            //    using (var channel = _persistentConnection.CreateModel())
-            //    {
-            //        channel.QueueBind(queue: _queueName,
-            //                          exchange: BROKER_NAME,
-            //                          routingKey: eventName);
-            //    }
-            //}
-        }
 
         public void Unsubscribe<T, TH>()
             where TH : IIntegrationEventHandler<T>
@@ -109,24 +89,43 @@ namespace EventBus.Kafka
             subscriptionsManager.RemoveDynamicSubscription<TH>(eventName);
         }
 
-        public void AddTopicToSubscribeTo(string topicName)
+        public void AddTopicToSubscribeTo(string topicName, CancellationToken cancelToken = default(CancellationToken))
         {
             subscribedTopics.Add(topicName);
-            Consumer.Subscribe(subscribedTopics);
+            Task.Factory.StartNew(async () => await ConsumerAction(topicName), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+
         }
 
-        private void CreateConsumer()
+        private async Task Consume(Consumer<Ignore, string> consumer)
         {
-            using (Consumer)
+            while (true)
             {
-                while (true)
+                if (consumer.Consume(out ConsumerRecord<Ignore, string> record, TimeSpan.FromSeconds(1)))
                 {
-                    if (Consumer.Consume(out ConsumerRecord<Ignore, string> record, TimeSpan.FromSeconds(1)))
-                    {
-                        var serObject = JsonConvert.DeserializeObject<KafkaEvent>(record.Message.Value);
-                        ProcessEventAsync(serObject.Metadata.EventName, record.Message.Value);
-                    }
+                    var serObject = JsonConvert.DeserializeObject<KafkaEvent>(record.Message.Value);
+                    await ProcessEventAsync(serObject.Metadata.EventName, record.Message.Value);
                 }
+            }
+
+        }
+
+        private void CreateOneConsumerPerTopic()
+        {
+
+            foreach (string topic in subscribedTopics)
+            {
+
+                Task.Factory.StartNew(async () => await ConsumerAction(topic), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+
+            }
+
+        }
+        async Task ConsumerAction(string topic)
+        {
+            using (var consumer = ConsumerFactory.CreateConsumer(Configuration, valueDeserializer))
+            {
+                consumer.Subscribe(topic);
+                await Consume(consumer);
             }
         }
 
@@ -156,5 +155,7 @@ namespace EventBus.Kafka
                 }
             }
         }
+
+
     }
 }

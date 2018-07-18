@@ -1,6 +1,8 @@
 ﻿using AppointmentApi;
+using AppointmentApi.Models.Appointment.Integration;
 using AppointmentApi.AppointmentModel.ValueObjects;
 using Autofac;
+using EventBus.Abstractions;
 using EventFlow;
 using EventFlow.Autofac.Extensions;
 using EventFlow.Extensions;
@@ -16,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization;
 using SchedulingApi.Controllers;
 using System.Reflection;
+using EventBus.Kafka;
 
 namespace SchedulingApi
 {
@@ -42,6 +45,23 @@ namespace SchedulingApi
                 options.ApiName = "appointment";
                 
             });
+
+            services.AddSingleton<IEventBus, EventBusKafka>();
+            // services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
+            //     {
+            //         var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
+            //         var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
+            //         var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
+            //         var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
+
+            //         var retryCount = 5;
+            //         if (!string.IsNullOrEmpty(Configuration["EventBusRetryCount"]))
+            //         {
+            //             retryCount = int.Parse(Configuration["EventBusRetryCount"]);
+            //         }
+
+            //         return new EventBus.Kafka(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
+            //     });
 
             services.AddSwaggerDocumentation(Configuration);
         }
@@ -75,6 +95,8 @@ namespace SchedulingApi
             });
 
             app.UseSwaggerDocumentation();
+
+            ConfigureEventBus(app);
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -104,15 +126,26 @@ namespace SchedulingApi
               .ConfigureMongoDb(mongoDbSettings.ConnectionString, mongoDbSettings.Database);
         }
 
+        private void ConfigureEventBus(IApplicationBuilder app)
+        {
+            IEventBus eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<IntegrationEventTest, IntegrationTestEventHandler>();
+            
+
+            
+        }
+
+
+
         private static void BsonMapping()
         {
             BsonClassMap.RegisterClassMap<AppointmentId>(cm =>
             {
                 cm.MapCreator(x => new AppointmentId(x.Value));
             });
-            BsonClassMap.RegisterClassMap<Location>(cm =>
+            BsonClassMap.RegisterClassMap<AppointmentApi.AppointmentModel.ValueObjects.Location>(cm =>
             {
-                cm.MapCreator(x => new Location(x.Value));
+                cm.MapCreator(x => new AppointmentApi.AppointmentModel.ValueObjects.Location(x.Value));
             });
             BsonClassMap.RegisterClassMap<Schedule>(cm =>
             {

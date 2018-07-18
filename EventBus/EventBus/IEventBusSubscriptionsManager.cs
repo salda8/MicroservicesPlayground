@@ -1,10 +1,10 @@
-﻿using MicroservicesPlayground.Abstractions;
-using MicroservicesPlayground.Events;
+﻿using EventBus.Abstractions;
+using EventBus.Events;
 using System;
 using System.Collections.Generic;
-using static MicroservicesPlayground.InMemoryEventBusSubscriptionsManager;
+using static EventBus.InMemoryEventBusSubscriptionsManager;
 
-namespace MicroservicesPlayground
+namespace EventBus
 {
     public interface IEventBusSubscriptionsManager
     {

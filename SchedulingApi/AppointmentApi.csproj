@@ -45,6 +45,8 @@
     <ProjectReference Include="..\..\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj" />
     <ProjectReference Include="..\..\EventFlowKafka\EventFlow.Kafka\EventFlow.Kafka.csproj" />
     <ProjectReference Include="..\..\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj" />
+    <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
+    <ProjectReference Include="..\EventBus\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>

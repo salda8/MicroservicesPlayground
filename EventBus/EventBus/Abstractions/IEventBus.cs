@@ -1,24 +1,15 @@
-﻿using MicroservicesPlayground.Events;
+﻿using EventBus.Events;
 using System;
 
-namespace MicroservicesPlayground.Abstractions
+namespace EventBus.Abstractions
 {
-    public interface IEventBus
+    public interface IEventBus : ISubscriptionEventBus,IPublishEventBus
     {
-        void Publish(IntegrationEvent @event);
+             
+    }
 
-        void Subscribe<T, TH>()
-            where T : IntegrationEvent
-            where TH : IIntegrationEventHandler<T>;
-
-        void SubscribeDynamic<TH>(string eventName)
-            where TH : IDynamicIntegrationEventHandler;
-
-        void UnsubscribeDynamic<TH>(string eventName)
-            where TH : IDynamicIntegrationEventHandler;
-
-        void Unsubscribe<T, TH>()
-            where TH : IIntegrationEventHandler<T>
-            where T : IntegrationEvent;
+    public interface IPublishEventBus
+    {
+         void Publish(IntegrationEvent @event);
     }
 }

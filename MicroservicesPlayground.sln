@@ -44,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		ControllerApi\MyTemplate.vstemplate = ControllerApi\MyTemplate.vstemplate
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBusKafka", "EventBusKafka\EventBusKafka.csproj", "{274CEC8C-2F43-4460-BD11-BD8D52F05864}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Kafka", "EventBusKafka\EventBus.Kafka.csproj", "{274CEC8C-2F43-4460-BD11-BD8D52F05864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

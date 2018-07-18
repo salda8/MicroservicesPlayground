@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization;
 using SchedulingApi.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
+using EventBus.Kafka;
 using System;
 using System.Reflection;
 
@@ -42,6 +43,8 @@ namespace SchedulingApi
             builder.RegisterInstance(newStrategy);
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>
             builder.Populate(new ServiceCollection());
+
+            ServicesRegistration.Register(builder);
             
         }
     }
