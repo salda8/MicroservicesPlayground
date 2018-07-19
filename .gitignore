@@ -11,7 +11,7 @@
 
 paket.exe
 packet-files/
-packet.lock
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

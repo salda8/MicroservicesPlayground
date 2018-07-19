@@ -1,0 +1,26 @@
+storage: none
+source https://www.nuget.org/api/v2
+nuget Autofac.Extensions.DependencyInjection
+clitool BundlerMinifier.Core
+nuget Confluent.Kafka prerelease
+nuget EventFlow.Autofac prerelease
+nuget IdentityServer4.AccessTokenValidation
+nuget IdentityServer4.Contrib.MongoDB
+nuget Microsoft.AspNetCore.App
+nuget Microsoft.VisualStudio.Web.CodeGeneration.Design
+nuget Sendgrid
+nuget Serilog.AspNetCore
+nuget Serilog.Enrichers.Environment
+nuget Serilog.Enrichers.Process
+nuget Serilog.Enrichers.Thread
+nuget Serilog.Formatting.Compact
+nuget Serilog.Settings.Configuration
+nuget Serilog.Sinks.Async
+nuget Serilog.Sinks.Console
+nuget Serilog.Sinks.MongoDB
+nuget Serilog.Sinks.RollingFile
+nuget Serilog.Sinks.RollingFileAlternate
+nuget Serilog.Sinks.Trace
+nuget Swashbuckle.AspNetCore.SwaggerGen
+nuget Swashbuckle.AspNetCore.SwaggerUI
+nuget Twilio
