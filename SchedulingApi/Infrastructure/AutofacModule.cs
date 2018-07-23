@@ -28,6 +28,9 @@ using System.Reflection;
 using EventBus;
 using EventBus.Abstractions;
 using AppointmentApi.Models.Appointment.Integration;
+using EventFlow.Sagas;
+using AppointmentApi.Sagas;
+using EventFlow.Aggregates;
 
 namespace SchedulingApi
 {
@@ -44,6 +47,7 @@ namespace SchedulingApi
             builder.RegisterType<AppointmentService>().As<IAppointmentService>();
             builder.RegisterType<InMemoryEventBusSubscriptionsManager>().As<IEventBusSubscriptionsManager>();
             builder.RegisterType<IntegrationTestEventHandler>().As<IIntegrationEventHandler>();
+            builder.RegisterType<SagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>().As<ISagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>();
             
             ISnapshotStrategy newStrategy = SnapshotEveryFewVersionsStrategy.With(10);
             builder.RegisterInstance(newStrategy);

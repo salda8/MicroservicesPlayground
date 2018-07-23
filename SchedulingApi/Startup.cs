@@ -124,6 +124,7 @@ namespace SchedulingApi
               .UseMongoDbInsertOnlyReadModel<AppointmentInsertReadModel>()
               .UseMongoDbEventStore()
               .UseMongoDbSnapshotStore()
+              
               .PublishToKafka(KafkaConfiguration.With(kafkaUri))
               .UseLibLog(LibLogProviders.Serilog)
               .ConfigureMongoDb(mongoDbSettings.ConnectionString, mongoDbSettings.Database);

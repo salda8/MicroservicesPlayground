@@ -29,6 +29,8 @@ namespace AppointmentApi.Sagas
         public string Value { get; }
     }
 
+    
+
     internal class AppointmentSaga : AggregateSaga<AppointmentSaga, AppointmentSagaId, AppointmentSagaLocator>, ISagaIsStartedBy<AppointmentAggregate, AppointmentId, AppointmentBookedEvent>, ISagaHandles<AppointmentAggregate, AppointmentId, ScheduleSetEvent>
     {
         protected AppointmentSaga(AppointmentSagaId id) : base(id)
@@ -39,6 +41,8 @@ namespace AppointmentApi.Sagas
             throw new System.NotImplementedException();
         }
 
-        public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, ScheduleSetEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) => throw new System.NotImplementedException();
+        public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, ScheduleSetEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) {
+            domainEvent.
+        }
     }
 }

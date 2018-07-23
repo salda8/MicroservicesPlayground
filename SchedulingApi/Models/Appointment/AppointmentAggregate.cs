@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace SchedulingApi.Controllers
 {
-    public class AppointmentAggregate : SnapshotAggregateRoot<AppointmentAggregate, AppointmentId, AppointmentSnapshot>
+    public class AppointmentAggregate : SnapshotAggregateRoot<AppointmentAggregate, AppointmentId, AppointmentSnapshot>, IAggregateRoot<AppointmentId>
     {
         private readonly ISnapshotStore snapshotStore;
         private readonly IEventStore eventStore;
