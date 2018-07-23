@@ -20,7 +20,7 @@ namespace SchedulingApi.Controllers
             Schedule = schedule;
         }
 
-        public string Id { get; set; }
+
         public string Name { get; set; }
         public Location Location { get; }
         public Schedule Schedule { get; }

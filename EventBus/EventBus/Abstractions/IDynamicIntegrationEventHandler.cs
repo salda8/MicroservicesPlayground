@@ -1,10 +1,10 @@
-﻿using MicroservicesPlayground.Abstractions;
+﻿using EventBus.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroservicesPlayground.Abstractions
+namespace EventBus.Abstractions
 {
     public interface IDynamicIntegrationEventHandler
     {

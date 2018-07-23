@@ -1,17 +1,15 @@
-﻿using MicroservicesPlayground.Abstractions;
-using MicroservicesPlayground.Events;
+﻿using EventBus.Abstractions;
+using EventBus.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace MicroservicesPlayground
+namespace EventBus
 {
-    public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
+    public class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
     {
-
-
         private readonly Dictionary<string, List<SubscriptionInfo>> handlers;
         private readonly List<Type> eventTypes;
 
@@ -32,13 +30,18 @@ namespace MicroservicesPlayground
             DoAddSubscription(typeof(TH), eventName, isDynamic: true);
         }
 
-        public void AddSubscription<T, TH>()
+        public void AddSubscription<T, TH>(string eventName)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>
         {
-            var eventName = GetEventKey<T>();
-            DoAddSubscription(typeof(TH), eventName, isDynamic: false);
+
+            DoAddSubscription(typeof(TH), GetEventName<T>(eventName), isDynamic: false);
             eventTypes.Add(typeof(T));
+        }
+
+        public string GetEventName<T>(string eventName)
+        {
+            return string.IsNullOrWhiteSpace(eventName) ? GetEventKey<T>() : eventName;
         }
 
         private void DoAddSubscription(Type handlerType, string eventName, bool isDynamic)
@@ -73,13 +76,14 @@ namespace MicroservicesPlayground
         }
 
 
-        public void RemoveSubscription<T, TH>()
+        public void RemoveSubscription<T, TH>(string eventName)
             where TH : IIntegrationEventHandler<T>
             where T : IntegrationEvent
         {
-            var handlerToRemove = FindSubscriptionToRemove<T, TH>();
-            var eventName = GetEventKey<T>();
-            DoRemoveHandler(eventName, handlerToRemove);
+            var name = GetEventName<T>(eventName);
+            var handlerToRemove = FindSubscriptionToRemove<T, TH>(name);
+
+            DoRemoveHandler(name, handlerToRemove);
         }
 
 
@@ -98,14 +102,12 @@ namespace MicroservicesPlayground
                     }
                     RaiseOnEventRemoved(eventName);
                 }
-
             }
         }
 
         public IEnumerable<SubscriptionInfo> GetHandlersForEvent<T>() where T : IntegrationEvent
         {
-            var key = GetEventKey<T>();
-            return GetHandlersForEvent(key);
+            return GetHandlersForEvent(GetEventKey<T>());
         }
         public IEnumerable<SubscriptionInfo> GetHandlersForEvent(string eventName) => handlers[eventName];
 
@@ -126,11 +128,10 @@ namespace MicroservicesPlayground
         }
 
 
-        private SubscriptionInfo FindSubscriptionToRemove<T, TH>()
+        private SubscriptionInfo FindSubscriptionToRemove<T, TH>(string eventName)
              where T : IntegrationEvent
              where TH : IIntegrationEventHandler<T>
         {
-            var eventName = GetEventKey<T>();
             return DoFindSubscriptionToRemove(eventName, typeof(TH));
         }
 
@@ -147,14 +148,13 @@ namespace MicroservicesPlayground
 
         public bool HasSubscriptionsForEvent<T>() where T : IntegrationEvent
         {
-            var key = GetEventKey<T>();
-            return HasSubscriptionsForEvent(key);
+            return HasSubscriptionsForEvent(GetEventKey<T>());
         }
         public bool HasSubscriptionsForEvent(string eventName) => handlers.ContainsKey(eventName);
 
         public Type GetEventTypeByName(string eventName) => eventTypes.SingleOrDefault(t => t.Name == eventName);
 
-        public string GetEventKey<T>()
+        private string GetEventKey<T>()
         {
             return typeof(T).Name;
         }

@@ -35,9 +35,9 @@ namespace SchedulingApi.Controllers
         public override Task ExecuteAsync(AppointmentAggregate aggregate, AppointmentBookCommand command, CancellationToken cancellationToken)
         {
             var result = aggregate.BookAppointment(command.AggregateId.Value);
-            var commitedEvents = aggregate.CommitAsync(eventStore: eventStore, snapshotStore: snapshotStore, sourceId: command.SourceId, cancellationToken: cancellationToken).Result;
+            var committedEvents = aggregate.CommitAsync(eventStore: eventStore, snapshotStore: snapshotStore, sourceId: command.SourceId, cancellationToken: cancellationToken).Result;
 
-            domainEventPublisher.PublishAsync(commitedEvents, cancellationToken);
+            domainEventPublisher.PublishAsync(committedEvents, cancellationToken);
             // mongoDbInsert.UpdateAsync();
             return Task.FromResult(result);
         }

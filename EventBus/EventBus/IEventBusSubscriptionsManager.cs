@@ -1,10 +1,10 @@
-﻿using MicroservicesPlayground.Abstractions;
-using MicroservicesPlayground.Events;
+﻿using EventBus.Abstractions;
+using EventBus.Events;
 using System;
 using System.Collections.Generic;
-using static MicroservicesPlayground.InMemoryEventBusSubscriptionsManager;
+using static EventBus.InMemoryEventBusSubscriptionsManager;
 
-namespace MicroservicesPlayground
+namespace EventBus
 {
     public interface IEventBusSubscriptionsManager
     {
@@ -13,11 +13,11 @@ namespace MicroservicesPlayground
         void AddDynamicSubscription<TH>(string eventName)
            where TH : IDynamicIntegrationEventHandler;
 
-        void AddSubscription<T, TH>()
+        void AddSubscription<T, TH>(string eventName)
            where T : IntegrationEvent
            where TH : IIntegrationEventHandler<T>;
 
-        void RemoveSubscription<T, TH>()
+        void RemoveSubscription<T, TH>(string eventName)
              where TH : IIntegrationEventHandler<T>
              where T : IntegrationEvent;
         void RemoveDynamicSubscription<TH>(string eventName)
@@ -29,6 +29,8 @@ namespace MicroservicesPlayground
         void Clear();
         IEnumerable<SubscriptionInfo> GetHandlersForEvent<T>() where T : IntegrationEvent;
         IEnumerable<SubscriptionInfo> GetHandlersForEvent(string eventName);
-        string GetEventKey<T>();
+        //string GetEventKey<T>();
+
+        string GetEventName<T>(string eventName);
     }
 }

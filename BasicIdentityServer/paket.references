@@ -1,0 +1,16 @@
+IdentityServer4.Contrib.MongoDB
+Microsoft.AspNetCore.App
+Microsoft.VisualStudio.Web.CodeGeneration.Design
+Sendgrid
+Serilog.AspNetCore
+Serilog.Enrichers.Environment
+Serilog.Enrichers.Process
+Serilog.Enrichers.Thread
+Serilog.Formatting.Compact
+Serilog.Settings.Configuration
+Serilog.Sinks.Async
+Serilog.Sinks.Console
+Serilog.Sinks.MongoDB
+Serilog.Sinks.RollingFileAlternate
+Twilio
+BundlerMinifier.Core

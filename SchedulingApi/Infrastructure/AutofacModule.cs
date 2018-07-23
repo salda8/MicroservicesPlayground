@@ -22,8 +22,15 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization;
 using SchedulingApi.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
+using EventBus.Kafka;
 using System;
 using System.Reflection;
+using EventBus;
+using EventBus.Abstractions;
+using AppointmentApi.Models.Appointment.Integration;
+using EventFlow.Sagas;
+using AppointmentApi.Sagas;
+using EventFlow.Aggregates;
 
 namespace SchedulingApi
 {
@@ -38,10 +45,16 @@ namespace SchedulingApi
             builder.RegisterType<ExceptionHandlingMiddleware>();
             builder.RegisterType<MongoDatabaseFactory>().As<IMongoDatabaseFactory>();
             builder.RegisterType<AppointmentService>().As<IAppointmentService>();
+            builder.RegisterType<InMemoryEventBusSubscriptionsManager>().As<IEventBusSubscriptionsManager>();
+            builder.RegisterType<IntegrationTestEventHandler>().As<IIntegrationEventHandler>();
+            builder.RegisterType<SagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>().As<ISagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>();
+            
             ISnapshotStrategy newStrategy = SnapshotEveryFewVersionsStrategy.With(10);
             builder.RegisterInstance(newStrategy);
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>
             builder.Populate(new ServiceCollection());
+
+            ServicesRegistration.Register(builder);
             
         }
     }

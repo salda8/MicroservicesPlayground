@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{DAFC78CE-A7A0-4E39-8A7F-295329977335}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18F87DB8-EB3E-4AAB-9953-0DA9CAE11243}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentApi", "SchedulingApi\AppointmentApi.csproj", "{8284B25D-8F70-463D-872F-86DF30B430BC}"
@@ -22,8 +27,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "..\TestConsole\TestConsole.csproj", "{0C96722F-042D-4CED-825A-7AB3338306EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "EventBus\EventBus\EventBus.csproj", "{432E98EB-4BC6-44CE-9B22-06243587FDB9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBusKafka", "..\EventBusKafka\EventBusKafka.csproj", "{710C8E5A-68B4-4B07-83C4-EB374598FE4C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFlow.Kafka", "..\EventFlowKafka\EventFlow.Kafka\EventFlow.Kafka.csproj", "{79BE2B9F-A258-4DA3-88F4-DD8BB68851F2}"
 EndProject
@@ -45,6 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		ControllerApi\ApiController.cs = ControllerApi\ApiController.cs
 		ControllerApi\MyTemplate.vstemplate = ControllerApi\MyTemplate.vstemplate
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Kafka", "EventBusKafka\EventBus.Kafka.csproj", "{274CEC8C-2F43-4460-BD11-BD8D52F05864}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +77,6 @@ Global
 		{432E98EB-4BC6-44CE-9B22-06243587FDB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{432E98EB-4BC6-44CE-9B22-06243587FDB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{432E98EB-4BC6-44CE-9B22-06243587FDB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{710C8E5A-68B4-4B07-83C4-EB374598FE4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{710C8E5A-68B4-4B07-83C4-EB374598FE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{710C8E5A-68B4-4B07-83C4-EB374598FE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{710C8E5A-68B4-4B07-83C4-EB374598FE4C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79BE2B9F-A258-4DA3-88F4-DD8BB68851F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79BE2B9F-A258-4DA3-88F4-DD8BB68851F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79BE2B9F-A258-4DA3-88F4-DD8BB68851F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -96,16 +97,21 @@ Global
 		{A8BE1E6E-CECE-49BA-AC2B-6E34EEC1BE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8BE1E6E-CECE-49BA-AC2B-6E34EEC1BE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8BE1E6E-CECE-49BA-AC2B-6E34EEC1BE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274CEC8C-2F43-4460-BD11-BD8D52F05864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274CEC8C-2F43-4460-BD11-BD8D52F05864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274CEC8C-2F43-4460-BD11-BD8D52F05864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274CEC8C-2F43-4460-BD11-BD8D52F05864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{274CEC8C-2F43-4460-BD11-BD8D52F05864} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
 		{18F87DB8-EB3E-4AAB-9953-0DA9CAE11243} = {C87E8614-11B1-455F-B815-5C533647752B}
 		{8284B25D-8F70-463D-872F-86DF30B430BC} = {49E181F7-7780-4530-A993-6A75FAD9BA45}
 		{8FCB7790-4F39-4FBE-B3BE-C56AFD7E1EA1} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
 		{432E98EB-4BC6-44CE-9B22-06243587FDB9} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
-		{710C8E5A-68B4-4B07-83C4-EB374598FE4C} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
+		
 		{79BE2B9F-A258-4DA3-88F4-DD8BB68851F2} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
 		{C014FF18-5848-4642-87AC-2B6B4CD1CEDC} = {6EF8B235-066A-4338-81C1-1F5841CE9D0F}
 		{46FC0E45-EC82-4D52-9251-11ED0CE927D2} = {9EF4F635-ECDA-45C9-8C57-04B16593A261}
