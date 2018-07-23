@@ -38,11 +38,11 @@ namespace AppointmentApi.Sagas
         }
 
         public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, AppointmentBookedEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) {
-            throw new System.NotImplementedException();
+             return Task.FromResult(0);
         }
 
         public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, ScheduleSetEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) {
-            domainEvent.
+            return Task.FromResult(0);
         }
     }
 }
