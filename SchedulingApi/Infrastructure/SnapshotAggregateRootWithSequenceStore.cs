@@ -33,6 +33,7 @@ namespace AppointmentApi.Models
             this.snapshotPersistence = snapshotPersistence;
             this.eventStore = eventStore;
             this.snapshotStore = snapshotStore;
+            
         }
 
         /// <summary>
@@ -48,17 +49,17 @@ namespace AppointmentApi.Models
             {
                 throw new ArgumentNullException(nameof(aggregateEvent));
             }
-
-            var aggregateSequenceNumber = sequenceStore.GetNextSequence(this.Name.Value);
+            //Version = (int)sequenceStore.GetNextSequence(EventSequenceTableName);
+            var aggregateSequenceNumber  = Version+1;
 
             var eventId = EventId.NewDeterministic(
                 GuidFactories.Deterministic.Namespaces.Events,
-                $"{Id.Value}-v{sequenceStore.GetNextSequence(EventSequenceTableName)}");
+                $"{Id.Value}-v{aggregateSequenceNumber}");
             var now = DateTimeOffset.Now;
             var eventMetadata = new Metadata
             {
                 Timestamp = now,
-                AggregateSequenceNumber = (int)aggregateSequenceNumber,
+                AggregateSequenceNumber = (int)aggregateSequenceNumber, 
                 AggregateName = Name.Value,
                 AggregateId = Id.Value,
                 EventId = eventId

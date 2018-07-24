@@ -22,6 +22,9 @@ using EventBus.Kafka;
 using EventBus;
 using Confluent.Kafka.Serialization;
 using Microsoft.Extensions.Options;
+using Payments.Domain.Payments.ReadModels;
+using MongoDB.Bson.Serialization.Conventions;
+using EventFlow.MongoDB;
 
 namespace SchedulingApi
 {
@@ -122,6 +125,9 @@ namespace SchedulingApi
               .AddDefaults(Assembly.GetExecutingAssembly())
               .UseMongoDbReadModel<AppointmentReadModel>()
               .UseMongoDbInsertOnlyReadModel<AppointmentInsertReadModel>()
+              .UseMongoDbReadModel<PaymentDetailsReadModel>()
+              .UseMongoDbInsertOnlyReadModel<PaymentDetailsReadModel>()
+
               .UseMongoDbEventStore()
               .UseMongoDbSnapshotStore()
               
@@ -133,7 +139,7 @@ namespace SchedulingApi
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<ISubscriptionEventBus>();
-            eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>("LocationSet");
+            //eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>("LocationSet");
 
         }
 
@@ -141,18 +147,35 @@ namespace SchedulingApi
 
         private static void BsonMapping()
         {
+            BsonClassMapping.RegisterClassMaps();
+
             BsonClassMap.RegisterClassMap<AppointmentId>(cm =>
             {
+                //cm.AutoMap();
                 cm.MapCreator(x => new AppointmentId(x.Value));
             });
             BsonClassMap.RegisterClassMap<AppointmentApi.AppointmentModel.ValueObjects.Location>(cm =>
             {
+                //cm.AutoMap();
                 cm.MapCreator(x => new AppointmentApi.AppointmentModel.ValueObjects.Location(x.Value));
             });
             BsonClassMap.RegisterClassMap<Schedule>(cm =>
             {
+                //cm.AutoMap();
                 cm.MapCreator(x => new Schedule(x.Value));
             });
+            BsonClassMap.RegisterClassMap<CarService>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapCreator(cs=> new CarService(cs.Name, cs.Price));
+            });
+            BsonClassMap.RegisterClassMap<AppointmentInsertReadModel>(cm=>{
+                cm.AutoMap();
+            });
+
+            // var conventionPack = new ConventionPack { new IgnoreExtraElementsConvention(true) };
+            // ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
+
         }
     }
 }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace AppointmentApi.AppointmentModel.Events
 {
-    [EventVersion("ScheduleSet", 1)]
-    public class ScheduleSetEvent : AggregateEvent<AppointmentAggregate, AppointmentId>
+    [EventVersion("ProposedTimeSchedule", 1)]
+    public class ProposedTimeScheduledEvent : AggregateEvent<AppointmentAggregate, AppointmentId>
     {
-        public ScheduleSetEvent(Schedule schedule)
+        public ProposedTimeScheduledEvent(Schedule schedule)
         {
             Schedule = schedule;
         }

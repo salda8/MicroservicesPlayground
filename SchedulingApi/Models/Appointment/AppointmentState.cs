@@ -7,7 +7,7 @@ namespace SchedulingApi.Controllers
     public class AppointmentState : AggregateState<AppointmentAggregate, AppointmentId, AppointmentState>,
         IApply<AppointmentBookedEvent>,
         IApply<LocationSetEvent>,
-        IApply<ScheduleSetEvent>,
+        //IApply<ProposedTimeScheduledEvent>,
         IApply<AppointmentOrderCreatedEvent>,
         IApply<CarServiceSetEvent>
 
@@ -15,7 +15,7 @@ namespace SchedulingApi.Controllers
         public AppointmentOrder AppointmentOrder { get; private set; }
         public CarService CarService { get; set; }
         public Location Location { get; private set; }
-        public Schedule Schedule { get; private set; }
+        public Schedule Schedule { get;  set; }
         public AppointmentId Id { get; private set; }
 
         public void Apply(AppointmentBookedEvent aggregateEvent)
@@ -28,7 +28,7 @@ namespace SchedulingApi.Controllers
             Location = aggregateEvent.Location;
         }
 
-        public void Apply(ScheduleSetEvent aggregateEvent)
+        public void Apply(ProposedTimeScheduledEvent aggregateEvent)
         {
             Schedule = aggregateEvent.Schedule;
         }

@@ -1,48 +1,52 @@
-﻿using AppointmentApi.AppointmentModel.Events;
-using EventFlow.Aggregates;
-using EventFlow.Sagas;
-using EventFlow.Sagas.AggregateSagas;
-using SchedulingApi.Controllers;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace AppointmentApi.Sagas
+﻿// using EventFlow.Aggregates;
+// using EventFlow.Sagas;
+// using EventFlow.ValueObjects;
+// using SchedulingApi.Controllers;
+// using System;
+// using System.Threading;
+// using System.Threading.Tasks;
+ namespace AppointmentApi.Sagas
 {
-    public class AppointmentSagaLocator : ISagaLocator
-    {
-        public Task<ISagaId> LocateSagaAsync(IDomainEvent domainEvent, CancellationToken cancellationToken)
-        {
-            var appointmentId = domainEvent.Metadata["aggregate_id"];
-            var appointmentSagaId = new AppointmentSagaId($"appointmentSaga-{appointmentId}");
+//     public class AppointmentSagaLocator : BaseIdSagaLocator
+//     {
+//         public AppointmentSagaLocator() : base(id => new AppointmentSagaId($"{nameof(AppointmentSaga)}-{id}"))
+//         {
+//         }
 
-            return Task.FromResult<ISagaId>(appointmentSagaId);
-        }
-    }
+//         // public Task<ISagaId> LocateSagaAsync(IDomainEvent domainEvent, CancellationToken cancellationToken)
+//         // {
+//         //     var appointmentId = domainEvent.Metadata["aggregate_id"];
+//         //     var appointmentSagaId = new AppointmentSagaId($"appointmentSaga-{appointmentId}");
 
-    internal class AppointmentSagaId : ISagaId
-    {
-       public AppointmentSagaId(string id)
-        {
-            Value = id;
-        }
+//         //     return Task.FromResult<ISagaId>(appointmentSagaId);
+//         // }
+//     }
 
-        public string Value { get; }
-    }
+//     public class AppointmentSagaId : SingleValueObject<string>, ISagaId
+//     {
+//         public AppointmentSagaId(string id) : base(id)
+//         {
 
-    
+//         }
 
-    internal class AppointmentSaga : AggregateSaga<AppointmentSaga, AppointmentSagaId, AppointmentSagaLocator>, ISagaIsStartedBy<AppointmentAggregate, AppointmentId, AppointmentBookedEvent>, ISagaHandles<AppointmentAggregate, AppointmentId, ScheduleSetEvent>
-    {
-        protected AppointmentSaga(AppointmentSagaId id) : base(id)
-        {
-        }
 
-        public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, AppointmentBookedEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) {
-             return Task.FromResult(0);
-        }
+//     }
 
-        public Task HandleAsync(IDomainEvent<AppointmentAggregate, AppointmentId, ScheduleSetEvent> domainEvent, ISagaContext sagaContext, CancellationToken cancellationToken) {
-            return Task.FromResult(0);
-        }
-    }
-}
+//     public abstract class BaseIdSagaLocator : ISagaLocator
+//     {
+//         private readonly Func<string, ISagaId> sagaIdGenerator;
+//         protected const string MetadataIdKey = "aggregate_id";
+
+//         protected BaseIdSagaLocator(Func<string, ISagaId> sagaIdGenerator)
+//         {
+//             this.sagaIdGenerator = sagaIdGenerator;
+//             //MetadataKey = metadataKey;
+//         }
+
+//         public Task<ISagaId> LocateSagaAsync(IDomainEvent domainEvent, CancellationToken cancellationToken)
+//         {
+//             var id = domainEvent.Metadata[MetadataIdKey];
+//             return Task.FromResult(sagaIdGenerator(id));
+//         }
+//     }
+ }

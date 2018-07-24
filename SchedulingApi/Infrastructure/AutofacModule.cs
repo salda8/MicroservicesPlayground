@@ -31,6 +31,10 @@ using AppointmentApi.Models.Appointment.Integration;
 using EventFlow.Sagas;
 using AppointmentApi.Sagas;
 using EventFlow.Aggregates;
+using Payments.Application;
+using Payments.Domain.Payments.Providers;
+using Payments.Domain.Payments.Providers.Types;
+using EventFlow.ReadStores;
 
 namespace SchedulingApi
 {
@@ -47,8 +51,14 @@ namespace SchedulingApi
             builder.RegisterType<AppointmentService>().As<IAppointmentService>();
             builder.RegisterType<InMemoryEventBusSubscriptionsManager>().As<IEventBusSubscriptionsManager>();
             builder.RegisterType<IntegrationTestEventHandler>().As<IIntegrationEventHandler>();
-            builder.RegisterType<SagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>().As<ISagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>();
-            
+           // builder.RegisterType<SagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>().As<ISagaUpdater<AppointmentAggregate, AppointmentId, AppointmentBookedEvent, AppointmentSaga>>();
+            builder.RegisterType<OrdersApplicationService>().As<IOrdersApplicationService>();
+            builder.RegisterType<PaymentsApplicationService>().As<IPaymentsApplicationService>();
+            builder.RegisterType<PaymentProviderFactory>().As<IPaymentProviderFactory>();
+            builder.RegisterType<Payments.Domain.Payments.Providers.ConfigurationProvider>().As<Payments.Domain.Payments.Providers.IConfigurationProvider>();
+            builder.RegisterType<TestProvider1PaymentProvider>().As<IPaymentProvider>();
+            builder.RegisterType<ReadModelFactory<AppointmentReadModel>>().As<IReadModelFactory<AppointmentReadModel>>();
+            builder.RegisterType<ReadModelFactory<AppointmentInsertReadModel>>().As<IReadModelFactory<AppointmentInsertReadModel>>();
             ISnapshotStrategy newStrategy = SnapshotEveryFewVersionsStrategy.With(10);
             builder.RegisterInstance(newStrategy);
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>

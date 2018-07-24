@@ -23,6 +23,13 @@ namespace SchedulingApi.Controllers
     {
         private AppointmentState state = new AppointmentState();
         public Schedule Schedule => state.Schedule;
+
+        public void SetConfirmedSchedule(Schedule schedule)
+        {
+            state.Schedule = schedule;
+
+        }
+
         public Location Location => state.Location;
         public AppointmentOrder AppointmentOrder => state.AppointmentOrder;
         public CarService CarService => state.CarService;
@@ -61,9 +68,9 @@ namespace SchedulingApi.Controllers
             Emit(new LocationSetEvent(location));
         }
 
-        public void SetSchedule(Schedule schedule)
+        public void SetPropsedSchedule(Schedule schedule)
         {
-            Emit(new ScheduleSetEvent(schedule));
+            Emit(new ProposedTimeScheduledEvent(schedule));
         }
 
         protected override Task<AppointmentSnapshot> CreateSnapshotAsync(CancellationToken cancellationToken)

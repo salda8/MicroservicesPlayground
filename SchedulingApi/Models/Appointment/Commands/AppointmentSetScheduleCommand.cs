@@ -17,4 +17,15 @@ namespace AppointmentApi.AppointmentModel.Commands
 
         public Schedule Schedule { get; }
     }
+
+        public class AppointmentSetScheduleConfirmedCommand : Command<AppointmentAggregate, AppointmentId>
+    {
+
+        public AppointmentSetScheduleConfirmedCommand(Schedule schedule, AppointmentId id) : base(id)
+        {
+            Schedule = schedule;
+        }
+
+        public Schedule Schedule { get; }
+    }
 }
