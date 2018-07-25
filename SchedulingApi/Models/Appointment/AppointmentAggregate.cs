@@ -68,7 +68,7 @@ namespace SchedulingApi.Controllers
             Emit(new LocationSetEvent(location));
         }
 
-        public void SetPropsedSchedule(Schedule schedule)
+        public void SetProposedSchedule(Schedule schedule)
         {
             Emit(new ProposedTimeScheduledEvent(schedule));
         }
@@ -81,5 +81,9 @@ namespace SchedulingApi.Controllers
             return Task.FromResult(new AppointmentSnapshot(Schedule, Location));
         }
 
+        public void SetAppointmentAsCompleted()
+        {
+            Emit(new AppointmentCompletedEvent());
+        }
     }
 }

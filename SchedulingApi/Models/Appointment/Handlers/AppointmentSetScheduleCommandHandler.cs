@@ -9,7 +9,7 @@ namespace AppointmentApi.AppointmentModel.Commands
     {
         public override Task ExecuteAsync(AppointmentAggregate aggregate, AppointmentSetScheduleCommand command, CancellationToken cancellationToken)
         {
-            aggregate.SetPropsedSchedule(command.Schedule);
+            aggregate.SetProposedSchedule(command.Schedule);
             return Task.FromResult(0);
         }
     }

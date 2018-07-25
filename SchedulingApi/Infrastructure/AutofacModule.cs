@@ -35,6 +35,7 @@ using Payments.Application;
 using Payments.Domain.Payments.Providers;
 using Payments.Domain.Payments.Providers.Types;
 using EventFlow.ReadStores;
+using EventFlow.MongoDB.ReadStores;
 
 namespace SchedulingApi
 {
@@ -59,6 +60,7 @@ namespace SchedulingApi
             builder.RegisterType<TestProvider1PaymentProvider>().As<IPaymentProvider>();
             builder.RegisterType<ReadModelFactory<AppointmentReadModel>>().As<IReadModelFactory<AppointmentReadModel>>();
             builder.RegisterType<ReadModelFactory<AppointmentInsertReadModel>>().As<IReadModelFactory<AppointmentInsertReadModel>>();
+            builder.RegisterType<AggregateReadStoreManager<AppointmentAggregate, AppointmentId, MongoDbReadModelStore<AppointmentReadModel>, AppointmentReadModel>>();
             ISnapshotStrategy newStrategy = SnapshotEveryFewVersionsStrategy.With(10);
             builder.RegisterInstance(newStrategy);
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>
