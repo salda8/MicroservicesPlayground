@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace AppointmentApi.Sagas
 {
-    public class AppointmentSaga : AggregateSaga<AppointmentSaga, AppointmentSagaId, AppointmentSagaLocator>, ISagaHandles<OrderAggregate, OrderId, OrderPaymentCompleted> ISagaHandles<AppointmentAggregate, AppointmentId, AppointmentBookedEvent> ISagaIsStartedBy<AppointmentAggregate, AppointmentId, ProposedTimeScheduledEvent>, ISagaHandles<CapacityPlanningAggregate, CapacityPlanningId, ScheduleConfirmedEvent>
+    public class AppointmentSaga : AggregateSaga<AppointmentSaga, AppointmentSagaId, AppointmentSagaLocator>, ISagaHandles<OrderAggregate, OrderId, OrderPaymentCompleted>, ISagaHandles<AppointmentAggregate, AppointmentId, AppointmentBookedEvent> ,ISagaIsStartedBy<AppointmentAggregate, AppointmentId, ProposedTimeScheduledEvent>, ISagaHandles<CapacityPlanningAggregate, CapacityPlanningId, ScheduleConfirmedEvent>
     {
         private Schedule proposedTimeSchedule;
         private bool scheduleConfirmed;

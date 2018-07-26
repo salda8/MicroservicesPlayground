@@ -30,7 +30,7 @@ namespace EventBus
             DoAddSubscription(typeof(TH), eventName, isDynamic: true);
         }
 
-        public void AddSubscription<T, TH>(string eventName)
+        public void AddSubscription<T, TH>(string eventName=null)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>
         {
@@ -76,7 +76,7 @@ namespace EventBus
         }
 
 
-        public void RemoveSubscription<T, TH>(string eventName)
+        public void RemoveSubscription<T, TH>(string eventName = null)
             where TH : IIntegrationEventHandler<T>
             where T : IntegrationEvent
         {

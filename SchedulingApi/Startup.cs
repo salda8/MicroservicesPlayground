@@ -139,7 +139,7 @@ namespace SchedulingApi
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<ISubscriptionEventBus>();
-            //eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>("LocationSet");
+            eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>();
 
         }
 

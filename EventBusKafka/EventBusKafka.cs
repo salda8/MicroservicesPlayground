@@ -68,7 +68,7 @@ namespace EventBus.Kafka
             subscriptionsManager.AddDynamicSubscription<TH>(eventName);
         }
 
-        public void Subscribe<T, TH>(string eventName)
+        public void Subscribe<T, TH>(string eventName = null)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>
         {
@@ -77,7 +77,7 @@ namespace EventBus.Kafka
         }
 
 
-        public void Unsubscribe<T, TH>(string eventName)
+        public void Unsubscribe<T, TH>(string eventName = null)
             where TH : IIntegrationEventHandler<T>
             where T : IntegrationEvent
         {

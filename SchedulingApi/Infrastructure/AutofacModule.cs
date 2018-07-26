@@ -66,7 +66,7 @@ namespace SchedulingApi
           // builder.RegisterType<EventFlowOptionsSnapshotExtensions>
             builder.Populate(new ServiceCollection());
 
-            ServicesRegistration.Register(builder);
+            KafkaServicesRegistration.Register(builder);
             
         }
     }

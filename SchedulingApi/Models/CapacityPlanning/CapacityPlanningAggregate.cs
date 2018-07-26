@@ -16,9 +16,9 @@ namespace AppointmentApi.Models.CapacityPlanningModel
 {
     public class CapacityPlanningAggregate : SnapshotAggregateRootWithSequenceStore<CapacityPlanningAggregate, CapacityPlanningId, CapacityPlanningSnapshot>
     {
-        private CapacityPlanningState state;
+        private CapacityPlanningState state = new CapacityPlanningState();
 
-        protected CapacityPlanningAggregate(CapacityPlanningId id, ISnapshotPersistence snapshotPersistence, IMongoDbEventSequenceStore sequenceStore, ISnapshotStrategy snapshotStrategy, IEventStore eventStore, ISnapshotStore snapshotStore) : base(snapshotPersistence, sequenceStore, snapshotStrategy, eventStore, snapshotStore, id)
+        public CapacityPlanningAggregate(CapacityPlanningId id, ISnapshotPersistence snapshotPersistence, IMongoDbEventSequenceStore sequenceStore, ISnapshotStrategy snapshotStrategy, IEventStore eventStore, ISnapshotStore snapshotStore) : base(snapshotPersistence, sequenceStore, snapshotStrategy, eventStore, snapshotStore, id)
         {
             Register(state);
         }
@@ -69,6 +69,7 @@ namespace AppointmentApi.Models.CapacityPlanningModel
         }
     }
 
+[EventVersion("ScheduleConfirmedEvent", 1)]
     public class ScheduleConfirmedEvent : AggregateEvent<CapacityPlanningAggregate, CapacityPlanningId> {
         public bool Confirmed { get; set; }
     }
