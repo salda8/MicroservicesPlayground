@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "BasicIdentityServer/bower_components/bootstrap/package.json",
+        "BasicIdentityServer/bower_components/jquery-validation-unobtrusive/package.json",
+        "BasicIdentityServer/bower_components/jquery-validation/package.json"
+      ]
+    }
+  }
+}
