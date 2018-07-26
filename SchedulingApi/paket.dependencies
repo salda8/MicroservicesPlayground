@@ -28,3 +28,4 @@ nuget Swashbuckle.AspNetCore.Swagger
 nuget Swashbuckle.AspNetCore.SwaggerGen
 nuget Swashbuckle.AspNetCore.SwaggerUI
 nuget Confluent.Kafka
+nuget Automatonymous

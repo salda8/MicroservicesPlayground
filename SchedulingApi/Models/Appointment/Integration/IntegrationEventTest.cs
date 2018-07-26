@@ -11,14 +11,7 @@ namespace AppointmentApi.Models.Appointment.Integration
 {
     public class LocationSet : IntegrationEvent
     {
-        public LocationSet() : base(typeof(LocationSet).Name)
-        {
-            
-        }
-        public LocationSet(string name) : base(name)
-        {
-            
-        }
+ 
     }
 
     public class IntegrationTestEventHandler : IIntegrationEventHandler<LocationSet>

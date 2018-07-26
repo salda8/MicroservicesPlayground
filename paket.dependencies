@@ -1,6 +1,7 @@
 storage: none
 source https://www.nuget.org/api/v2
 nuget Autofac.Extensions.DependencyInjection
+nuget Automatonymous
 clitool BundlerMinifier.Core
 nuget Confluent.Kafka prerelease
 nuget EventFlow.Autofac prerelease

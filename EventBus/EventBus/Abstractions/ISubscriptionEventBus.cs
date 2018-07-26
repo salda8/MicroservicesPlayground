@@ -5,7 +5,7 @@ namespace EventBus.Abstractions
     public interface ISubscriptionEventBus
     {
 
-        void Subscribe<T, TH>(string eventName)
+        void Subscribe<T, TH>(string eventName=null)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>;
 
@@ -15,7 +15,7 @@ namespace EventBus.Abstractions
         void UnsubscribeDynamic<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler;
 
-        void Unsubscribe<T, TH>(string eventName)
+        void Unsubscribe<T, TH>(string eventName=null)
             where TH : IIntegrationEventHandler<T>
             where T : IntegrationEvent;
     }
