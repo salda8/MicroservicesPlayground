@@ -54,8 +54,8 @@ namespace SettingsApi.Repository
         public async Task<bool> UpdateFieldsAsync<TDocument>(string id, Dictionary<string, object> updates) where TDocument : IDocument
         {
             UpdateDefinition<TDocument> updateDefinition = BuildUpdateDefinition(ConvertToFieldDefinitions<TDocument>(updates));
-            var document = await GetByIdAsync<TDocument, string>(id).ConfigureAwait(false);
-            return await base.UpdateOneAsync(document, updateDefinition).ConfigureAwait(false);
+            var document = await GetByIdAsync<TDocument, string>(id);
+            return await base.UpdateOneAsync(document, updateDefinition);
         }
 
         public Task<bool> ReplaceDocumentAsync<TDocument>(TDocument modifiedDocument) where TDocument : IDocument

@@ -30,7 +30,7 @@ namespace Payments.Domain.Payments.Queries
 
         public async Task<PaymentDetailsReadModel> ExecuteQueryAsync(GetPaymentDetailsQuery query, CancellationToken cancellationToken)
         {
-            var result = await readStore.FindAsync(x => x.OrderId == query.OrderId).ConfigureAwait(false);
+            var result = await readStore.FindAsync(x => x.OrderId == query.OrderId);
             return result.Current.SingleOrDefault();
         }
     }

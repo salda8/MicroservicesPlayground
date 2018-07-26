@@ -64,7 +64,7 @@ namespace Payments.Application
         public async Task<PaymentDetailsReadModel> GetDetailsOrThrowIfPaymentDoesNotExists(Guid orderId)
         {
             var paymentDetails = await _queryProcessor.ProcessAsync(new GetPaymentDetailsQuery(orderId), CancellationToken.None)
-                .ConfigureAwait(false);
+                ;
             if (paymentDetails == null)
             {
                 throw new InvalidOperationException($"Payment for order id: {orderId} does not exists!");

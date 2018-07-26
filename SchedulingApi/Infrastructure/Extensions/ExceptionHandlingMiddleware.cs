@@ -18,7 +18,7 @@ namespace AppointmentApi
         {
             try
             {
-                await next(context).ConfigureAwait(false);
+                await next(context);
             }
             catch (Exception ex)
             {

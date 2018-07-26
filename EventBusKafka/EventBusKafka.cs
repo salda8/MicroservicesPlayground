@@ -146,7 +146,7 @@ namespace EventBus.Kafka
                         {
                             var handler = scope.ResolveOptional(subscription.HandlerType) as IDynamicIntegrationEventHandler;
                             dynamic eventData = JObject.Parse(message);
-                            await handler.Handle(eventData).ConfigureAwait(false);
+                            await handler.Handle(eventData);
                         }
                         else
                         {

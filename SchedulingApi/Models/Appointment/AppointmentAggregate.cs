@@ -37,7 +37,7 @@ namespace SchedulingApi.Controllers
         {
             var spec = new AppointmentSpecification();
             //spec.ThrowDomainErrorIfNotSatisifiedBy(this);
-            //await base.LoadAsync(eventStore, snapshotStore, CancellationToken.None).ConfigureAwait(false);
+            //await base.LoadAsync(eventStore, snapshotStore, CancellationToken.None);
             Emit(new AppointmentBookedEvent(AppointmentOrder, Location, Schedule, CarService));
 
             //this.eventFactory.Create(new AppointmentBookedEvent(AppointmentOrder, Location, Schedule),)

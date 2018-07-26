@@ -34,7 +34,7 @@ namespace $rootnamespace$
         [HttpGet]
         public async Task<IActionResult> Query()
         {
-            return Ok(await genericRepository.GetAllAsync<$safeitemname$>(_ => true).ConfigureAwait(false));
+            return Ok(await genericRepository.GetAllAsync<$safeitemname$>(_ => true));
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace $rootnamespace$
         [HttpGet("{id}")]
         public async Task<IActionResult> Find(Guid id)
         {
-            var record = await genericRepository.GetByIdAsync<$safeitemname$>(id).ConfigureAwait(false);
+            var record = await genericRepository.GetByIdAsync<$safeitemname$>(id);
             if (record == null)
                 return NotFound();
 
@@ -61,7 +61,7 @@ namespace $rootnamespace$
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] $safeitemname$ record)
         {
-            await genericRepository.AddOneAsync(record).ConfigureAwait(false);
+            await genericRepository.AddOneAsync(record);
 
             // This approach assumes you will be passing a valid action name to the controller.
             return CreatedAtAction(createdAtActionName, new { id = record.Id }, record);
@@ -80,7 +80,7 @@ namespace $rootnamespace$
             if (id != record.Id)
                 return BadRequest();
             
-            var rec = await genericRepository.ReplaceOneAndGetAsync<$safeitemname$>(id, record).ConfigureAwait(false);
+            var rec = await genericRepository.ReplaceOneAndGetAsync<$safeitemname$>(id, record);
 
             return Ok(rec);
         }
@@ -95,7 +95,7 @@ namespace $rootnamespace$
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateFields(String id, [FromBody]Dictionary<string, object> updates)
         {
-            return Ok(await genericRepository.UpdateFields<$safeitemname$>(id, updates).ConfigureAwait(false));
+            return Ok(await genericRepository.UpdateFields<$safeitemname$>(id, updates));
            
         }
 
@@ -110,7 +110,7 @@ namespace $rootnamespace$
         {
             var document = genericRepository.GetById<$safeitemname$>(id);
 
-            if (await genericRepository.DeleteOneAsync(document).ConfigureAwait(false) == 0)
+            if (await genericRepository.DeleteOneAsync(document) == 0)
                 return BadRequest();
 
             return NoContent();

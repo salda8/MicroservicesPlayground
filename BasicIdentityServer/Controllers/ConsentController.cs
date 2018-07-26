@@ -40,7 +40,7 @@ namespace BasicIdentityServer.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string returnUrl)
         {
-            var vm = await BuildViewModelAsync(returnUrl).ConfigureAwait(false);
+            var vm = await BuildViewModelAsync(returnUrl);
             ViewData["ReturnUrl"] = returnUrl;
             if (vm != null)
             {
@@ -60,7 +60,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> Index(ConsentInputModel model)
         {
             // parse the return URL back to an AuthorizeRequest object
-            var request = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl).ConfigureAwait(false);
+            var request = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
             ConsentResponse response = null;
 
             // user clicked 'no' - send back the standard 'access_denied' response
@@ -93,13 +93,13 @@ namespace BasicIdentityServer.Controllers
             if (response != null)
             {
                 // communicate outcome of consent back to identityserver
-                await _interaction.GrantConsentAsync(request, response).ConfigureAwait(false);
+                await _interaction.GrantConsentAsync(request, response);
 
                 // redirect back to authorization endpoint
                 return Redirect(model.ReturnUrl);
             }
 
-            var vm = await BuildViewModelAsync(model.ReturnUrl, model).ConfigureAwait(false);
+            var vm = await BuildViewModelAsync(model.ReturnUrl, model);
             if (vm != null)
             {
                 return View(nameof(Index), vm);
@@ -110,13 +110,13 @@ namespace BasicIdentityServer.Controllers
 
         async Task<ConsentViewModel> BuildViewModelAsync(string returnUrl, ConsentInputModel model = null)
         {
-            var request = await _interaction.GetAuthorizationContextAsync(returnUrl).ConfigureAwait(false);
+            var request = await _interaction.GetAuthorizationContextAsync(returnUrl);
             if (request != null)
             {
-                var client = await _clientStore.FindEnabledClientByIdAsync(request.ClientId).ConfigureAwait(false);
+                var client = await _clientStore.FindEnabledClientByIdAsync(request.ClientId);
                 if (client != null)
                 {
-                    var resources = await _resourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested).ConfigureAwait(false);
+                    var resources = await _resourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
                     if (resources != null && (resources.IdentityResources.Any() || resources.ApiResources.Any()))
                     {
                         return new ConsentViewModel(model, returnUrl, request, client, resources);

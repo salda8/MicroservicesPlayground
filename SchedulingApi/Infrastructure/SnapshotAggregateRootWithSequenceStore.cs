@@ -86,20 +86,20 @@ namespace AppointmentApi.Models
         /// <returns></returns>
         public override async Task<IReadOnlyCollection<IDomainEvent>> CommitAsync(IEventStore eventStore, ISnapshotStore snapshotStore, ISourceId sourceId, CancellationToken cancellationToken)
         {
-            var domainEvents = await CommitDomainEventAsync(eventStore, sourceId, cancellationToken).ConfigureAwait(false);
+            var domainEvents = await CommitDomainEventAsync(eventStore, sourceId, cancellationToken);
 
-            if (!await SnapshotStrategy.ShouldCreateSnapshotAsync(this, cancellationToken).ConfigureAwait(false))
+            if (!await SnapshotStrategy.ShouldCreateSnapshotAsync(this, cancellationToken))
             {
                 return domainEvents;
             }
 
 
-            var snapshotContainer = await CreateSnapshotContainerAsync(cancellationToken).ConfigureAwait(false);
+            var snapshotContainer = await CreateSnapshotContainerAsync(cancellationToken);
             await snapshotStore.StoreSnapshotAsync<TAggregate, TIdentity, TSnapshot>(
                 Id,
                 snapshotContainer,
                 cancellationToken)
-                .ConfigureAwait(false);
+                ;
 
             return domainEvents;
         }
@@ -118,7 +118,7 @@ namespace AppointmentApi.Models
                 uncommittedEvents,
                 sourceId,
                 cancellationToken)
-                .ConfigureAwait(false);
+                ;
             uncommittedEvents.Clear();
             return domainEvents;
         }

@@ -28,7 +28,7 @@ namespace BasicIdentityServer.Services
 
             var subjectId = subject.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject).Value;
 
-            var user = await userManager.FindByIdAsync(subjectId).ConfigureAwait(false);
+            var user = await userManager.FindByIdAsync(subjectId);
             if (user == null)
                 throw new ArgumentException("Invalid subject identifier");
 
@@ -41,7 +41,7 @@ namespace BasicIdentityServer.Services
             var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
 
             var subjectId = subject.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject)?.Value;
-            var user = await userManager.FindByIdAsync(subjectId).ConfigureAwait(false);
+            var user = await userManager.FindByIdAsync(subjectId);
 
             context.IsActive = false;
 
@@ -52,7 +52,7 @@ namespace BasicIdentityServer.Services
                     var security_stamp = subject.Claims.Where(c => c.Type =="security_stamp").Select(c => c.Value).SingleOrDefault();
                     if (security_stamp != null)
                     {
-                        var db_security_stamp = await userManager.GetSecurityStampAsync(user).ConfigureAwait(false);
+                        var db_security_stamp = await userManager.GetSecurityStampAsync(user);
                         if (db_security_stamp != security_stamp)
                             return;
                     }

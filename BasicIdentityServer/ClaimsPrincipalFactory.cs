@@ -16,7 +16,7 @@ namespace BasicIdentityServer
 
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(MongoIdentityUser user)
         {
-            var identity = await base.GenerateClaimsAsync(user).ConfigureAwait(false);
+            var identity = await base.GenerateClaimsAsync(user);
 
             if (!identity.HasClaim(x => x.Type == JwtClaimTypes.Subject))
             {

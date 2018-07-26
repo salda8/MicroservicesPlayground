@@ -34,7 +34,7 @@ namespace SettingsApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Query()
         {
-            return Ok(await genericRepository.GetAllAsync<EventFlowEvent>(_ => true).ConfigureAwait(false));
+            return Ok(await genericRepository.GetAllAsync<EventFlowEvent>(_ => true));
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace SettingsApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Find(Guid id)
         {
-            var record = await genericRepository.GetByIdAsync<EventFlowEvent>(id).ConfigureAwait(false);
+            var record = await genericRepository.GetByIdAsync<EventFlowEvent>(id);
             if (record == null)
                 return NotFound();
 
@@ -61,7 +61,7 @@ namespace SettingsApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody] EventFlowEvent record)
         {
-            await genericRepository.AddOneAsync(record).ConfigureAwait(false);
+            await genericRepository.AddOneAsync(record);
 
             // This approach assumes you will be passing a valid action name to the controller.
             return CreatedAtAction(createdAtActionName, new { id = record.Id }, record);
@@ -80,7 +80,7 @@ namespace SettingsApi.Controllers
             if (id != record.Id)
                 return BadRequest();
             
-            var rec = await genericRepository.ReplaceOneAndGetAsync<EventFlowEvent>(id, record).ConfigureAwait(false);
+            var rec = await genericRepository.ReplaceOneAndGetAsync<EventFlowEvent>(id, record);
 
             return Ok(rec);
         }
@@ -95,7 +95,7 @@ namespace SettingsApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateFields(String id, [FromBody]Dictionary<string, object> updates)
         {
-            return Ok(await genericRepository.UpdateFields<EventFlowEvent>(id, updates).ConfigureAwait(false));
+            return Ok(await genericRepository.UpdateFields<EventFlowEvent>(id, updates));
            
         }
 
@@ -110,7 +110,7 @@ namespace SettingsApi.Controllers
         {
             var document = genericRepository.GetById<EventFlowEvent>(id);
 
-            if (await genericRepository.DeleteOneAsync(document).ConfigureAwait(false) == 0)
+            if (await genericRepository.DeleteOneAsync(document) == 0)
                 return BadRequest();
 
             return NoContent();

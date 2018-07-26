@@ -18,9 +18,9 @@ namespace BasicIdentityServer
 
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
-            MongoIdentityUser user = await loginService.FindByUsername(context.UserName).ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.FindByUsername(context.UserName);
 
-            if (await loginService.ValidateCredentials(user, context.Password).ConfigureAwait(false))
+            if (await loginService.ValidateCredentials(user, context.Password))
             {
                 
                 context.Result = new GrantValidationResult(user.Id, OidcConstants.AuthenticationMethods.Password);

@@ -20,7 +20,7 @@ namespace AppointmentApi
         }
         public async Task<IReadOnlyCollection<Appointment>> ExecuteQueryAsync(GetAllAppointmentsQuery query, CancellationToken cancellationToken) {
 
-            IAsyncCursor<AppointmentReadModel> readModels = await readStore.FindAsync(appointmentReadModel => true).ConfigureAwait(false);
+            IAsyncCursor<AppointmentReadModel> readModels = await readStore.FindAsync(appointmentReadModel => true);
             return readModels.ToEnumerable().Select(appointmentReadModel => appointmentReadModel.ToAppointment()).ToList();
         }
     }

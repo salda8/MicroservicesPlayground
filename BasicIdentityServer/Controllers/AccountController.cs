@@ -41,7 +41,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
 
             if (user == null)
             {
@@ -64,7 +64,7 @@ namespace BasicIdentityServer.Controllers
                 return View(model);
             }
 
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 throw new Exception($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -72,7 +72,7 @@ namespace BasicIdentityServer.Controllers
 
             var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
 
             if (result.Succeeded)
             {
@@ -121,7 +121,7 @@ namespace BasicIdentityServer.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                Microsoft.AspNetCore.Identity.SignInResult result = await loginService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false).ConfigureAwait(false);
+                Microsoft.AspNetCore.Identity.SignInResult result = await loginService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -173,18 +173,18 @@ namespace BasicIdentityServer.Controllers
             {
                 var user = new MongoIdentityUser(model.Email, model.Email);
                 //user.AddClaim(new Claim(ClaimTypes.Role, "User", ClaimValueTypes.String));
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "user").ConfigureAwait(false);
+                    await _userManager.AddToRoleAsync(user, "user");
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>").ConfigureAwait(false);
-                    //await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
+                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //await loginService.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -201,7 +201,7 @@ namespace BasicIdentityServer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
-            await loginService.SignOutAsync().ConfigureAwait(false);
+            await loginService.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
@@ -232,18 +232,18 @@ namespace BasicIdentityServer.Controllers
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
-            ExternalLoginInfo info = await loginService.GetExternalLoginInfoAsync().ConfigureAwait(false);
+            ExternalLoginInfo info = await loginService.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 return RedirectToAction(nameof(Login));
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
                 // Update any authentication tokens if login succeeded
-                await loginService.UpdateExternalAuthenticationTokensAsync(info).ConfigureAwait(false);
+                await loginService.UpdateExternalAuthenticationTokensAsync(info);
 
                 _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
@@ -277,26 +277,26 @@ namespace BasicIdentityServer.Controllers
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                ExternalLoginInfo info = await loginService.GetExternalLoginInfoAsync().ConfigureAwait(false);
+                ExternalLoginInfo info = await loginService.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
                 }
                 var user = new MongoIdentityUser(model.Email, model.Email);
-                IdentityResult result = await _userManager.CreateAsync(user).ConfigureAwait(false);
+                IdentityResult result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    var addToRoleResult = await _userManager.AddToRoleAsync(user, "user").ConfigureAwait(false);
-                    await _userManager.ConfirmEmailAsync(user, await _userManager.GenerateEmailConfirmationTokenAsync(user).ConfigureAwait(false)).ConfigureAwait(false);
+                    var addToRoleResult = await _userManager.AddToRoleAsync(user, "user");
+                    await _userManager.ConfirmEmailAsync(user, await _userManager.GenerateEmailConfirmationTokenAsync(user));
                     //await loginService.SetEmailAsConfirmed(user);
-                    result = await _userManager.AddLoginAsync(user, info).ConfigureAwait(false);
+                    result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded && addToRoleResult.Succeeded)
                     {
-                        await loginService.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
+                        await loginService.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation(6, "User created an account using {Name} provider.", info.LoginProvider);
 
                         // Update any authentication tokens as well
-                        await loginService.UpdateExternalAuthenticationTokensAsync(info).ConfigureAwait(false);
+                        await loginService.UpdateExternalAuthenticationTokensAsync(info);
 
                         return RedirectToLocal(returnUrl);
                     }
@@ -317,12 +317,12 @@ namespace BasicIdentityServer.Controllers
             {
                 return View("Error");
             }
-            MongoIdentityUser user = await _userManager.FindByIdAsync(userId).ConfigureAwait(false);
+            MongoIdentityUser user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return View("Error");
             }
-            IdentityResult result = await _userManager.ConfirmEmailAsync(user, code).ConfigureAwait(false);
+            IdentityResult result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? nameof(ConfirmEmail) : "Error");
         }
 
@@ -344,8 +344,8 @@ namespace BasicIdentityServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                MongoIdentityUser user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user).ConfigureAwait(false)))
+                MongoIdentityUser user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View(nameof(ForgotPasswordConfirmation));
@@ -393,13 +393,13 @@ namespace BasicIdentityServer.Controllers
             {
                 return View(model);
             }
-            MongoIdentityUser user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
+            MongoIdentityUser user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
-            IdentityResult result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password).ConfigureAwait(false);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
@@ -423,12 +423,12 @@ namespace BasicIdentityServer.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl = null, bool rememberMe = false)
         {
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
             }
-            System.Collections.Generic.IList<string> userFactors = await _userManager.GetValidTwoFactorProvidersAsync(user).ConfigureAwait(false);
+            System.Collections.Generic.IList<string> userFactors = await _userManager.GetValidTwoFactorProvidersAsync(user);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -445,7 +445,7 @@ namespace BasicIdentityServer.Controllers
                 return View();
             }
 
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
@@ -457,7 +457,7 @@ namespace BasicIdentityServer.Controllers
             }
 
             // Generate the token and send it
-            var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider).ConfigureAwait(false);
+            var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider);
             if (string.IsNullOrWhiteSpace(code))
             {
                 return View("Error");
@@ -466,11 +466,11 @@ namespace BasicIdentityServer.Controllers
             var message = "Your security code is: " + code;
             if (model.SelectedProvider == "Email")
             {
-                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user).ConfigureAwait(false), "Security Code", message).ConfigureAwait(false);
+                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", message);
             }
             else if (model.SelectedProvider == "Phone")
             {
-                await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user).ConfigureAwait(false), message).ConfigureAwait(false);
+                await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
             }
 
             return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
@@ -483,7 +483,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
@@ -496,7 +496,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
             // Ensure the user has gone through the username & password screen first
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -517,7 +517,7 @@ namespace BasicIdentityServer.Controllers
                 return View(model);
             }
 
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
@@ -525,7 +525,7 @@ namespace BasicIdentityServer.Controllers
 
             var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
 
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(recoveryCode).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
 
             if (result.Succeeded)
             {
@@ -560,7 +560,7 @@ namespace BasicIdentityServer.Controllers
             // The following code protects for brute force attacks against the two factor codes.
             // If a user enters incorrect codes for a specified amount of time then the user account
             // will be locked out for a specified amount of time.
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
             if (result.Succeeded)
             {
                 return RedirectToLocal(model.ReturnUrl);
@@ -584,7 +584,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> VerifyAuthenticatorCode(bool rememberMe, string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
@@ -607,7 +607,7 @@ namespace BasicIdentityServer.Controllers
             // The following code protects for brute force attacks against the two factor codes.
             // If a user enters incorrect codes for a specified amount of time then the user account
             // will be locked out for a specified amount of time.
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(model.Code, model.RememberMe, model.RememberBrowser).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorAuthenticatorSignInAsync(model.Code, model.RememberMe, model.RememberBrowser);
             if (result.Succeeded)
             {
                 return RedirectToLocal(model.ReturnUrl);
@@ -631,7 +631,7 @@ namespace BasicIdentityServer.Controllers
         public async Task<IActionResult> UseRecoveryCode(string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
-            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync().ConfigureAwait(false);
+            MongoIdentityUser user = await loginService.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
@@ -651,7 +651,7 @@ namespace BasicIdentityServer.Controllers
                 return View(model);
             }
 
-            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(model.Code).ConfigureAwait(false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await loginService.TwoFactorRecoveryCodeSignInAsync(model.Code);
             if (result.Succeeded)
             {
                 return RedirectToLocal(model.ReturnUrl);
