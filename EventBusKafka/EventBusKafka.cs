@@ -8,7 +8,6 @@ using Confluent.Kafka.Serialization;
 using EventBus.Abstractions;
 using EventBus.Events;
 using EventFlow.Kafka;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -55,7 +54,7 @@ namespace EventBus.Kafka
             this.valueDeserializer = valueDeserializer;
             this.subscribedTopics = configuration.SubscribedTopics;
             Configuration = configuration.Configuration;
-            valueDeserializer.Configure(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>(StringDeserializer.KeyEncodingConfigParam, configuration.Encoding.HeaderName) }, true);
+            valueDeserializer.Configure(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("dotnet.string.serializer.encoding.key", configuration.Encoding.HeaderName) }, true);
             CreateOneConsumerPerTopic();
         }
 
@@ -101,15 +100,16 @@ namespace EventBus.Kafka
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                if (consumer.Consume(out ConsumerRecord<Ignore, string> record, TimeSpan.FromSeconds(1)))
-                {
-                    var serObject = JsonConvert.DeserializeObject<KafkaEvent>(record.Message.Value);
-                    await ProcessEventAsync(serObject.Metadata.EventName, record.Message.Value);
+                var consumerResult = consumer.Consume();
+                //if (consumerResult.)
+                //{
+                    var serObject = JsonConvert.DeserializeObject<KafkaEvent>(consumerResult.Message.Value);
+                    await ProcessEventAsync(serObject.Metadata.EventName, consumerResult.Message.Value);
                     if (cancellationToken.IsCancellationRequested)
                     {
                         break;
                     }
-                }
+                //}
             }
 
         }

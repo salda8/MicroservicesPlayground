@@ -1,2 +1,4 @@
 Autofac
 Confluent.Kafka
+EventFlow.Kafka
+NETStandard.Library
