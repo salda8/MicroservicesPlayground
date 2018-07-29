@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using EventBus.Kafka;
-using EventFlow.Kafka;
 
 namespace Ordering.SignalrHub
 {

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Confluent.Kafka;
 using Confluent.Kafka.Serialization;
-using EventBus.Abstractions;
-using EventBus.Events;
-using EventFlow.Kafka;
+using MicroservicesPlayground.EventBus;
+using MicroservicesPlayground.EventBus.Abstractions;
+using MicroservicesPlayground.EventBus.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

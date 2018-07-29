@@ -1,4 +1,4 @@
-using EventBus.Events;
+using MicroservicesPlayground.EventBus.Events;
 
 namespace Ordering.SignalrHub.IntegrationEvents.Events
 {

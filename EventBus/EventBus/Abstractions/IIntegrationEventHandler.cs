@@ -1,7 +1,7 @@
-﻿using EventBus.Events;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MicroservicesPlayground.EventBus.Events;
 
-namespace EventBus.Abstractions
+namespace MicroservicesPlayground.EventBus.Abstractions
 {
     public interface IIntegrationEventHandler<in TIntegrationEvent> : IIntegrationEventHandler 
         where TIntegrationEvent: IntegrationEvent

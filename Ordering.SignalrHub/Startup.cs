@@ -7,13 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Ordering.SignalrHub.AutofacModules;
-using EventBus;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using EventBus.Kafka;
 using Confluent.Kafka.Serialization;
+using MicroservicesPlayground.EventBus;
+using MicroservicesPlayground.EventBus.Abstractions;
 using Microsoft.Extensions.Options;
-using EventBus.Abstractions;
 using Ordering.SignalrHub.IntegrationEvents.Events;
 using Ordering.SignalrHub.IntegrationEvents.EventHandling;
 

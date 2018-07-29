@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using EventBus.Abstractions;
+using MicroservicesPlayground.EventBus.Abstractions;
 using Microsoft.AspNetCore.SignalR;
 using Ordering.SignalrHub.IntegrationEvents.Events;
 

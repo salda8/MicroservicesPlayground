@@ -1,12 +1,10 @@
-﻿using EventBus.Abstractions;
-using EventBus.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
+using MicroservicesPlayground.EventBus.Abstractions;
+using MicroservicesPlayground.EventBus.Events;
 
-namespace EventBus
+namespace MicroservicesPlayground.EventBus
 {
     public class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
     {

@@ -1,6 +1,4 @@
-using System;
 using Autofac;
-using EventFlow.Kafka;
 
 namespace EventBus.Kafka
 {

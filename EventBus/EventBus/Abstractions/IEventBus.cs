@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventBus.Abstractions
+﻿namespace MicroservicesPlayground.EventBus.Abstractions
 {
     public interface IEventBus : ISubscriptionEventBus,IPublishEventBus
     {
