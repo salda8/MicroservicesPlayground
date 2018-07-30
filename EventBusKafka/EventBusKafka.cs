@@ -9,6 +9,7 @@ using MicroservicesPlayground.EventBus.Abstractions;
 using MicroservicesPlayground.EventBus.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using EventFlow.Kafka;
 
 namespace EventBus.Kafka
 {

@@ -1,6 +1,7 @@
 storage: none
 source https://www.nuget.org/api/v2
 source https://www.myget.org/F/salda/api/v3/index.json
+nuget Dapper
 nuget Autofac.Extensions.DependencyInjection
 nuget Automatonymous
 clitool BundlerMinifier.Core
@@ -28,3 +29,6 @@ nuget Swashbuckle.AspNetCore.SwaggerUI
 nuget Twilio
 nuget EventFlow.Kafka
 nuget NETStandard.Library --version 2.0.3
+nuget EventFlow.MongoDB
+nuget EventFlow.RabbitMQ
+nuget Serilog.Sinks.Email
