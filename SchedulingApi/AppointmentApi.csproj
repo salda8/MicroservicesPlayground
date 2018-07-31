@@ -10,9 +10,11 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EventFlow.MongoDB\Source\EventFlow.MongoDB\EventFlow.MongoDB.csproj" />
-    <ProjectReference Include="..\..\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj" />
+    <ProjectReference Include="..\..\EventFlow.MongoDB\EventFlow.MongoDB\EventFlow.MongoDB.csproj" />
+   
     <ProjectReference Include="..\EventBus\EventBus\EventBus.csproj" />
+   
+    <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

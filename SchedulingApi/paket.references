@@ -1,6 +1,6 @@
-Autofac 
+Autofac
 Autofac.Extensions.DependencyInjection
-Dapper 
+Dapper
 EventFlow
 EventFlow.Kafka
 EventFlow.Autofac
@@ -8,8 +8,8 @@ EventFlow.MongoDB
 EventFlow.RabbitMQ
 IdentityServer4.AccessTokenValidation
 Microsoft.AspNetCore.App
-Microsoft.CSharp 
-Serilog 
+Microsoft.CSharp
+Serilog
 Serilog.AspNetCore
 Serilog.Enrichers.Environment
 Serilog.Enrichers.Process
@@ -28,3 +28,4 @@ Swashbuckle.AspNetCore.SwaggerGen
 Swashbuckle.AspNetCore.SwaggerUI
 Confluent.Kafka
 Automatonymous
+Identity.MongoDb

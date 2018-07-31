@@ -8,8 +8,5 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\mongodb-generic-repository\MongoDbGenericRepository\MongoDbGenericRepository.csproj" />
-  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

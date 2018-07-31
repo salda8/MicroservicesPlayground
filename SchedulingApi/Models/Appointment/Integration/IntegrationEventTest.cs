@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using EventBus.Abstractions;
+using MicroservicesPlayground.EventBus.Abstractions;
 using AppointmentApi.Models.Appointment;
-using EventBus.Events;
+using MicroservicesPlayground.EventBus.Events;
 using EventFlow;
 using SchedulingApi.Controllers;
 using System.Threading;

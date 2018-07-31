@@ -26,7 +26,6 @@ using EventBus.Kafka;
 using System;
 using System.Reflection;
 using EventBus;
-using EventBus.Abstractions;
 using AppointmentApi.Models.Appointment.Integration;
 using EventFlow.Sagas;
 using AppointmentApi.Sagas;
@@ -36,6 +35,8 @@ using Payments.Domain.Payments.Providers;
 using Payments.Domain.Payments.Providers.Types;
 using EventFlow.ReadStores;
 using EventFlow.MongoDB.ReadStores;
+using MicroservicesPlayground.EventBus;
+using MicroservicesPlayground.EventBus.Abstractions;
 
 namespace SchedulingApi
 {

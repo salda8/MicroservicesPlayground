@@ -2,7 +2,7 @@
 using AppointmentApi.Models.Appointment.Integration;
 using AppointmentApi.AppointmentModel.ValueObjects;
 using Autofac;
-using EventBus.Abstractions;
+using MicroservicesPlayground.EventBus.Abstractions;
 using EventFlow;
 using EventFlow.Autofac.Extensions;
 using EventFlow.Extensions;
@@ -25,6 +25,9 @@ using Microsoft.Extensions.Options;
 using Payments.Domain.Payments.ReadModels;
 using MongoDB.Bson.Serialization.Conventions;
 using EventFlow.MongoDB;
+using EventFlow.Kafka.Configuration;
+using MicroservicesPlayground.EventBus;
+using EventFlow.Kafka.Extensions;
 
 namespace SchedulingApi
 {
@@ -147,7 +150,7 @@ namespace SchedulingApi
 
         private static void BsonMapping()
         {
-            BsonClassMapping.RegisterClassMaps();
+            //BsonClassMapping.RegisterClassMaps();
 
             BsonClassMap.RegisterClassMap<AppointmentId>(cm =>
             {

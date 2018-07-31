@@ -10,6 +10,7 @@ using MicroservicesPlayground.EventBus.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using EventFlow.Kafka;
+using EventFlow.Kafka.Configuration;
 
 namespace EventBus.Kafka
 {

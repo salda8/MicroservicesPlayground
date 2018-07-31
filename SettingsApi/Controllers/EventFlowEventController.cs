@@ -77,10 +77,10 @@ namespace SettingsApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ReplaceDocument(string id, [FromBody] EventFlowEvent record)
         {
-            if (id != record.Id)
+            if (id != record.Id.ToString())
                 return BadRequest();
             
-            var rec = await genericRepository.ReplaceOneAndGetAsync<EventFlowEvent>(id, record);
+            var rec = await genericRepository.ReplaceOneAndGetAsync<EventFlowEvent>(id, record, null);
 
             return Ok(rec);
         }
@@ -95,7 +95,7 @@ namespace SettingsApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateFields(String id, [FromBody]Dictionary<string, object> updates)
         {
-            return Ok(await genericRepository.UpdateFields<EventFlowEvent>(id, updates));
+            return Ok(await genericRepository.UpdateFields<EventFlowEvent>(id, updates, null));
            
         }
 

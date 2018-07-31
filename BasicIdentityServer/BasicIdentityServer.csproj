@@ -12,9 +12,6 @@
     <None Remove="Extensions\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Identity.MongoDb\Identity.MongoDb\Identity.MongoDb.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Update="Views\Account\ConfirmEmail.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

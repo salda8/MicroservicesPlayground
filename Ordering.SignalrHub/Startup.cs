@@ -16,6 +16,7 @@ using MicroservicesPlayground.EventBus.Abstractions;
 using Microsoft.Extensions.Options;
 using Ordering.SignalrHub.IntegrationEvents.Events;
 using Ordering.SignalrHub.IntegrationEvents.EventHandling;
+using EventFlow.Kafka.Configuration;
 
 namespace Ordering.SignalrHub
 {

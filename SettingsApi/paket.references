@@ -14,3 +14,4 @@ Serilog.Sinks.RollingFile
 Serilog.Sinks.Trace
 Swashbuckle.AspNetCore.SwaggerGen
 Swashbuckle.AspNetCore.SwaggerUI
+MongoGenericRepository
