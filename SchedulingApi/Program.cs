@@ -14,6 +14,7 @@ namespace SchedulingApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                    .UseUrls("https://localhost:5002")
                     .UseStartup<Startup>()
                     .ConfigureServices(services => services.AddAutofac())
                     .UseSerilog((hostingContext, loggerConfiguration)

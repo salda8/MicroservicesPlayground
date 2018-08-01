@@ -18,11 +18,11 @@ namespace SettingsApi
         {
             try
             {
-                await next(context).ConfigureAwait(false);
+                await next(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex).ConfigureAwait(false);
+                await HandleExceptionAsync(context, ex);
             }
         }
 

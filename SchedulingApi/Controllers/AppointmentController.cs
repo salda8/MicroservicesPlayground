@@ -47,21 +47,21 @@ namespace SchedulingApi.Controllers
             return NotFound();
         }
         [HttpPost("{id}/location")]
-        public async Task<IActionResult> SetLocation([FromBody]Location location,[FromRoute] string id)
+        public async Task<IActionResult> SetLocation([FromBody]Location location, [FromRoute] string id)
         {
             await this.commandBus
                 .PublishAsync(new AppointmentSetLocationCommand(new AppointmentId(id), location), new System.Threading.CancellationToken())
-                .ConfigureAwait(false);
+                ;
             return Ok();
         }
 
         [HttpPost("{id}/schedule")]
         public async Task<IActionResult> SetSchedule([FromBody]Schedule schedule, [FromRoute]string id)
         {
-           
+
             await this.commandBus
                 .PublishAsync(new AppointmentSetScheduleCommand(schedule, new AppointmentId(id)), new System.Threading.CancellationToken())
-                .ConfigureAwait(false);
+                ;
             return Ok();
         }
 
@@ -71,7 +71,7 @@ namespace SchedulingApi.Controllers
 
             await this.commandBus
                 .PublishAsync(new AppointmentSetCarServiceCommand(new AppointmentId(id), carService), new System.Threading.CancellationToken())
-                .ConfigureAwait(false);
+                ;
             return Ok();
         }
 
@@ -80,14 +80,14 @@ namespace SchedulingApi.Controllers
         public async Task<IActionResult> OrderAppointment()
         {
             var appointmentId = AppointmentId.New;
-            
+
 
             await this.commandBus
                 .PublishAsync(new AppointmentOrderCreateCommand(appointmentId), new System.Threading.CancellationToken())
-                .ConfigureAwait(false);
+                ;
 
-           
-            return CreatedAtAction(nameof(OrderAppointment),new { id = appointmentId});
+
+            return CreatedAtAction(nameof(OrderAppointment), new { id = appointmentId });
 
             //save
             //notify
@@ -104,15 +104,15 @@ namespace SchedulingApi.Controllers
 
             IExecutionResult result = await this.commandBus
                 .PublishAsync(new AppointmentBookCommand(appointmentId), new System.Threading.CancellationToken())
-                .ConfigureAwait(false);
+                ;
             if (result.IsSuccess)
             {
                 return CreatedAtAction(nameof(BookAppointment), new { id = appointmentId });
             }
 
             return Conflict(result.ToString());
-            
-          
+
+
 
             //save
             //notify

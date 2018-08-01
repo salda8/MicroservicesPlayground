@@ -7,7 +7,7 @@ namespace AppointmentApi.Models.CapacityPlanningModel
     [JsonConverter(typeof(SingleValueObjectConverter))]
     public class CapacityPlanningId : Identity<CapacityPlanningId>
     {
-        protected CapacityPlanningId(string value) : base(value)
+        public CapacityPlanningId(string value) : base(value)
         {
         }
     }

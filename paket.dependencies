@@ -1,0 +1,36 @@
+storage: none
+source https://www.myget.org/F/salda/api/v3/index.json
+source https://www.nuget.org/api/v2
+nuget Dapper
+nuget Autofac.Extensions.DependencyInjection
+nuget Automatonymous
+clitool BundlerMinifier.Core
+nuget Confluent.Kafka prerelease
+nuget EventFlow.Autofac prerelease
+nuget IdentityServer4.AccessTokenValidation
+nuget IdentityServer4.Contrib.MongoDB
+nuget Microsoft.AspNetCore.App
+nuget Microsoft.VisualStudio.Web.CodeGeneration.Design
+nuget Sendgrid
+nuget Serilog.AspNetCore
+nuget Serilog.Enrichers.Environment
+nuget Serilog.Enrichers.Process
+nuget Serilog.Enrichers.Thread
+nuget Serilog.Formatting.Compact
+nuget Serilog.Settings.Configuration
+nuget Serilog.Sinks.Async
+nuget Serilog.Sinks.Console
+nuget Serilog.Sinks.MongoDB
+nuget Serilog.Sinks.RollingFile
+nuget Serilog.Sinks.RollingFileAlternate
+nuget Serilog.Sinks.Trace
+nuget Swashbuckle.AspNetCore.SwaggerGen
+nuget Swashbuckle.AspNetCore.SwaggerUI
+nuget Twilio
+nuget EventFlow.Kafka
+nuget NETStandard.Library --version 2.0.3
+nuget EventFlow.RabbitMQ
+nuget Serilog.Sinks.Email
+nuget Identity.MongoDb
+nuget MongoGenericRepository
+nuget EventFlowMongoDb

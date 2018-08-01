@@ -22,12 +22,12 @@ namespace BasicIdentityServer.Services
 
         public async Task<MongoIdentityUser> FindByUsername(string user)
         {
-            return await userManager.FindByEmailAsync(user).ConfigureAwait(false);
+            return await userManager.FindByEmailAsync(user);
         }
 
         public async Task<bool> ValidateCredentials(MongoIdentityUser user, string password)
         {
-            return await userManager.CheckPasswordAsync(user, password).ConfigureAwait(false);
+            return await userManager.CheckPasswordAsync(user, password);
         }
 
         public Task SignIn(MongoIdentityUser user)
@@ -93,7 +93,7 @@ namespace BasicIdentityServer.Services
 
         public async Task SetEmailAsConfirmed(MongoIdentityUser user)
         {
-            await mongoUserStore.SetEmailConfirmedAsync(user, true, CancellationToken.None).ConfigureAwait(false);
+            await mongoUserStore.SetEmailConfirmedAsync(user, true, CancellationToken.None);
         }
 
         public SignInManager<MongoIdentityUser> SignInManager => signInManager;

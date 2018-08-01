@@ -1,7 +1,17 @@
-﻿namespace SchedulingApi
+﻿using System.Collections.Generic;
+using System.Text;
+using EventBus.Kafka;
+using EventFlow.Kafka;
+
+namespace SchedulingApi
 {
-    internal class KafkaSettings : IConnectionSetting
+    public class KafkaSettings 
     {
-        public string ConnectionString { get; set; }
+        public List<string> SubscribedTopics { get; set; }
+        public string ClientId { get ; set ; }
+        public string GroupId { get ; set ; }
+
+        public List<string> BrokerAddresses {get;set;}
+
     }
 }

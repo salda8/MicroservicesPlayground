@@ -1,4 +1,5 @@
 ﻿using EventFlow.ValueObjects;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 
 namespace AppointmentApi.Models.AppointmentModel.ValueObjects
@@ -11,7 +12,8 @@ namespace AppointmentApi.Models.AppointmentModel.ValueObjects
         public DateTime RegisteredDate { get; set; }
         public string Manufacturer { get; set; }
 
-        protected Car(string manufacturer, string type, long kilometers, string registeredPlate, DateTime registeredDate)
+[BsonConstructor]
+        public Car(string manufacturer, string type, long kilometers, string registeredPlate, DateTime registeredDate)
         {
             RegisteredDate = registeredDate;
             RegisteredPlate = registeredPlate;

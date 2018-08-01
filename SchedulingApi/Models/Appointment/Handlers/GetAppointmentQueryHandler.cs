@@ -20,7 +20,7 @@ namespace AppointmentApi
         public async Task<IReadOnlyCollection<Appointment>> ExecuteQueryAsync(GetAppointmentQuery query, CancellationToken cancellationToken)
         {
             var appointmetnIds = new HashSet<AppointmentId>(query.AppointmentIds);
-            var appointmentReadModels = await readStore.FindAsync(x => appointmetnIds.Contains(x.Id), cancellationToken).ConfigureAwait(false);
+            var appointmentReadModels = await readStore.FindAsync(x => appointmetnIds.Contains(x.Id), cancellationToken);
             return appointmentReadModels.Select(x=>x.ToAppointment()).ToList();
 
 
