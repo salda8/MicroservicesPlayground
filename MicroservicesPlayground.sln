@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFlow.MongoDB", "..\EventFlow.MongoDB\EventFlow.MongoDB\EventFlow.MongoDB.csproj", "{8FCB7790-4F39-4FBE-B3BE-C56AFD7E1EA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "EventBus\EventBus\EventBus.csproj", "{432E98EB-4BC6-44CE-9B22-06243587FDB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "EventBus\EventBus.csproj", "{432E98EB-4BC6-44CE-9B22-06243587FDB9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicIdentityServer", "BasicIdentityServer\BasicIdentityServer.csproj", "{1D3277C6-89E8-4880-858A-1953F858FB3B}"
 EndProject

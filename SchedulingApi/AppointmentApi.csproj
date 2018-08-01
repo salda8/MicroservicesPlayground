@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\EventFlow.MongoDB\EventFlow.MongoDB\EventFlow.MongoDB.csproj" />
    
-    <ProjectReference Include="..\EventBus\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\EventBus\EventBus.csproj" />
    
     <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
   </ItemGroup>

@@ -25,7 +25,7 @@
   <ItemGroup>
    
     <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
-    <ProjectReference Include="..\EventBus\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,5 +4,5 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>MicroservicesPlayground.EventBus</RootNamespace>
   </PropertyGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

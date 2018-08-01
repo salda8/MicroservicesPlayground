@@ -150,7 +150,7 @@ namespace SchedulingApi
 
         private static void BsonMapping()
         {
-            //BsonClassMapping.RegisterClassMaps();
+            BsonClassMapping.RegisterClassMaps();
 
             BsonClassMap.RegisterClassMap<AppointmentId>(cm =>
             {
