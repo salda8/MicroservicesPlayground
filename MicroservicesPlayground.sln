@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{DAFC78
 		paket.dependencies = paket.dependencies
 	EndProjectSection
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18F87DB8-EB3E-4AAB-9953-0DA9CAE11243}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentApi", "SchedulingApi\AppointmentApi.csproj", "{8284B25D-8F70-463D-872F-86DF30B430BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "A", "A", "{C87E8614-11B1-455F-B815-5C533647752B}"
