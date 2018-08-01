@@ -4,7 +4,6 @@ Dapper
 EventFlow
 EventFlow.Kafka
 EventFlow.Autofac
-EventFlow.MongoDB
 EventFlow.RabbitMQ
 IdentityServer4.AccessTokenValidation
 Microsoft.AspNetCore.App
@@ -29,3 +28,4 @@ Swashbuckle.AspNetCore.SwaggerUI
 Confluent.Kafka
 Automatonymous
 Identity.MongoDb
+EventFlowMongoDb

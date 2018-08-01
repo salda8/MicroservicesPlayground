@@ -29,8 +29,8 @@ nuget Swashbuckle.AspNetCore.SwaggerUI
 nuget Twilio
 nuget EventFlow.Kafka
 nuget NETStandard.Library --version 2.0.3
-nuget EventFlow.MongoDB
 nuget EventFlow.RabbitMQ
 nuget Serilog.Sinks.Email
 nuget Identity.MongoDb
 nuget MongoGenericRepository
+nuget EventFlowMongoDb
