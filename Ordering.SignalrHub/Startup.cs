@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Ordering.SignalrHub.IntegrationEvents.Events;
 using Ordering.SignalrHub.IntegrationEvents.EventHandling;
 using EventFlow.Kafka.Configuration;
+using System.Text;
 
 namespace Ordering.SignalrHub
 {
@@ -124,7 +125,7 @@ namespace Ordering.SignalrHub
                     var kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
                     var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId, 
                     kafkaSettings.ClientId, kafkaSettings.SubscribedTopics);
-                    var valueDeserializer = new StringDeserializer();
+                    var valueDeserializer = new StringDeserializer(encoding: Encoding.Default);
                     var topics = kafkaSettings.SubscribedTopics;
                     var eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 

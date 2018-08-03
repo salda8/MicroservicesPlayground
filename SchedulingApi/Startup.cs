@@ -28,6 +28,10 @@ using EventFlow.MongoDB;
 using EventFlow.Kafka.Configuration;
 using MicroservicesPlayground.EventBus;
 using EventFlow.Kafka.Extensions;
+using Consul;
+using SchedulingApi.Infrastructure;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace SchedulingApi
 {
@@ -45,6 +49,13 @@ namespace SchedulingApi
         {
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
             services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
+            services.Configure<ConsulConfig>(Configuration.GetSection("ConsulConfig"));
+            services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, ConsulHostedService>();
+            services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
+            {
+                var address = Configuration["ConsulConfig:address"];
+                consulConfig.Address = new Uri(address);
+            }));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -63,7 +74,7 @@ namespace SchedulingApi
                     var kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
                     var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId, 
                     kafkaSettings.ClientId, kafkaSettings.SubscribedTopics);
-                    var valueDeserializer = new StringDeserializer();
+                    var valueDeserializer = new StringDeserializer(System.Text.Encoding.Default);
                     var topics = kafkaSettings.SubscribedTopics;
                     var eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 
@@ -75,7 +86,7 @@ namespace SchedulingApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
