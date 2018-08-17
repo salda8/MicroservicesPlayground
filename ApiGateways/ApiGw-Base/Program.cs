@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Steeltoe.Extensions.Logging;
 
 namespace OcelotApiGw
 {
@@ -22,7 +23,18 @@ namespace OcelotApiGw
         {
             IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args);
             builder.ConfigureServices(s => s.AddSingleton(builder))
-                .ConfigureAppConfiguration(ic => ic.AddJsonFile(Path.Combine("configuration", "configuration.json")))
+            .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                          .AddJsonFile("appsettings.json")
+                          .AddJsonFile("ocelot.json")
+                          .AddEnvironmentVariables();
+                })
+                .ConfigureLogging((context, b) =>
+                {
+                    b.AddConfiguration(context.Configuration.GetSection("Logging"));
+                    b.AddDynamicConsole();
+                })
                 .UseStartup<Startup>();
             IWebHost host = builder.Build();
             return host;

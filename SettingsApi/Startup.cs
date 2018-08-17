@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDbGenericRepository;
 using SettingsApi.Repository;
+using Steeltoe.Discovery.Client;
+
 
 namespace SettingsApi
 {
@@ -31,6 +33,8 @@ namespace SettingsApi
             services.AddScoped<IGenericMongoRepository, GenericMongoRepository>();
             services.AddScoped<IBaseMongoRepository, GenericMongoRepository>();
 
+            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
@@ -40,7 +44,7 @@ namespace SettingsApi
                 options.ApiName = "settings";
 
             });
-
+            services.AddDiscoveryClient(Configuration);
             services.AddSwaggerDocumentation(Configuration);
         }
 
@@ -62,6 +66,8 @@ namespace SettingsApi
             
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseDiscoveryClient();
         }
     }
 }

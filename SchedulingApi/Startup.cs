@@ -32,6 +32,8 @@ using Consul;
 using SchedulingApi.Infrastructure;
 using Microsoft.Extensions.Hosting;
 using System;
+using Steeltoe.Discovery.Client;
+//using Steeltoe.Discovery.Eureka;
 
 namespace SchedulingApi
 {
@@ -49,8 +51,8 @@ namespace SchedulingApi
         {
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
             services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
-            services.Configure<ConsulConfig>(Configuration.GetSection("ConsulConfig"));
-            services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, ConsulHostedService>();
+            //services.Configure<ConsulConfig>(Configuration.GetSection("ConsulConfig"));
+            //services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, ConsulHostedService>();
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
             {
                 var address = Configuration["ConsulConfig:address"];
@@ -81,6 +83,7 @@ namespace SchedulingApi
                     return new EventBusKafka(eventBusSubscriptionsManager, consumerFactory, iLifetimeScope, kafkaConfig, valueDeserializer);
                 });
 
+            services.AddDiscoveryClient(Configuration);
             services.AddSwaggerDocumentation(Configuration);
             services.AddTransient<IntegrationTestEventHandler>();
         }
@@ -113,6 +116,7 @@ namespace SchedulingApi
                        .AllowCredentials();
             });
 
+            app.UseDiscoveryClient();
             app.UseSwaggerDocumentation();
 
             ConfigureEventBus(app);

@@ -15,5 +15,9 @@
    
     <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    
+    <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="2.0.1" />
+  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

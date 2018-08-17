@@ -1,0 +1,29 @@
+{
+    "ReRoutes": [
+      {
+        "DownstreamPathTemplate": "/api/Payment",
+        "DownstreamScheme": "https",
+        "UpstreamPathTemplate": "/Payment",
+        "UseServiceDiscovery": true,
+        "ServiceName": "scheduling.api",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 5002
+            }
+        ],
+        "UpstreamHttpMethod": [ "Get" ],
+        "LoadBalancerOptions": {
+            "Type": "LeastConnection"
+        }
+        
+       
+      }
+    ],
+    "GlobalConfiguration": {
+      "RequestIdKey": "OcRequestId",
+      "AdministrationPath": "/administration",
+      "ServiceDiscoveryProvider": { "Type": "Eureka" }
+    }
+  }
+  
