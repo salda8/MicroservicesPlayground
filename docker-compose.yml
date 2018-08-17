@@ -1,21 +1,40 @@
 version: '3.4'
 
 services:
-  locationsapi:
-    image: ${DOCKER_REGISTRY}locationsapi
-    build:
-      context: .
-      dockerfile: ../LocationsApi/Dockerfile
-
-  carservicesapi:
-    image: ${DOCKER_REGISTRY}carservicesapi
-    build:
-      context: .
-      dockerfile: CarServicesApi/Dockerfile
-
-
+  config:
+    image: "steeltoeoss/configserver"
+    command: --spring.profiles.active=native --spring.cloud.config.server.native.searchLocations=/config
+    volumes:
+      - type: bind
+        source: ./src/config
+        target: /config
+    ports:
+      - "8888:8888"
+  eureka:
+    image: "steeltoeoss/eurekaserver:1.4.4"
+    ports:
+      - "8761:8761"
+  mongo:
+    image: mongodb
+    ports: 27017:27017
+  
+  kafka:
+    image: landoop/fast-data-dev:latest
+    command: "-e ADV_HOST=127.0.0.1"
+    ports: 
+      - "2181:2181"
+      - "3030:3030"
+      - "8081-8083:8081-8083"
+      - "9581-9585:9581-9585"
+      - "9092:9092" 
+    
   schedulingapi:
     image: ${DOCKER_REGISTRY}schedulingapi
+    depends_on: 
+      - kafka
+      - mongo
+      - eureka
+      - identityapi
     build:
       context: .
       dockerfile: SchedulingApi/Dockerfile
@@ -28,29 +47,18 @@ services:
       dockerfile: PaymentApi/Dockerfile
 
 
-  web:
-    image: ${DOCKER_REGISTRY}web
-    build:
-      context: .
-      dockerfile: Web/Dockerfile
-
-
   identityapi:
     image: ${DOCKER_REGISTRY}identityapi
+    depends_on: 
+      - mongo
     build:
       context: .
       dockerfile: IdentityApi/Dockerfile
 
-
-  apitest:
-    image: ${DOCKER_REGISTRY}apitest
-    build:
-      context: .
-      dockerfile: ApiTest/Dockerfile
-
-
   settingsapi:
     image: ${DOCKER_REGISTRY}settingsapi
+    depends_on: 
+      - mongo
     build:
       context: .
       dockerfile: SettingsApi/Dockerfile
