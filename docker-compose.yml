@@ -11,7 +11,7 @@ services:
     ports:
       - "8888:8888"
   eureka:
-    image: "steeltoeoss/eurekaserver:1.4.4"
+    image: "steeltoeoss/eurekaserver"
     ports:
       - "8761:8761"
   mongo:
