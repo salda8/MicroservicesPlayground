@@ -41,9 +41,16 @@ namespace OcelotApiGw
 
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //services.AddAuthentication().AddOath2();
+            
 
-            services.AddAuthentication()
-                .AddJwtBearer(authenticationProviderKey, x =>
+             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = identityUrl;
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "gateway";
+
+            }).AddJwtBearer(authenticationProviderKey, x =>
                 {
                     x.Authority = identityUrl;
                     x.RequireHttpsMetadata = false;
@@ -84,8 +91,9 @@ namespace OcelotApiGw
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             loggerFactory.AddConsole(_cfg.GetSection("Logging"));
+            app.UseAuthentication();
             app.UseMvc();
             app.UseCors("CorsPolicy");
 

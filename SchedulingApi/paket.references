@@ -29,3 +29,4 @@ Confluent.Kafka
 Automatonymous
 Identity.MongoDb
 EventFlowMongoDb
+Steeltoe.Discovery.ClientCore

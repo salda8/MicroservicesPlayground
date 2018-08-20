@@ -14,4 +14,3 @@ Serilog.Sinks.MongoDB
 Serilog.Sinks.RollingFileAlternate
 Twilio
 BundlerMinifier.Core
-Identity.MongoDb

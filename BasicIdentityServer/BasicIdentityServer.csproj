@@ -339,5 +339,8 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\Account\Lockout.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Identity.MongoDb\IdentityMongoDb\Identity.MongoDb.csproj" />
+  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

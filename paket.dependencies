@@ -27,10 +27,20 @@ nuget Swashbuckle.AspNetCore.SwaggerGen
 nuget Swashbuckle.AspNetCore.SwaggerUI
 nuget Twilio
 nuget EventFlow.Kafka
-nuget NETStandard.Library --version 2.0.3
+nuget NETStandard.Library
 nuget EventFlow.RabbitMQ
 nuget Serilog.Sinks.Email
 nuget Identity.MongoDb
 nuget MongoGenericRepository
 nuget EventFlowMongoDb
 nuget OpenCover
+nuget Steeltoe.Discovery.ClientCore
+nuget Microsoft.ApplicationInsights.AspNetCore 
+nuget Microsoft.ApplicationInsights.DependencyCollector
+nuget Microsoft.ApplicationInsights.Kubernetes
+nuget Microsoft.ApplicationInsights.ServiceFabric
+nuget Microsoft.AspNetCore.App 
+nuget Microsoft.AspNetCore.SignalR
+nuget Microsoft.AspNetCore.SignalR.Core
+nuget Microsoft.AspNetCore.SignalR.Redis
+nuget Microsoft.Extensions.Logging.AzureAppServices

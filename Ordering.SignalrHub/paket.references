@@ -1,0 +1,11 @@
+Autofac
+Autofac.Extensions.DependencyInjection
+Microsoft.AspNetCore.App
+Microsoft.AspNetCore.SignalR
+Microsoft.AspNetCore.SignalR.Core
+Microsoft.AspNetCore.SignalR.Redis
+Microsoft.ApplicationInsights.AspNetCore
+Microsoft.ApplicationInsights.DependencyCollector
+Microsoft.ApplicationInsights.Kubernetes
+Microsoft.ApplicationInsights.ServiceFabric
+Microsoft.Extensions.Logging.AzureAppServices

@@ -15,3 +15,4 @@ Serilog.Sinks.Trace
 Swashbuckle.AspNetCore.SwaggerGen
 Swashbuckle.AspNetCore.SwaggerUI
 MongoGenericRepository
+Steeltoe.Discovery.ClientCore
