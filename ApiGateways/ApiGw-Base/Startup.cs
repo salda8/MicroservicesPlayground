@@ -41,32 +41,33 @@ namespace OcelotApiGw
 
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            // services.AddAuthentication()
-            //     .AddJwtBearer(authenticationProviderKey, x =>
-            //     {
-            //         x.Authority = identityUrl;
-            //         x.RequireHttpsMetadata = false;
-            //         x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-            //         {
-            //             ValidAudiences = new[] { "orders", "basket", "locations", "marketing", "mobileshoppingagg", "webshoppingagg" }
-            //         };
-            //         x.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents()
-            //         {
-            //             OnAuthenticationFailed = async ctx =>
-            //             {
-            //                 int i = 0;
-            //             },
-            //             OnTokenValidated = async ctx =>
-            //             {
-            //                 int i = 0;
-            //             },
 
-            //             OnMessageReceived = async ctx =>
-            //             {
-            //                 int i = 0;
-            //             }
-            //         };
-            //     });
+            services.AddAuthentication()
+                .AddJwtBearer(authenticationProviderKey, x =>
+                {
+                    x.Authority = identityUrl;
+                    x.RequireHttpsMetadata = false;
+                    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidAudiences = new[] { "orders", "basket", "locations", "marketing", "mobileshoppingagg", "webshoppingagg","gateway" }
+                    };
+                    x.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents()
+                    {
+                        OnAuthenticationFailed = async ctx =>
+                        {
+                            int i = 0;
+                        },
+                        OnTokenValidated = async ctx =>
+                        {
+                            int i = 0;
+                        },
+
+                        OnMessageReceived = async ctx =>
+                        {
+                            int i = 0;
+                        }
+                    };
+                });
 
             services.AddOcelot(_cfg).AddEureka();
         }

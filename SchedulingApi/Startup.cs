@@ -28,12 +28,9 @@ using EventFlow.MongoDB;
 using EventFlow.Kafka.Configuration;
 using MicroservicesPlayground.EventBus;
 using EventFlow.Kafka.Extensions;
-using Consul;
-using SchedulingApi.Infrastructure;
 using Microsoft.Extensions.Hosting;
 using System;
 using Steeltoe.Discovery.Client;
-//using Steeltoe.Discovery.Eureka;
 
 namespace SchedulingApi
 {
@@ -51,14 +48,7 @@ namespace SchedulingApi
         {
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
             services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
-            //services.Configure<ConsulConfig>(Configuration.GetSection("ConsulConfig"));
-            //services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, ConsulHostedService>();
-            services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
-            {
-                var address = Configuration["ConsulConfig:address"];
-                consulConfig.Address = new Uri(address);
-            }));
-
+           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>

@@ -34,4 +34,3 @@ nuget Identity.MongoDb
 nuget MongoGenericRepository
 nuget EventFlowMongoDb
 nuget OpenCover
-nuget Consul

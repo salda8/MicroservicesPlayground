@@ -82,7 +82,7 @@ namespace BasicIdentityServer.Configuration
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
                         "settings",
-                       
+
                     },
                 },
                 new Client

@@ -1,29 +1,38 @@
 {
-    "ReRoutes": [
-      {
-        "DownstreamPathTemplate": "/api/Payment",
-        "DownstreamScheme": "https",
-        "UpstreamPathTemplate": "/Payment",
-        "UseServiceDiscovery": true,
-        "ServiceName": "scheduling.api",
-        "DownstreamHostAndPorts": [
-            {
-                "Host": "localhost",
-                "Port": 5002
-            }
-        ],
-        "UpstreamHttpMethod": [ "Get" ],
-        "LoadBalancerOptions": {
-            "Type": "LeastConnection"
-        }
-        
-       
-      }
-    ],
+    "ReRoutes": [],
+    "Aggregates": [],
     "GlobalConfiguration": {
-      "RequestIdKey": "OcRequestId",
-      "AdministrationPath": "/administration",
-      "ServiceDiscoveryProvider": { "Type": "Eureka" }
+        "RequestIdKey": null,
+        "ServiceDiscoveryProvider": {
+            "Host": "localhost",
+            "Port": 8500,
+            "Type": "Eureka",
+            "Token": null,
+            "ConfigurationKey": null
+        },
+        "RateLimitOptions": {
+            "ClientIdHeader": "ClientId",
+            "QuotaExceededMessage": null,
+            "RateLimitCounterPrefix": "ocelot",
+            "DisableRateLimitHeaders": false,
+            "HttpStatusCode": 429
+        },
+        "QoSOptions": {
+            "ExceptionsAllowedBeforeBreaking": 0,
+            "DurationOfBreak": 0,
+            "TimeoutValue": 0
+        },
+        "BaseUrl": null,
+            "LoadBalancerOptions": {
+            "Type": "LeastConnection",
+            "Key": null,
+            "Expiry": 0
+        },
+        "DownstreamScheme": "https",
+        "HttpHandlerOptions": {
+            "AllowAutoRedirect": false,
+            "UseCookieContainer": false,
+            "UseTracing": false
+        }
     }
-  }
-  
+}
