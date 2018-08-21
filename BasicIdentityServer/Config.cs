@@ -17,6 +17,7 @@ namespace BasicIdentityServer.Configuration
                 new ApiResource("api1", "My API"),
                 new ApiResource("appointment", "Appointment Service"),
                 new ApiResource("payment", "Payment Service"),
+                new ApiResource("gateway", "Gateway")
             };
         }
 
@@ -95,12 +96,13 @@ namespace BasicIdentityServer.Configuration
                     RequireConsent = false,
                     AllowOfflineAccess = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
+                    
 
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"appointment", IdentityServerConstants.StandardScopes.OpenId,
+                    AllowedScopes = {"appointment","gateway", IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess }
                 },
@@ -146,37 +148,7 @@ namespace BasicIdentityServer.Configuration
                     },
                     AllowedScopes = { "appointment" }
                 },
-                new Client
-                {
-                    ClientId = "appointmentService",
-                    //ClientName = "Appointment Service",
-                    ClientSecrets = new List<Secret>
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                   // ClientUri = $"{clientsUrl["AppointmentApi"]}",                             // public uri of the client
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    //AllowAccessTokensViaBrowser = false,
-                    //RequireConsent = false,
-                    //AllowOfflineAccess = true,
-                    //AlwaysIncludeUserClaimsInIdToken = true,
-                    //RedirectUris = new List<string>
-                    //{
-                    //    $"{clientsUrl["AppointmentApi"]}/signin-oidc"
-                    //},
-                    //PostLogoutRedirectUris = new List<string>
-                    //{
-                    //    $"{clientsUrl["AppointmentApi"]}/signout-callback-oidc"
-                    //},
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "appointment",
-                        "payment",
-                    },
-                },
+               
                 new Client
                 {
                     ClientId = "mvctest",

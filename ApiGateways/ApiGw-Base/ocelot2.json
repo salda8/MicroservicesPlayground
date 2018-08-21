@@ -1,0 +1,28 @@
+{
+    "ReRoutes": [
+      {
+        "DownstreamPathTemplate": "/api/appointment",
+        "DownstreamScheme": "https",
+        "UpstreamPathTemplate": "/appointment",
+        "UseServiceDiscovery": true,
+        "ServiceName": "SCHEDULING",
+       
+        "LoadBalancerOptions": {
+            "Type": "LeastConnection"
+        },
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "test",
+            "AllowedScopes": ["appointment"]
+        }
+
+        
+       
+      }
+    ],
+    "GlobalConfiguration": {
+      "RequestIdKey": "OcRequestId",
+      "AdministrationPath": "/administration",
+      "ServiceDiscoveryProvider": { "Type": "Eureka" }
+    }
+  }
+  

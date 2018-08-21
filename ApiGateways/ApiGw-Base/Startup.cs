@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Eureka;
+using Ocelot.Administration;
 
 namespace OcelotApiGw
 {
@@ -42,41 +43,20 @@ namespace OcelotApiGw
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddAuthentication().AddOath2();
-            
 
-             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = identityUrl;
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "gateway";
 
-            }).AddJwtBearer(authenticationProviderKey, x =>
-                {
-                    x.Authority = identityUrl;
-                    x.RequireHttpsMetadata = false;
-                    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                    {
-                        ValidAudiences = new[] { "orders", "basket", "locations", "marketing", "mobileshoppingagg", "webshoppingagg","gateway" }
-                    };
-                    x.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents()
-                    {
-                        OnAuthenticationFailed = async ctx =>
-                        {
-                            int i = 0;
-                        },
-                        OnTokenValidated = async ctx =>
-                        {
-                            int i = 0;
-                        },
+            Action<IdentityServer4.AccessTokenValidation.IdentityServerAuthenticationOptions> configureOptions = options =>
+              {
+                  options.Authority = identityUrl;
+                  options.RequireHttpsMetadata = false;
+                  options.ApiName = "gateway";
+                  options.EnableCaching = true;
+                  options.CacheDuration = TimeSpan.FromMinutes(10);
 
-                        OnMessageReceived = async ctx =>
-                        {
-                            int i = 0;
-                        }
-                    };
-                });
+              };
+            services.AddAuthentication("Bearer").AddIdentityServerAuthentication("test", configureOptions);
 
-            services.AddOcelot(_cfg).AddEureka();
+            services.AddOcelot(_cfg).AddEureka().AddAdministration("/administration", configureOptions);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -91,13 +71,33 @@ namespace OcelotApiGw
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             loggerFactory.AddConsole(_cfg.GetSection("Logging"));
             app.UseAuthentication();
             app.UseMvc();
             app.UseCors("CorsPolicy");
 
             app.UseOcelot().Wait();
+        }
+
+        /// <summary>
+        /// Method for overriding default ocelot middlewares
+        /// </summary>
+        /// <returns></returns>
+        public OcelotPipelineConfiguration OcelotPipelineConfiguration()
+        {
+            var pipelineConfiguration = new OcelotPipelineConfiguration();
+
+            pipelineConfiguration.AuthorisationMiddleware = async (ctx, next) =>
+                {
+
+                    await next.Invoke();
+                };
+
+
+
+            return pipelineConfiguration;
+
         }
     }
 }

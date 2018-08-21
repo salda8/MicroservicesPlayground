@@ -31,6 +31,8 @@ using EventFlow.Kafka.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using Steeltoe.Discovery.Client;
+using Microsoft.Extensions.HealthChecks;
+using System.Threading.Tasks;
 
 namespace SchedulingApi
 {
@@ -48,7 +50,7 @@ namespace SchedulingApi
         {
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
             services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
-           
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
@@ -59,12 +61,17 @@ namespace SchedulingApi
 
             });
 
+            services.AddHealthChecks(checks =>
+            {
+                checks.AddValueTaskCheck("HTTP Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")));
+            });
+
             services.AddSingleton<ISubscriptionEventBus, EventBusKafka>(sp =>
                 {
                     var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
                     var consumerFactory = sp.GetRequiredService<IKafkaConsumerFactory>();
                     var kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
-                    var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId, 
+                    var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId,
                     kafkaSettings.ClientId, kafkaSettings.SubscribedTopics);
                     var valueDeserializer = new StringDeserializer(System.Text.Encoding.Default);
                     var topics = kafkaSettings.SubscribedTopics;
@@ -138,7 +145,7 @@ namespace SchedulingApi
 
               .UseMongoDbEventStore()
               .UseMongoDbSnapshotStore()
-              
+
               .PublishToKafka(KafkaConfiguration.With(kafkaUri))
               .UseLibLog(LibLogProviders.Serilog)
               .ConfigureMongoDb(mongoDbSettings.ConnectionString, mongoDbSettings.Database);
@@ -175,9 +182,10 @@ namespace SchedulingApi
             BsonClassMap.RegisterClassMap<CarService>(cm =>
             {
                 cm.AutoMap();
-                cm.MapCreator(cs=> new CarService(cs.Name, cs.Price));
+                cm.MapCreator(cs => new CarService(cs.Name, cs.Price));
             });
-            BsonClassMap.RegisterClassMap<AppointmentInsertReadModel>(cm=>{
+            BsonClassMap.RegisterClassMap<AppointmentInsertReadModel>(cm =>
+            {
                 cm.AutoMap();
             });
 

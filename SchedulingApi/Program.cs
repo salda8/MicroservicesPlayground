@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
+using Microsoft.AspNetCore.HealthChecks;
 
 namespace SchedulingApi
 {
@@ -15,6 +16,7 @@ namespace SchedulingApi
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                     .UseUrls("https://localhost:5002")
+                    .UseHealthChecks("/health")
                     .UseStartup<Startup>()
                     .ConfigureServices(services => services.AddAutofac())
                     .UseSerilog((hostingContext, loggerConfiguration)
