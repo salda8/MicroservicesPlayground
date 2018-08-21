@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventBusKafka\EventBus.Kafka.csproj" />
     <ProjectReference Include="..\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

@@ -341,6 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Identity.MongoDb\IdentityMongoDb\Identity.MongoDb.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

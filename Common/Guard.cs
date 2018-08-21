@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-static class Guard
+public static class Guard
 {
     public static void ArgumentNotNull(string argumentName, object value)
     {

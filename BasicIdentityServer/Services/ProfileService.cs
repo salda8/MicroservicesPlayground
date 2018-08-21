@@ -24,21 +24,23 @@ namespace BasicIdentityServer.Services
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
-            var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
+            Guard.ArgumentNotNull(nameof(context.Subject), context.Subject);
+            
+            var subject = context.Subject;
 
             var subjectId = subject.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject).Value;
 
             var user = await userManager.FindByIdAsync(subjectId);
-            if (user == null)
-                throw new ArgumentException("Invalid subject identifier");
-
+            Guard.ArgumentNotNull(nameof(user), user);
+          
             var claims = GetClaimsFromUser(user);
             context.IssuedClaims = claims.ToList();
         }
 
         public async Task IsActiveAsync(IsActiveContext context)
         {
-            var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
+            Guard.ArgumentNotNull(nameof(context.Subject), context.Subject);
+            var subject = context.Subject;
 
             var subjectId = subject.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Subject)?.Value;
             var user = await userManager.FindByIdAsync(subjectId);

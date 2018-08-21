@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Health
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.AspNetCore.HealthChecks", "HealthChecks\src\Microsoft.AspNetCore.HealthChecks\Microsoft.AspNetCore.HealthChecks.csproj", "{2E1980DF-ED34-4A7F-94B9-F16DE555BA8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{00D093D4-97AE-4775-9A90-CA4426228723}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{2E1980DF-ED34-4A7F-94B9-F16DE555BA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E1980DF-ED34-4A7F-94B9-F16DE555BA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E1980DF-ED34-4A7F-94B9-F16DE555BA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D093D4-97AE-4775-9A90-CA4426228723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D093D4-97AE-4775-9A90-CA4426228723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D093D4-97AE-4775-9A90-CA4426228723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D093D4-97AE-4775-9A90-CA4426228723}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

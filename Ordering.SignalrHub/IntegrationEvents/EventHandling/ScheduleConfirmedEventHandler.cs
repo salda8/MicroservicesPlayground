@@ -12,7 +12,8 @@ namespace Ordering.SignalrHub.IntegrationEvents.EventHandling
 
         public ScheduleConfirmedEventHandler(IHubContext<NotificationsHub> hubContext)
         {
-            this.hubContext = hubContext ?? throw new ArgumentNullException(nameof(hubContext));
+            Guard.ArgumentNotNull(nameof(hubContext), hubContext);
+            this.hubContext = hubContext;
         }
 
         public async Task Handle(ScheduleConfirmedEvent @event)
