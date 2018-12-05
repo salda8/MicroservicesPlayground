@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Autofac;
 using Confluent.Kafka;
 using EventFlow.Kafka.Configuration;
 using MicroservicesPlayground.EventBus;
@@ -7,9 +10,6 @@ using MicroservicesPlayground.EventBus.Events;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace EventBus.Kafka
 {
@@ -31,18 +31,13 @@ namespace EventBus.Kafka
     //There are many possible variations on this approach.For example each processor thread can have its own queue, and the consumer threads can hash into these queues using the TopicPartition to ensure in-order consumption and simplify commit.
     public class EventBusKafka : ISubscriptionEventBus
     {
-        private readonly KafkaConsumerConfiguration configuration;
-        private readonly ILifetimeScope autofac;
-        private readonly IEventBusSubscriptionsManager subscriptionsManager;
-        private const string AUTOFAC_SCOPE_NAME = "scope";
-        private List<string> subscribedTopics = new List<string> { "eventflow.domainevent.appointment-aggregate" };
-
-        public IEnumerable<string> SubscribedTopics => subscribedTopics;
-
         public IKafkaConsumerFactory consumerFactory;
-        public IEnumerable<KeyValuePair<string, string>> Configuration { get; }
-
+        private const string AUTOFAC_SCOPE_NAME = "scope";
+        private readonly ILifetimeScope autofac;
         private readonly CancellationToken cancellationToken = new CancellationToken();
+        private readonly KafkaConsumerConfiguration configuration;
+        private readonly IEventBusSubscriptionsManager subscriptionsManager;
+        private List<string> subscribedTopics = new List<string> { "eventflow.domainevent.appointment-aggregate" };
 
         public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, IKafkaConsumerFactory consumerFactory, ILifetimeScope autofac, IOptions<KafkaConsumerConfiguration> configuration)
         {
@@ -56,12 +51,22 @@ namespace EventBus.Kafka
             CreateOneConsumerPerTopic();
         }
 
-        public void SubscribeDynamic<TH>(string eventName)
-            where TH : IDynamicIntegrationEventHandler => subscriptionsManager.AddDynamicSubscription<TH>(eventName);
+        public IEnumerable<KeyValuePair<string, string>> Configuration { get; }
+
+        public IEnumerable<string> SubscribedTopics => subscribedTopics;
+
+        public void AddTopicToSubscribeTo(string topicName, CancellationToken cancelToken = default(CancellationToken))
+        {
+            subscribedTopics.Add(topicName);
+            Task.Factory.StartNew(async () => await ConsumerAction(topicName, cancelToken), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
 
         public void Subscribe<T, TH>(string eventName = null)
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T> => subscriptionsManager.AddSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
+
+        public void SubscribeDynamic<TH>(string eventName)
+                            where TH : IDynamicIntegrationEventHandler => subscriptionsManager.AddDynamicSubscription<TH>(eventName);
 
         public void Unsubscribe<T, TH>(string eventName = null)
             where TH : IIntegrationEventHandler<T>
@@ -69,12 +74,6 @@ namespace EventBus.Kafka
 
         public void UnsubscribeDynamic<TH>(string eventName)
             where TH : IDynamicIntegrationEventHandler => subscriptionsManager.RemoveDynamicSubscription<TH>(eventName);
-
-        public void AddTopicToSubscribeTo(string topicName, CancellationToken cancelToken = default(CancellationToken))
-        {
-            subscribedTopics.Add(topicName);
-            Task.Factory.StartNew(async () => await ConsumerAction(topicName, cancelToken), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-        }
 
         private async Task Consume(Consumer<Ignore, string> consumer, CancellationToken cancellationToken)
         {
@@ -93,20 +92,20 @@ namespace EventBus.Kafka
             }
         }
 
-        private void CreateOneConsumerPerTopic()
-        {
-            foreach (string topic in subscribedTopics)
-            {
-                Task.Factory.StartNew(async () => await ConsumerAction(topic, cancellationToken), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-            }
-        }
-
         private async Task ConsumerAction(string topic, CancellationToken cancellationToken)
         {
             using (Consumer<Ignore, string> consumer = consumerFactory.CreateConsumer(Configuration))
             {
                 consumer.Subscribe(topic);
                 await Consume(consumer, cancellationToken);
+            }
+        }
+
+        private void CreateOneConsumerPerTopic()
+        {
+            foreach (string topic in subscribedTopics)
+            {
+                Task.Factory.StartNew(async () => await ConsumerAction(topic, cancellationToken), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
             }
         }
 

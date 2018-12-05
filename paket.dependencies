@@ -39,8 +39,8 @@ nuget Microsoft.ApplicationInsights.AspNetCore
 nuget Microsoft.ApplicationInsights.DependencyCollector
 nuget Microsoft.ApplicationInsights.Kubernetes
 nuget Microsoft.ApplicationInsights.ServiceFabric
-nuget Microsoft.AspNetCore.App 
 nuget Microsoft.AspNetCore.SignalR
 nuget Microsoft.AspNetCore.SignalR.Core
 nuget Microsoft.AspNetCore.SignalR.Redis
 nuget Microsoft.Extensions.Logging.AzureAppServices
+nuget Microsoft.AspNetCore.HealthChecks

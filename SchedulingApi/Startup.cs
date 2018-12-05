@@ -1,38 +1,30 @@
-﻿using AppointmentApi;
-using AppointmentApi.Models.Appointment.Integration;
+﻿using System.Reflection;
+using AppointmentApi;
 using AppointmentApi.AppointmentModel.ValueObjects;
+using AppointmentApi.Models.Appointment.Integration;
 using Autofac;
-using MicroservicesPlayground.EventBus.Abstractions;
+using EventBus.Kafka;
 using EventFlow;
 using EventFlow.Autofac.Extensions;
 using EventFlow.Extensions;
-using EventFlow.Kafka;
+using EventFlow.Kafka.Configuration;
+using EventFlow.Kafka.Extensions;
+using EventFlow.MongoDB;
 using EventFlow.MongoDB.Extensions;
-using EventFlow.RabbitMQ.Extensions;
 using Identity.MongoDb;
+using MicroservicesPlayground.EventBus;
+using MicroservicesPlayground.EventBus.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Bson.Serialization;
-using SchedulingApi.Controllers;
-using System.Reflection;
-using EventBus.Kafka;
-using EventBus;
-using Confluent.Kafka.Serialization;
-using Microsoft.Extensions.Options;
-using Payments.Domain.Payments.ReadModels;
-using MongoDB.Bson.Serialization.Conventions;
-using EventFlow.MongoDB;
-using EventFlow.Kafka.Configuration;
-using MicroservicesPlayground.EventBus;
-using EventFlow.Kafka.Extensions;
 using Microsoft.Extensions.Hosting;
-using System;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson.Serialization;
+using Payments.Domain.Payments.ReadModels;
+using SchedulingApi.Controllers;
 using Steeltoe.Discovery.Client;
-using Microsoft.Extensions.HealthChecks;
-using System.Threading.Tasks;
 
 namespace SchedulingApi
 {
@@ -44,46 +36,6 @@ namespace SchedulingApi
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
-            services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = Configuration.GetSection("IdentityUrlExternal").Value;
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "appointment";
-
-            });
-
-            services.AddHealthChecks(checks =>
-            {
-                checks.AddValueTaskCheck("HTTP Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")));
-            });
-
-            services.AddSingleton<ISubscriptionEventBus, EventBusKafka>(sp =>
-                {
-                    var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
-                    var consumerFactory = sp.GetRequiredService<IKafkaConsumerFactory>();
-                    var kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
-                    var kafkaConfig = new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId,
-                    kafkaSettings.ClientId, kafkaSettings.SubscribedTopics);
-                    var valueDeserializer = new StringDeserializer(System.Text.Encoding.Default);
-                    var topics = kafkaSettings.SubscribedTopics;
-                    var eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
-
-                    return new EventBusKafka(eventBusSubscriptionsManager, consumerFactory, iLifetimeScope, kafkaConfig, valueDeserializer);
-                });
-
-            services.AddDiscoveryClient(Configuration);
-            services.AddSwaggerDocumentation(Configuration);
-            services.AddTransient<IntegrationTestEventHandler>();
-        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
@@ -132,10 +84,10 @@ namespace SchedulingApi
 
             builder.RegisterModule(new AutofacModule());
 
-            var amqpUri = Configuration.GetSection("RabbitMq").Get<RabbitMqSettings>().ConnectionString;
-            var kafkaUri = Configuration.GetSection("Kafka").Get<KafkaSettings>().BrokerAddresses;
-            var mongoDbSettings = Configuration.GetSection("MongoDb").Get<MongoDbSettings>();
-            var container = EventFlowOptions.New
+            string amqpUri = Configuration.GetSection("RabbitMq").Get<RabbitMqSettings>().ConnectionString;
+            System.Collections.Generic.List<string> kafkaUri = Configuration.GetSection("Kafka").Get<KafkaSettings>().BrokerAddresses;
+            MongoDbSettings mongoDbSettings = Configuration.GetSection("MongoDb").Get<MongoDbSettings>();
+            IEventFlowOptions container = EventFlowOptions.New
               .UseAutofacContainerBuilder(builder) // Must be the first line!
               .AddDefaults(Assembly.GetExecutingAssembly())
               .UseMongoDbReadModel<AppointmentReadModel>()
@@ -151,14 +103,43 @@ namespace SchedulingApi
               .ConfigureMongoDb(mongoDbSettings.ConnectionString, mongoDbSettings.Database);
         }
 
-        private void ConfigureEventBus(IApplicationBuilder app)
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
         {
-            var eventBus = app.ApplicationServices.GetRequiredService<ISubscriptionEventBus>();
-            eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>();
+            services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
+            services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = Configuration.GetSection("IdentityUrlExternal").Value;
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "appointment";
+            });
+
+            //services.AddHealthChecks(checks =>
+            //{
+            //    checks.AddValueTaskCheck("HTTP Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")));
+            //});
+
+            services.AddSingleton<ISubscriptionEventBus, EventBusKafka>(sp =>
+                {
+                    ILifetimeScope iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
+                    IKafkaConsumerFactory consumerFactory = sp.GetRequiredService<IKafkaConsumerFactory>();
+                    KafkaSettings kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
+                    IOptions<KafkaConsumerConfiguration> kafkaConfig = Options.Create(new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId,
+                    kafkaSettings.ClientId, kafkaSettings.SubscribedTopics));
+                    System.Collections.Generic.List<string> topics = kafkaSettings.SubscribedTopics;
+                    IEventBusSubscriptionsManager eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
+
+                    return new EventBusKafka(eventBusSubscriptionsManager, consumerFactory, iLifetimeScope, kafkaConfig);
+                });
+
+            services.AddDiscoveryClient(Configuration);
+            services.AddSwaggerDocumentation(Configuration);
+            services.AddTransient<IntegrationTestEventHandler>();
         }
-
-
 
         private static void BsonMapping()
         {
@@ -191,7 +172,12 @@ namespace SchedulingApi
 
             // var conventionPack = new ConventionPack { new IgnoreExtraElementsConvention(true) };
             // ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
+        }
 
+        private void ConfigureEventBus(IApplicationBuilder app)
+        {
+            ISubscriptionEventBus eventBus = app.ApplicationServices.GetRequiredService<ISubscriptionEventBus>();
+            eventBus.Subscribe<LocationSet, IntegrationTestEventHandler>();
         }
     }
 }

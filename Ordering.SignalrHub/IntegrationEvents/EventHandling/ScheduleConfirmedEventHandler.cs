@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using MicroservicesPlayground.EventBus.Abstractions;
 using Microsoft.AspNetCore.SignalR;
@@ -16,11 +15,11 @@ namespace Ordering.SignalrHub.IntegrationEvents.EventHandling
             this.hubContext = hubContext;
         }
 
-        public async Task Handle(ScheduleConfirmedEvent @event)
+        public Task Handle(ScheduleConfirmedEvent @event)
         {
-           await hubContext.Clients
-                .Group(@event.Id.ToString())
-                .SendAsync("ScheduleConfirmation");
+            return hubContext.Clients
+                 .Group(@event.Id.ToString())
+                 .SendAsync("ScheduleConfirmation");
         }
     }
 }

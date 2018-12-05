@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace SettingsApi
 {
@@ -17,7 +15,6 @@ namespace SettingsApi
             {
                 c.SwaggerDoc("v1.0", new Info { Title = "Main API v1.0", Version = "v1.0" });
 
-               
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
                     {"Bearer", new string[] { }},
@@ -30,16 +27,15 @@ namespace SettingsApi
                     Name = "Authorization",
                     In = "header",
                     Type = "apiKey"
-                    
                 });
 
                 c.AddSecurityDefinition("oauth2", new OAuth2Scheme
                 {
                     Type = "oauth2",
                     Flow = "clientCredentials",
-                                        
+
                     TokenUrl = $"{configuration.GetValue<string>("IdentityUrlExternal")}/connect/token",
-                    
+
                     Scopes = new Dictionary<string, string>()
                     {
                         { "settings", "Settings API" }
@@ -48,8 +44,6 @@ namespace SettingsApi
 
                 c.OperationFilter<AuthorizeCheckOperationFilter>();
 
-
-               
                 c.AddSecurityRequirement(security);
             });
 
@@ -65,7 +59,6 @@ namespace SettingsApi
                 c.OAuthClientId("settingsswaggerui");
                 c.OAuthAppName("Settings Swagger UI");
                 c.OAuthClientSecret("secret");
-                               
 
                 c.DocExpansion(DocExpansion.List);
             });
