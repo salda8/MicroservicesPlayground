@@ -1,17 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AppointmentApi.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
-      
-        public IActionResult Index()
-        {
-            return new RedirectResult("~/swagger");
-        }
+        public IActionResult Index() => new RedirectResult("~/swagger");
     }
 }

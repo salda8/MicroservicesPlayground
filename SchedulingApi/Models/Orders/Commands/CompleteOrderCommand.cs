@@ -15,10 +15,10 @@ namespace Payments.Domain.Orders.Commands
 
     public class CompleteOrderCommandHandler : CommandHandler<OrderAggregate, OrderId, CompleteOrderCommand>
     {
-        public override async Task ExecuteAsync(OrderAggregate aggregate, CompleteOrderCommand command, CancellationToken cancellationToken)
+        public override Task ExecuteAsync(OrderAggregate aggregate, CompleteOrderCommand command, CancellationToken cancellationToken)
         {
             var stateMachine = new OrderStateMachine();
-            await stateMachine.RaiseEvent(aggregate, stateMachine.PaymentProcessSuccessfullyFinished, cancellationToken);
+            return stateMachine.RaiseEvent(aggregate, stateMachine.PaymentProcessSuccessfullyFinished, cancellationToken);
         }
     }
 }

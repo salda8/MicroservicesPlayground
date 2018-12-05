@@ -98,7 +98,7 @@ namespace SchedulingApi
               .UseMongoDbEventStore()
               .UseMongoDbSnapshotStore()
 
-              .PublishToKafka(KafkaConfiguration.With(kafkaUri))
+              .PublishToKafka(new KafkaProducerConfiguration() { Servers = kafkaUri.ToArray() })
               .UseLibLog(LibLogProviders.Serilog)
               .ConfigureMongoDb(mongoDbSettings.ConnectionString, mongoDbSettings.Database);
         }
@@ -109,7 +109,7 @@ namespace SchedulingApi
             services.Configure<MongoConfigurationOptions>(Configuration.GetSection("MongoDb"));
             services.Configure<KafkaSettings>(Configuration.GetSection("Kafka"));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
             {
@@ -128,8 +128,13 @@ namespace SchedulingApi
                     ILifetimeScope iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
                     IKafkaConsumerFactory consumerFactory = sp.GetRequiredService<IKafkaConsumerFactory>();
                     KafkaSettings kafkaSettings = sp.GetRequiredService<IOptions<KafkaSettings>>().Value;
-                    IOptions<KafkaConsumerConfiguration> kafkaConfig = Options.Create(new KafkaConsumerConfiguration(kafkaSettings.BrokerAddresses, kafkaSettings.GroupId,
-                    kafkaSettings.ClientId, kafkaSettings.SubscribedTopics));
+                    IOptions<KafkaConsumerConfiguration> kafkaConfig = Options.Create(new KafkaConsumerConfiguration()
+                    {
+                        Servers = kafkaSettings.BrokerAddresses.ToArray(),
+                        GroupId = kafkaSettings.GroupId,
+                        ClientId = kafkaSettings.ClientId,
+                        SubscribedTopics = kafkaSettings.SubscribedTopics
+                    });
                     System.Collections.Generic.List<string> topics = kafkaSettings.SubscribedTopics;
                     IEventBusSubscriptionsManager eventBusSubscriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 
