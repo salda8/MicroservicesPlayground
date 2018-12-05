@@ -1,26 +1,19 @@
-using System.Collections.Generic;
 using Confluent.Kafka;
-using Confluent.Kafka.Serialization;
+using System.Collections.Generic;
 
+namespace EventBus.Kafka
+{
+    public class KafkaConsumerFactory : IKafkaConsumerFactory
+    {
+        public Consumer<TKey, TValue> CreateConsumer<TKey, TValue>(IEnumerable<KeyValuePair<string, string>> configuration) where TKey : class where TValue : class => new Consumer<TKey, TValue>(configuration);
 
-namespace EventBus.Kafka {
-    public class KafkaConsumerFactory : IKafkaConsumerFactory {
-        public Consumer<TKey, TValue> CreateConsumer<TKey, TValue>(Dictionary<string, object> configuration, IDeserializer<TKey> keyDeserializer, IDeserializer<TValue> valueDeserializer)where TKey : class where TValue : class {
-            return new Consumer<TKey, TValue>(configuration, keyDeserializer, valueDeserializer);
-        }
-
-        public Consumer<Ignore, string> CreateConsumer(Dictionary<string, object> configuration, IDeserializer<string> valueDeserializer) {
-            
-            return new Consumer<Ignore, string>(configuration, null, valueDeserializer);
-        }
+        public Consumer<Ignore, string> CreateConsumer(IEnumerable<KeyValuePair<string, string>> configuration) => new Consumer<Ignore, string>(configuration);
     }
 
-    public interface IKafkaConsumerFactory {
-        Consumer<TKey, TValue> CreateConsumer<TKey, TValue>(Dictionary<string, object> configuration, IDeserializer<TKey> keyDeserializer, IDeserializer<TValue> valueDeserializer)where TKey : class where TValue : class;
-        Consumer<Ignore, string> CreateConsumer(Dictionary<string, object> configuration, IDeserializer<string> valueDeserializer);
+    public interface IKafkaConsumerFactory
+    {
+        Consumer<TKey, TValue> CreateConsumer<TKey, TValue>(IEnumerable<KeyValuePair<string, string>> configuration) where TKey : class where TValue : class;
 
-      
-      
+        Consumer<Ignore, string> CreateConsumer(IEnumerable<KeyValuePair<string, string>> configuration);
     }
-
 }

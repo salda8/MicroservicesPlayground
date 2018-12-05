@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Confluent.Kafka;
-using Confluent.Kafka.Serialization;
+using EventFlow.Kafka.Configuration;
 using MicroservicesPlayground.EventBus;
 using MicroservicesPlayground.EventBus.Abstractions;
 using MicroservicesPlayground.EventBus.Events;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using EventFlow.Kafka;
-using EventFlow.Kafka.Configuration;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EventBus.Kafka
 {
@@ -23,17 +22,16 @@ namespace EventBus.Kafka
     //CON: Multiple consumers means more requests being sent to the server and slightly less batching of data which can cause some drop in I/O throughput.
     //CON: The number of total threads across all processes will be limited by the total number of partitions.
     //2. Decouple Consumption and Processing
-    //Another alternative is to have one or more consumer threads that do all data consumption and hands off ConsumerRecords instances to a blocking queue consumed by a pool of processor 
+    //Another alternative is to have one or more consumer threads that do all data consumption and hands off ConsumerRecords instances to a blocking queue consumed by a pool of processor
     // threads that actually handle the record processing.This option likewise has pros and cons:
-    //PRO: This option allows independently scaling the number of consumers and processors.This makes it possible to have a single consumer that feeds many processor threads, 
+    //PRO: This option allows independently scaling the number of consumers and processors.This makes it possible to have a single consumer that feeds many processor threads,
     //avoiding any limitation on partitions.
     //CON: Guaranteeing order across the processors requires particular care as the threads will execute independently an earlier chunk of data may actually be processed after a later chunk of data just due to the luck of thread execution timing.For processing that has no ordering requirements this is not a problem.
     //CON: Manually committing the position becomes harder as it requires that all threads co-ordinate to ensure that processing is complete for that partition.
     //There are many possible variations on this approach.For example each processor thread can have its own queue, and the consumer threads can hash into these queues using the TopicPartition to ensure in-order consumption and simplify commit.
     public class EventBusKafka : ISubscriptionEventBus
     {
-        private readonly IDeserializer<string> valueDeserializer;
-        private readonly IKafkaConsumerConfiguration configuration;
+        private readonly KafkaConsumerConfiguration configuration;
         private readonly ILifetimeScope autofac;
         private readonly IEventBusSubscriptionsManager subscriptionsManager;
         private const string AUTOFAC_SCOPE_NAME = "scope";
@@ -42,93 +40,70 @@ namespace EventBus.Kafka
         public IEnumerable<string> SubscribedTopics => subscribedTopics;
 
         public IKafkaConsumerFactory consumerFactory;
-        public Dictionary<string, object> Configuration { get; }
+        public IEnumerable<KeyValuePair<string, string>> Configuration { get; }
 
-        private CancellationToken cancellationToken = new CancellationToken();
+        private readonly CancellationToken cancellationToken = new CancellationToken();
 
-        public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, IKafkaConsumerFactory consumerFactory, ILifetimeScope autofac, IKafkaConsumerConfiguration configuration, IDeserializer<string> valueDeserializer)
+        public EventBusKafka(IEventBusSubscriptionsManager subscriptionsManager, IKafkaConsumerFactory consumerFactory, ILifetimeScope autofac, IOptions<KafkaConsumerConfiguration> configuration)
         {
             this.subscriptionsManager = subscriptionsManager ?? new InMemoryEventBusSubscriptionsManager();
             this.consumerFactory = consumerFactory;
             this.autofac = autofac;
-            this.configuration = configuration;
-            this.valueDeserializer = valueDeserializer;
-            this.subscribedTopics = configuration.SubscribedTopics;
-            Configuration = configuration.Configuration;
-            valueDeserializer.Configure(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("dotnet.string.serializer.encoding.key", configuration.Encoding.HeaderName) }, true);
+            this.configuration = configuration.Value;
+
+            subscribedTopics = this.configuration.SubscribedTopics;
+            Configuration = this.configuration.ToConfig();
             CreateOneConsumerPerTopic();
         }
 
-
-
         public void SubscribeDynamic<TH>(string eventName)
-            where TH : IDynamicIntegrationEventHandler
-        {
-
-            subscriptionsManager.AddDynamicSubscription<TH>(eventName);
-        }
+            where TH : IDynamicIntegrationEventHandler => subscriptionsManager.AddDynamicSubscription<TH>(eventName);
 
         public void Subscribe<T, TH>(string eventName = null)
             where T : IntegrationEvent
-            where TH : IIntegrationEventHandler<T>
-        {
-
-            subscriptionsManager.AddSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
-        }
-
+            where TH : IIntegrationEventHandler<T> => subscriptionsManager.AddSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
 
         public void Unsubscribe<T, TH>(string eventName = null)
             where TH : IIntegrationEventHandler<T>
-            where T : IntegrationEvent
-        {
-            subscriptionsManager.RemoveSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
-        }
+            where T : IntegrationEvent => subscriptionsManager.RemoveSubscription<T, TH>(subscriptionsManager.GetEventName<T>(eventName));
 
         public void UnsubscribeDynamic<TH>(string eventName)
-            where TH : IDynamicIntegrationEventHandler
-        {
-            subscriptionsManager.RemoveDynamicSubscription<TH>(eventName);
-        }
+            where TH : IDynamicIntegrationEventHandler => subscriptionsManager.RemoveDynamicSubscription<TH>(eventName);
 
         public void AddTopicToSubscribeTo(string topicName, CancellationToken cancelToken = default(CancellationToken))
         {
             subscribedTopics.Add(topicName);
             Task.Factory.StartNew(async () => await ConsumerAction(topicName, cancelToken), cancelToken == default(CancellationToken) ? cancellationToken : cancelToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-
         }
 
         private async Task Consume(Consumer<Ignore, string> consumer, CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var consumerResult = consumer.Consume();
+                ConsumeResult<Ignore, string> consumerResult = consumer.Consume();
                 //if (consumerResult.)
                 //{
-                    var serObject = JsonConvert.DeserializeObject<KafkaEvent>(consumerResult.Message.Value);
-                    await ProcessEventAsync(serObject.Metadata.EventName, consumerResult.Message.Value);
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        break;
-                    }
+                KafkaEvent serObject = JsonConvert.DeserializeObject<KafkaEvent>(consumerResult.Message.Value);
+                await ProcessEventAsync(serObject.Metadata.EventName, consumerResult.Message.Value);
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    break;
+                }
                 //}
             }
-
         }
 
         private void CreateOneConsumerPerTopic()
         {
-
             foreach (string topic in subscribedTopics)
             {
-
                 Task.Factory.StartNew(async () => await ConsumerAction(topic, cancellationToken), cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-
             }
-
         }
-        async Task ConsumerAction(string topic, CancellationToken cancellationToken)
+
+        private async Task ConsumerAction(string topic, CancellationToken cancellationToken)
         {
-            using (var consumer = consumerFactory.CreateConsumer(Configuration, valueDeserializer))
+            using (Consumer<Ignore, string> consumer = consumerFactory.CreateConsumer(Configuration))
             {
                 consumer.Subscribe(topic);
                 await Consume(consumer, cancellationToken);
@@ -139,9 +114,9 @@ namespace EventBus.Kafka
         {
             if (subscriptionsManager.HasSubscriptionsForEvent(eventName))
             {
-                using (var scope = autofac.BeginLifetimeScope(AUTOFAC_SCOPE_NAME))
+                using (ILifetimeScope scope = autofac.BeginLifetimeScope(AUTOFAC_SCOPE_NAME))
                 {
-                    foreach (var subscription in subscriptionsManager.GetHandlersForEvent(eventName))
+                    foreach (SubscriptionInfo subscription in subscriptionsManager.GetHandlersForEvent(eventName))
                     {
                         if (subscription.IsDynamic)
                         {
@@ -151,17 +126,15 @@ namespace EventBus.Kafka
                         }
                         else
                         {
-                            var eventType = subscriptionsManager.GetEventTypeByName(eventName);
-                            var integrationEvent = JsonConvert.DeserializeObject(message, eventType);
-                            var handler = scope.ResolveOptional(subscription.HandlerType);
-                            var concreteType = typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
+                            System.Type eventType = subscriptionsManager.GetEventTypeByName(eventName);
+                            object integrationEvent = JsonConvert.DeserializeObject(message, eventType);
+                            object handler = scope.ResolveOptional(subscription.HandlerType);
+                            System.Type concreteType = typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
                             await (Task)concreteType.GetMethod("Handle").Invoke(handler, new object[] { integrationEvent });
                         }
                     }
                 }
             }
         }
-
-
     }
 }
