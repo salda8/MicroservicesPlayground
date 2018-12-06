@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-using MongoDbGenericRepository.Models;
-using SettingsApi.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MongoDbGenericRepository.Models;
+using SettingsApi.Repository;
 
 namespace SettingsApi.Controllers
 {
@@ -13,9 +12,8 @@ namespace SettingsApi.Controllers
     [Route("api/[controller]")]
     public abstract class ApiController<TDocument> : ControllerBase where TDocument : class, IDocument
     {
-        protected string createdAtActionName;
-
         protected readonly IGenericMongoRepository genericRepository;
+        protected string createdAtActionName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiController{TDocument}"/> class.
@@ -35,33 +33,8 @@ namespace SettingsApi.Controllers
         /// <param name="createdAtActionName">Name of the created at action.</param>
         protected ApiController(IGenericMongoRepository repository, string createdAtActionName)
         {
-            this.genericRepository = repository;
+            genericRepository = repository;
             this.createdAtActionName = createdAtActionName;
-        }
-
-        /// <summary>
-        /// Queries this instance.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> Query()
-        {
-            return Ok(await genericRepository.GetAllAsync<TDocument>(_ => true));
-        }
-
-        /// <summary>
-        /// Finds the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Find(Guid id)
-        {
-            var record = await genericRepository.GetByIdAsync<TDocument>(id);
-            if (record == null)
-                return NotFound();
-
-            return Ok(record);
         }
 
         /// <summary>
@@ -79,6 +52,44 @@ namespace SettingsApi.Controllers
             return CreatedAtAction(createdAtActionName, new { id = record.Id }, record);
         }
 
+        [HttpDelete("{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            TDocument document = await genericRepository.GetByIdAsync<TDocument>(id);
+
+            if (await genericRepository.DeleteOneAsync(document) == 0)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Finds the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Find(Guid id)
+        {
+            TDocument record = await genericRepository.GetByIdAsync<TDocument>(id);
+            if (record == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(record);
+        }
+
+        /// <summary>
+        /// Queries this instance.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Query() => Ok(await genericRepository.GetAllAsync<TDocument>(_ => true));
+
         /// <summary>
         /// Replaces the document.
         /// </summary>
@@ -90,9 +101,11 @@ namespace SettingsApi.Controllers
         public async Task<IActionResult> ReplaceDocument(string id, [FromBody] TDocument record)
         {
             if (id != record.Id.ToString())
+            {
                 return BadRequest();
-            
-            var rec = await genericRepository.ReplaceOneAndGetAsync<TDocument>(id, record,null);
+            }
+
+            TDocument rec = await genericRepository.ReplaceOneAndGetAsync<TDocument>(id, record, null);
 
             return Ok(rec);
         }
@@ -105,22 +118,6 @@ namespace SettingsApi.Controllers
         /// <returns></returns>
         [HttpPatch("{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateFields(String id, [FromBody]Dictionary<string, object> updates)
-        {
-            return Ok(await genericRepository.UpdateFields<TDocument>(id, updates,null));
-           
-        }
-
-        [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var document = genericRepository.GetById<TDocument>(id);
-
-            if (await genericRepository.DeleteOneAsync(document) == 0)
-                return BadRequest();
-
-            return NoContent();
-        }
+        public async Task<IActionResult> UpdateFields(string id, [FromBody]Dictionary<string, object> updates) => Ok(await genericRepository.UpdateFields<TDocument>(id, updates, null));
     }
 }

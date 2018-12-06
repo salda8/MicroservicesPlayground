@@ -42,14 +42,9 @@ namespace BasicIdentityServer
             services.AddScoped<IUserEmailStore<MongoIdentityUser>, MongoUserStore<MongoIdentityUser>>();
             
 
-            services.AddIdentityServer(options =>
-            {
-                options.Events.RaiseSuccessEvents = true;
-                options.Events.RaiseFailureEvents = true;
-                options.Events.RaiseErrorEvents = true;
-            })
-                .AddConfigurationStore(Configuration.GetSection("MongoDb"))
-                .AddOperationalStore(Configuration.GetSection("MongoDb"))
+            services.AddIdentityServer()
+               // .AddConfigurationStore(Configuration.GetSection("MongoDb"))
+               // .AddOperationalStore(Configuration.GetSection("MongoDb"))
                 .AddDeveloperSigningCredential()
                 .AddResourceOwnerValidator<ResourceOwnedPasswordValidation>()
 
